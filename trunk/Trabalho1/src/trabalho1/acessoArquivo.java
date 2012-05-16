@@ -5,7 +5,8 @@
 
 package trabalho1;
 
-import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
 import java.util.ArrayList;
 
 /**
@@ -14,7 +15,7 @@ import java.util.ArrayList;
  */
 public interface acessoArquivo {
 
-    public void ler(File file);
-    public void escrever(ArrayList<Object> obj, File saida);
+    public void ler(FileReader file);
+    public void escrever(ArrayList<Object> obj, FileWriter saida);
 
 }
