@@ -5,7 +5,8 @@
 
 package trabalho1;
 
-import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
 import java.util.ArrayList;
 
 /**
@@ -15,12 +16,13 @@ import java.util.ArrayList;
 public class acessoArquivoPreco implements acessoArquivo{
 
     @Override
-    public void ler(File file) {
+    public void ler(FileReader file) {
+        
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override
-    public void escrever(ArrayList<Object> obj, File saida) {
+    public void escrever(ArrayList<Object> obj, FileWriter saida) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
