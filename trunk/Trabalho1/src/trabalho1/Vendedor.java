@@ -10,12 +10,13 @@ package trabalho1;
  * @author Jean
  */
 public class Vendedor {
-    private String cod;
+    
+    private String codigo;
     private String nome;
     private int categoria;
 
-    public Vendedor(String cod, String nome, int categoria) {
-        this.cod = cod;
+    public Vendedor(String codigo, String nome, int categoria) {
+        this.codigo = codigo;
         this.nome = nome;
         this.categoria = categoria;
     }
@@ -28,12 +29,12 @@ public class Vendedor {
         this.categoria = categoria;
     }
 
-    public String getCod() {
-        return cod;
+    public String getCodigo() {
+        return codigo;
     }
 
-    public void setCod(String cod) {
-        this.cod = cod;
+    public void setCodigo(String codigo) {
+        this.codigo = codigo;
     }
 
     public String getNome() {
