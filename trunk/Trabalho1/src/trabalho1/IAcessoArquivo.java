@@ -8,7 +8,7 @@ package trabalho1;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.util.ArrayList;
-import java.util.Calendar;
+import java.util.GregorianCalendar;
 
 /**
  *
@@ -18,5 +18,5 @@ public interface IAcessoArquivo {
 
     public abstract void ler(FileReader file);
     public void escrever(ArrayList<Object> obj, FileWriter saida);
-    public Calendar stringToCalendar(String valor);
+    public GregorianCalendar stringToCalendar(String valor) throws acessoArquivoException;
 }
