@@ -8,18 +8,15 @@ package trabalho1;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.util.ArrayList;
+import java.util.Calendar;
 
 /**
  *
  * @author Jean
  */
-public class acessoArquivoComissao extends acessoArquivo{
+public interface IAcessoArquivo {
 
-    @Override
-    public void ler(FileReader file) {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
-
-    
-
+    public abstract void ler(FileReader file);
+    public void escrever(ArrayList<Object> obj, FileWriter saida);
+    public Calendar stringToCalendar(String valor);
 }
