@@ -5,6 +5,8 @@
 
 package trabalho1;
 
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.List;
 
 /**
@@ -12,12 +14,15 @@ import java.util.List;
  * @author Jean
  */
 public class Venda {
-    private String data;
+    private GregorianCalendar data;
     private String codVendedor;
     private List<Integer> qtdeProdutos;
 
-    public Venda(String data, String codVendedor, List<Integer> qtdeProdutos) {
+    public Venda(GregorianCalendar data, String codVendedor, List<Integer> qtdeProdutos) {
         this.data = data;
+        this.data.setLenient(false);     
+        this.data.get(Calendar.MONTH);  //Inicializar todos os demais campos da Classe GregorianCalendar
+        
         this.codVendedor = codVendedor;
         this.qtdeProdutos = qtdeProdutos;
     }
@@ -30,11 +35,11 @@ public class Venda {
         this.codVendedor = codVendedor;
     }
 
-    public String getData() {
+    public GregorianCalendar getData() {
         return data;
     }
 
-    public void setData(String data) {
+    public void setData(GregorianCalendar data) {
         this.data = data;
     }
 
@@ -44,6 +49,36 @@ public class Venda {
 
     public void setQtdeProdutos(List<Integer> qtdeProdutos) {
         this.qtdeProdutos = qtdeProdutos;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Venda other = (Venda) obj;
+        if (this.data != other.data && (this.data == null || !this.data.equals(other.data))) {
+            return false;
+        }
+        if ((this.codVendedor == null) ? (other.codVendedor != null) : !this.codVendedor.equals(other.codVendedor)) {
+            return false;
+        }
+        if (this.qtdeProdutos != other.qtdeProdutos && (this.qtdeProdutos == null || !this.qtdeProdutos.equals(other.qtdeProdutos))) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 5;
+        hash = 61 * hash + (this.data != null ? this.data.hashCode() : 0);
+        hash = 61 * hash + (this.codVendedor != null ? this.codVendedor.hashCode() : 0);
+        hash = 61 * hash + (this.qtdeProdutos != null ? this.qtdeProdutos.hashCode() : 0);
+        return hash;
     }
 
 

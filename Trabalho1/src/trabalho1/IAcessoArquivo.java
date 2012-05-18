@@ -9,6 +9,7 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.util.ArrayList;
 import java.util.GregorianCalendar;
+import java.util.List;
 
 /**
  *
@@ -16,7 +17,9 @@ import java.util.GregorianCalendar;
  */
 public interface IAcessoArquivo {
 
-    public abstract void ler(FileReader file);
+    public abstract List<IAcessoArquivo> ler(FileReader file) throws acessoArquivoException;
     public void escrever(ArrayList<Object> obj, FileWriter saida);
     public GregorianCalendar stringToCalendar(String valor) throws acessoArquivoException;
+    public abstract void verificarPreCondicoes(String[] campos) throws acessoArquivoException;
+
 }

@@ -6,8 +6,7 @@
 package trabalho1;
 
 import java.io.FileReader;
-import java.io.FileWriter;
-import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -16,10 +15,12 @@ import java.util.ArrayList;
 public class acessoArquivoComissao extends acessoArquivo{
 
     @Override
-    public void ler(FileReader file) {
+    public void verificarPreCondicoes(String[] campos) throws acessoArquivoException {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
-    
-
+    @Override
+    public List<IAcessoArquivo> ler(FileReader file) throws acessoArquivoException {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
 }

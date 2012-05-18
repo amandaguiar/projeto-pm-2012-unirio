@@ -53,7 +53,7 @@ public class acessoArquivoStringToCalendarFormatoDataInvalidoTest {
             GregorianCalendar resultadoObtido = accArqVenda.stringToCalendar(data);
             Assert.fail();
         }catch(acessoArquivoException ex){
-            Assert.assertEquals(acessoArquivo.MSGFORMATODATAINVALIDO, ex.getMessage());
+            Assert.assertEquals(acessoArquivo.MSG_FORMATO_DATA_INVALIDO, ex.getMessage());
         }
     }
 }
