@@ -7,7 +7,9 @@ package trabalho1;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.GregorianCalendar;
+import java.util.List;
 import java.util.regex.Pattern;
 
 /**
@@ -15,23 +17,28 @@ import java.util.regex.Pattern;
  * @author Amandaa
  */
 public abstract class acessoArquivo implements IAcessoArquivo{
+
+    public static final String FORMATO_DATA = "\\d\\d/\\d\\d/\\d\\d\\d\\d";
     
-    public static final String FORMATODATA = "\\d\\d/\\d\\d/\\d\\d\\d\\d";
-    public static final String MSGFORMATODATAINVALIDO = "Formato da data inválido.";
-    public static final String MSGDATAINVALIDA = "Data inválida";
-            
+    public static final String MSG_FORMATO_DATA_INVALIDO = "Formato da data inválido.";
+    public static final String MSG_DATA_INVALIDA = "Data inválida";
+    public static final String MSG_NUMERO_DE_CAMPOS_INCORRETO = "Número de campos incorreto";
+
+    public static final String MSG_ERRO_ACESSO_ARQUIVO = "Erro no acesso ao arquivo";
+
     @Override
-    public abstract void ler(FileReader file);    
-        
+    public abstract List<IAcessoArquivo> ler(FileReader file) throws acessoArquivoException;
+   
     @Override
     public void escrever(ArrayList<Object> obj, FileWriter saida) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
     
+    //Verifica se a data contida na String é válida e gera um novo GregorianCalendar.
     @Override
     public GregorianCalendar stringToCalendar(String valor) throws acessoArquivoException {
 
-        formatoDataValido(valor);
+        verificarFormatoData(valor);
         String[] split = valor.split("/");
         
         GregorianCalendar newGregCal = null;
@@ -42,20 +49,33 @@ public abstract class acessoArquivo implements IAcessoArquivo{
         return newGregCal;
     }
     
-    public void formatoDataValido(String data) throws acessoArquivoException{
+    public void verificarFormatoData(String data) throws acessoArquivoException{
         
-        if(!Pattern.matches(FORMATODATA,data))
-            throw new acessoArquivoException(MSGFORMATODATAINVALIDO);
+        if(!Pattern.matches(FORMATO_DATA,data))
+            throw new acessoArquivoException(MSG_FORMATO_DATA_INVALIDO);
         
     }
     
     public void verificarValidadeData(GregorianCalendar newGregCal) throws acessoArquivoException{
         try{
-            newGregCal.get(GregorianCalendar.DAY_OF_MONTH);
-            newGregCal.get(GregorianCalendar.MONTH);
-            newGregCal.get(GregorianCalendar.YEAR);
+            newGregCal.get(GregorianCalendar.MONTH); /*Inicializa todos os demais campos da Classe 
+                                                       GregorianCalendar e os valida*/
+        
         }catch(IllegalArgumentException ex){
-            throw new acessoArquivoException(MSGDATAINVALIDA);
+            throw new acessoArquivoException(MSG_DATA_INVALIDA);
         }
+    }
+
+    @Override
+    public abstract void verificarPreCondicoes(String[] campos) throws acessoArquivoException;
+
+    //Verifica se todos os campos são válidos e quantos campos o array possui
+    public void verificarQtdeCamposValidos(String campos[], int numCampos) throws acessoArquivoException{
+        String[] copiaCampos = Arrays.copyOf(campos, campos.length); //criando uma cópia do array
+        Arrays.sort(copiaCampos);  //É necessário organizar o array para a busca binária funcionar
+        
+        int binarySearch = Arrays.binarySearch(copiaCampos, ""); //Buscar campo nulo
+        if(copiaCampos.length != numCampos || binarySearch >= 0)
+            throw new acessoArquivoException(MSG_NUMERO_DE_CAMPOS_INCORRETO);
     }
 }

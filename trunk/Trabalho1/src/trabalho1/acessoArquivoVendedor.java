@@ -7,9 +7,8 @@ package trabalho1;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
-import java.io.FileWriter;
 import java.io.IOException;
-import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -18,7 +17,7 @@ import java.util.ArrayList;
 public class acessoArquivoVendedor extends acessoArquivo{
 
     @Override
-    public void ler(FileReader file) {
+    public List<IAcessoArquivo> ler(FileReader file) throws acessoArquivoException{
         BufferedReader reader = null;
         try {
             try {
@@ -41,7 +40,9 @@ public class acessoArquivoVendedor extends acessoArquivo{
         
         throw new UnsupportedOperationException("Not supported yet.");
     }
-    
 
-
+    @Override
+    public void verificarPreCondicoes(String[] campos) throws acessoArquivoException {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
 }
