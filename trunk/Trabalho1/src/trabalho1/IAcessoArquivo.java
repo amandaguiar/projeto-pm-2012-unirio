@@ -17,7 +17,7 @@ import java.util.List;
  */
 public interface IAcessoArquivo {
 
-    public abstract List<IAcessoArquivo> ler(FileReader file) throws acessoArquivoException;
+    public abstract List ler(FileReader file) throws acessoArquivoException;
     public void escrever(ArrayList<Object> obj, FileWriter saida);
     public GregorianCalendar stringToCalendar(String valor) throws acessoArquivoException;
     public abstract void verificarPreCondicoes(String[] campos) throws acessoArquivoException;

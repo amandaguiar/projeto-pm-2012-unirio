@@ -26,7 +26,7 @@ public class acessoArquivoVenda extends acessoArquivo{
 
     //Lê um arquivo e retorna uma lista de objetos Venda.
     @Override
-    public List<IAcessoArquivo> ler(FileReader arquivo) throws acessoArquivoException {
+    public List<Venda> ler(FileReader arquivo) throws acessoArquivoException {
         List lista = new ArrayList<Venda>();
         BufferedReader reader = null;
         String[] campos = null;
@@ -62,7 +62,7 @@ public class acessoArquivoVenda extends acessoArquivo{
     
     //Verifica se os campos são válidos.
     public void verificarValidadeCampos(String[] campos) throws acessoArquivoException{
-        stringToCalendar(campos[0]); //Verificar data
+        stringToCalendar(campos[0]); //Essa função chama outras funções que validam a data
         verificarQtdes(campos);
     }
 

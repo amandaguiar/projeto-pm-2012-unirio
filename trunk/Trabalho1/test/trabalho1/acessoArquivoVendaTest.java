@@ -31,8 +31,9 @@ public class acessoArquivoVendaTest {
     public void LerOkTest() {
         try{
             acessoArquivo accArqVenda = new acessoArquivoVenda();
-            List<IAcessoArquivo> resultObtido = accArqVenda.ler(new FileReader(new File(fileOk)));
-            List<IAcessoArquivo> resultEsperado = gerarResultEsperado(2011,(03-1),10,"0020",10,30,50);
+            List<Venda> resultObtido = accArqVenda.ler(new FileReader(new File(fileOk)));
+            List<Venda> resultEsperado = gerarResultEsperado(2011,(03-1),10,"0020",10,30,50);
+                      
             Assert.assertEquals(resultEsperado.get(0), resultObtido.get(0));
         } catch(acessoArquivoException ex){
             Assert.fail();
@@ -42,9 +43,9 @@ public class acessoArquivoVendaTest {
     }
 
     
-    public List<IAcessoArquivo> gerarResultEsperado(int ano, int mes, int dia, String codVendedor,
+    public List<Venda> gerarResultEsperado(int ano, int mes, int dia, String codVendedor,
                                                     int qtdeA, int qtdeB, int qtdeC) {
-        List resultEsperado = new ArrayList<Venda>();
+        List<Venda> resultEsperado = new ArrayList<Venda>();
         List<Integer> listaQtdes = new ArrayList<Integer>();
         listaQtdes.add(qtdeA);
         listaQtdes.add(qtdeB);
@@ -58,7 +59,7 @@ public class acessoArquivoVendaTest {
     public void LerNumCamposIncorretoTest() {
         try{
             acessoArquivo accArqVenda = new acessoArquivoVenda();
-            List<IAcessoArquivo> resultObtido = accArqVenda.ler(new FileReader(new File(fileNumCamposIncorretoTest)));
+            List<Venda> resultObtido = accArqVenda.ler(new FileReader(new File(fileNumCamposIncorretoTest)));
             Assert.fail();
             
         } catch(acessoArquivoException ex){
@@ -72,7 +73,7 @@ public class acessoArquivoVendaTest {
     public void LerCampoNuloTest() {
         try{
             acessoArquivo accArqVenda = new acessoArquivoVenda();
-            List<IAcessoArquivo> resultObtido = accArqVenda.ler(new FileReader(new File(fileCampoNuloTest)));
+            List<Venda> resultObtido = accArqVenda.ler(new FileReader(new File(fileCampoNuloTest)));
             Assert.fail();
             
         } catch(acessoArquivoException ex){
