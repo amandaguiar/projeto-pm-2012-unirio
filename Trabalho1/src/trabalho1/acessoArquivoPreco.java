@@ -72,7 +72,7 @@ public class acessoArquivoPreco extends acessoArquivo{
     public void verificarPrecos(String[] campos)throws acessoArquivoException{
         try{
             for(int i = PRIMEIRA_POSICAO_PRECO; i < campos.length; i++){
-                if(Double.parseDouble(campos[i]) < 0)
+                if(Double.parseDouble(campos[i].replace(",",".")) < 0)
                     throw new acessoArquivoException(MSG_PRECO_INVALIDO);
             }
         } catch(NumberFormatException ex){
@@ -85,7 +85,7 @@ public class acessoArquivoPreco extends acessoArquivo{
         List<Double> listaPrecos = new ArrayList<Double>();
         
         for(int i=PRIMEIRA_POSICAO_PRECO; i < campos.length; i++)
-            listaPrecos.add(Double.parseDouble(campos[i]));
+            listaPrecos.add(Double.parseDouble(campos[i].replace(",",".")));
         return listaPrecos;
     }
 }

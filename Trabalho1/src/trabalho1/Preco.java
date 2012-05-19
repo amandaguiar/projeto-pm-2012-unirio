@@ -61,15 +61,15 @@ public class Preco {
         return this.data.YEAR;
     }
     
-    public Double getPrecoCatA(){
+    public Double getPrecoProdA(){
         return this.precos.get(POS_CAT_A);
     }
     
-    public Double getPrecoCatB(){
+    public Double getPrecoProdB(){
         return this.precos.get(POS_CAT_B);
     }
     
-    public Double getPrecoCatC(){
+    public Double getPrecoProdC(){
         return this.precos.get(POS_CAT_C);        
     }
     
