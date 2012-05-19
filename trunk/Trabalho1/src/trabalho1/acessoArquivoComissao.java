@@ -25,7 +25,7 @@ public class acessoArquivoComissao extends acessoArquivo{
    
     
     
-    public List<Venda> getVendasNoMes() throws FileNotFoundException, acessoArquivoException {
+    public List<Venda> getVendasNoMes() throws acessoArquivoException {
         /* Essa função compara o mês entrado com os meses presentes no arquivo de venda.
      * Para cada ocorrência de igualdade, a linha de venda é adicionada em um array.
      */
@@ -43,7 +43,7 @@ public class acessoArquivoComissao extends acessoArquivo{
             return vendasNoMes;  
  }
     
-    public List<Venda> getVendasDeVendedores(String codigo) throws FileNotFoundException, acessoArquivoException {
+    public List<Venda> getVendasDeVendedores(String codigo) throws acessoArquivoException {
         /* Essa função retorna uma lista das vendas correspondentes aos vendedores com o código informado no paramêtro*/
             List<Venda> vendas = getVendasNoMes();
             List<Venda> vendasDeVendedores = null;
@@ -60,7 +60,7 @@ public class acessoArquivoComissao extends acessoArquivo{
             Scanner input = new Scanner(System.in);
             System.out.println("Nome do arquivo de vendas: ");
             String ARQ_VENDAS = input.nextLine();
-         
+
             List<Venda> listVendas = accArqVenda.ler(new File(ARQ_VENDAS));
             return listVendas;
 }
@@ -70,7 +70,7 @@ public class acessoArquivoComissao extends acessoArquivo{
             Scanner input = new Scanner(System.in);
             System.out.println("Nome do arquivo de precos: ");
             String ARQ_PRECOS = input.nextLine();
-        
+
             List<Preco> listPrecos = accArqPreco.ler(new File(ARQ_PRECOS));
             return listPrecos;
 }
@@ -80,7 +80,7 @@ public class acessoArquivoComissao extends acessoArquivo{
             Scanner input = new Scanner(System.in);
             System.out.println("Nome do arquivo de vendedores: ");
             String ARQ_VENDEDORES = input.nextLine();
-
+            
             List<Vendedor> listVendedores = accArqVendedor.ler(new File(ARQ_VENDEDORES));
             return listVendedores;
 }
