@@ -6,7 +6,7 @@
 package trabalho1;
 
 import java.io.File;
-import java.io.FileNotFoundException;
+import java.io.FileWriter;
 import java.util.List;
 import java.util.Scanner;
 
@@ -25,16 +25,14 @@ public class acessoArquivoComissao extends acessoArquivo{
    
     
     
-    public List<Venda> getVendasNoMes() throws acessoArquivoException {
+        public List<Venda> getVendasNoMes(int mes, String ARQ_VENDAS) throws acessoArquivoException {
         /* Essa função compara o mês entrado com os meses presentes no arquivo de venda.
      * Para cada ocorrência de igualdade, a linha de venda é adicionada em um array.
      */
             Scanner input = new Scanner(System.in);
             Comissao c = new Comissao();
             List<Venda> vendasNoMes = null;
-            List<Venda> vendas = getVendas();
-            System.out.println("Mes: ");
-            int mes = input.nextInt();
+            List<Venda> vendas = getVendas(ARQ_VENDAS);
             c.setMes(mes);
  
             for (int i=0;i<=vendas.size();i++)
@@ -42,12 +40,12 @@ public class acessoArquivoComissao extends acessoArquivo{
                 vendasNoMes.add(vendas.get(i));
             return vendasNoMes;  
  }
-    
-    public List<Venda> getVendasDeVendedores(String codigo) throws acessoArquivoException {
+        
+    public List<Venda> getVendasDeVendedores(String codigo, int mes,String ARQ_VENDEDORES, String ARQ_VENDAS) throws acessoArquivoException {
         /* Essa função retorna uma lista das vendas correspondentes aos vendedores com o código informado no paramêtro*/
-            List<Venda> vendas = getVendasNoMes();
+            List<Venda> vendas = getVendasNoMes(mes,ARQ_VENDAS);
             List<Venda> vendasDeVendedores = null;
-            List<Vendedor> vendedores = getVendedores();
+            List<Vendedor> vendedores = getVendedores(ARQ_VENDEDORES);
             
             for (int i=0;i<=vendas.size();i++)
                 if (codigo.equals(vendedores.get(i).getCodigo()))
@@ -55,35 +53,24 @@ public class acessoArquivoComissao extends acessoArquivo{
              return vendasDeVendedores; 
     }
     
-    public List<Venda> getVendas() throws acessoArquivoException {
+    public List<Venda> getVendas(String ARQ_VENDAS) throws acessoArquivoException {
             acessoArquivo accArqVenda = new acessoArquivoVenda();
-            Scanner input = new Scanner(System.in);
-            System.out.println("Nome do arquivo de vendas: ");
-            String ARQ_VENDAS = input.nextLine();
-
             List<Venda> listVendas = accArqVenda.ler(new File(ARQ_VENDAS));
             return listVendas;
 }
     
-    public List<Preco> getPrecos() throws acessoArquivoException {
+    public List<Preco> getPrecos(String ARQ_PRECOS) throws acessoArquivoException {
             acessoArquivo accArqPreco = new acessoArquivoPreco();
-            Scanner input = new Scanner(System.in);
-            System.out.println("Nome do arquivo de precos: ");
-            String ARQ_PRECOS = input.nextLine();
-
             List<Preco> listPrecos = accArqPreco.ler(new File(ARQ_PRECOS));
             return listPrecos;
 }
    
-    public List<Vendedor> getVendedores() throws acessoArquivoException {
-            acessoArquivo accArqVendedor = new acessoArquivoVendedor();
-            Scanner input = new Scanner(System.in);
-            System.out.println("Nome do arquivo de vendedores: ");
-            String ARQ_VENDEDORES = input.nextLine();
-            
+    public List<Vendedor> getVendedores(String ARQ_VENDEDORES) throws acessoArquivoException {
+            acessoArquivo accArqVendedor = new acessoArquivoVendedor();       
             List<Vendedor> listVendedores = accArqVendedor.ler(new File(ARQ_VENDEDORES));
             return listVendedores;
 }
+    
     
     @Override
     public void verificarPreCondicoes(String[] campos) throws acessoArquivoException {
@@ -96,4 +83,4 @@ public class acessoArquivoComissao extends acessoArquivo{
     public List<Comissao> ler(File file) throws acessoArquivoException {
         throw new UnsupportedOperationException("Not supported yet.");
     }
-}
+    }
