@@ -23,21 +23,38 @@ public class acessoArquivoComissao extends acessoArquivo{
     public static final int POS_COD_VENDEDOR = 1;
     public static final int POS_NOME_VENDEDOR = 2;
     public static final int PRIMEIRA_POS_TOTAL = 3;
-          
-//    Comissao c = new Comissao();
    
-   
-    /* Essa função compara o mês entrado com os meses presentes no arquivo de venda.
-     * Para cada ocorrência de igualmente, a linha de venda é adicionada em um array.
+    
+    
+    public List<Venda> getVendasNoMes() throws FileNotFoundException, acessoArquivoException {
+        /* Essa função compara o mês entrado com os meses presentes no arquivo de venda.
+     * Para cada ocorrência de igualdade, a linha de venda é adicionada em um array.
      */
-
-//    public List<String> getVendasNoMes(String[] campos) {
-//        try {
-//            Scanner input = new Scanner(System.in);
-//            System.out.println("Mes: ");
-//            int mes = input.nextInt();
-//            c.setMes(mes);
-//}  
+            Scanner input = new Scanner(System.in);
+            Comissao c = new Comissao();
+            List<Venda> vendasNoMes = null;
+            List<Venda> vendas = getVendas();
+            System.out.println("Mes: ");
+            int mes = input.nextInt();
+            c.setMes(mes);
+ 
+            for (int i=0;i<=vendas.size();i++)
+                if (c.getMes() == vendas.get(i).getMes())
+                vendasNoMes.add(vendas.get(i));
+            return vendasNoMes;  
+ }
+    
+    public List<Venda> getVendasDeVendedores(String codigo) throws FileNotFoundException, acessoArquivoException {
+        /* Essa função retorna uma lista das vendas correspondentes aos vendedores com o código informado no paramêtro*/
+            List<Venda> vendas = getVendasNoMes();
+            List<Venda> vendasDeVendedores = null;
+            List<Vendedor> vendedores = getVendedores();
+            
+            for (int i=0;i<=vendas.size();i++)
+                if (codigo.equals(vendedores.get(i).getCodigo()))
+                    vendasDeVendedores.add(vendas.get(i));
+             return vendasDeVendedores; 
+    }
     
     public List<Venda> getVendas() throws FileNotFoundException, acessoArquivoException {
             acessoArquivo accArqVenda = new acessoArquivoVenda();
@@ -57,7 +74,7 @@ public class acessoArquivoComissao extends acessoArquivo{
     public List<Preco> getPrecos() throws FileNotFoundException, acessoArquivoException {
             acessoArquivo accArqPreco = new acessoArquivoPreco();
             Scanner input = new Scanner(System.in);
-            System.out.println("Nome do arquivo de vendas: ");
+            System.out.println("Nome do arquivo de precos: ");
             String ARQ_PRECOS = input.nextLine();
         try {
             List<Preco> listPrecos = accArqPreco.ler(new FileReader(new File(ARQ_PRECOS)));
@@ -72,7 +89,7 @@ public class acessoArquivoComissao extends acessoArquivo{
     public List<Vendedor> getVendedores() throws FileNotFoundException, acessoArquivoException {
             acessoArquivo accArqVendedor = new acessoArquivoVendedor();
             Scanner input = new Scanner(System.in);
-            System.out.println("Nome do arquivo de vendas: ");
+            System.out.println("Nome do arquivo de vendedores: ");
             String ARQ_VENDEDORES = input.nextLine();
         try {
             List<Vendedor> listVendedores = accArqVendedor.ler(new FileReader(new File(ARQ_VENDEDORES)));
