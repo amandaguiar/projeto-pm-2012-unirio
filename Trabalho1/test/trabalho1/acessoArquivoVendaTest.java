@@ -31,13 +31,11 @@ public class acessoArquivoVendaTest {
     public void LerOkTest() {
         try{
             acessoArquivo accArqVenda = new acessoArquivoVenda();
-            List<Venda> resultObtido = accArqVenda.ler(new FileReader(new File(fileOk)));
+            List<Venda> resultObtido = accArqVenda.ler(new File(fileOk));
             List<Venda> resultEsperado = gerarResultEsperado(2011,(03-1),10,"0020",10,30,50);
                       
             Assert.assertEquals(resultEsperado.get(0), resultObtido.get(0));
         } catch(acessoArquivoException ex){
-            Assert.fail();
-        } catch(FileNotFoundException ex){
             Assert.fail();
         }
     }
@@ -59,13 +57,11 @@ public class acessoArquivoVendaTest {
     public void LerNumCamposIncorretoTest() {
         try{
             acessoArquivo accArqVenda = new acessoArquivoVenda();
-            List<Venda> resultObtido = accArqVenda.ler(new FileReader(new File(fileNumCamposIncorretoTest)));
+            List<Venda> resultObtido = accArqVenda.ler(new File(fileNumCamposIncorretoTest));
             Assert.fail();
             
         } catch(acessoArquivoException ex){
             Assert.assertEquals(acessoArquivo.MSG_NUMERO_DE_CAMPOS_INCORRETO, ex.getMessage());
-        } catch(FileNotFoundException ex){
-            Assert.fail();
         }
     }
     
@@ -73,13 +69,11 @@ public class acessoArquivoVendaTest {
     public void LerCampoNuloTest() {
         try{
             acessoArquivo accArqVenda = new acessoArquivoVenda();
-            List<Venda> resultObtido = accArqVenda.ler(new FileReader(new File(fileCampoNuloTest)));
+            List<Venda> resultObtido = accArqVenda.ler(new File(fileCampoNuloTest));
             Assert.fail();
             
         } catch(acessoArquivoException ex){
             Assert.assertEquals(acessoArquivo.MSG_NUMERO_DE_CAMPOS_INCORRETO, ex.getMessage());
-        } catch(FileNotFoundException ex){
-            Assert.fail();
         }
     }
 
@@ -87,12 +81,10 @@ public class acessoArquivoVendaTest {
     public void LerQtdeNegativoTest() {
         try{
             acessoArquivo accArqVenda = new acessoArquivoVenda();
-            List<IAcessoArquivo> resultObtido = accArqVenda.ler(new FileReader(new File(fileQtdeNegativoTest)));
+            List<IAcessoArquivo> resultObtido = accArqVenda.ler(new File(fileQtdeNegativoTest));
             Assert.fail();
         } catch(acessoArquivoException ex){
             Assert.assertEquals(acessoArquivoVenda.MSG_QTDE_INVALIDA, ex.getMessage());
-        } catch(FileNotFoundException ex){
-            Assert.fail();
         }
     }
 
@@ -100,12 +92,10 @@ public class acessoArquivoVendaTest {
     public void LerQtdeNaoNumeroTest() {
         try{
             acessoArquivo accArqVenda = new acessoArquivoVenda();
-            List<IAcessoArquivo> resultObtido = accArqVenda.ler(new FileReader(new File(fileQtdeNaoNumeroTest)));
+            List<IAcessoArquivo> resultObtido = accArqVenda.ler(new File(fileQtdeNaoNumeroTest));
             Assert.fail();
         } catch(acessoArquivoException ex){
             Assert.assertEquals(acessoArquivoVenda.MSG_QTDE_INVALIDA, ex.getMessage());
-        } catch(FileNotFoundException ex){
-            Assert.fail();
         }
     }
     

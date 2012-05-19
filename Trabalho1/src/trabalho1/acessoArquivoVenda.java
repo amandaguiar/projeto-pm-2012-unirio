@@ -6,6 +6,8 @@
 package trabalho1;
 
 import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -26,13 +28,13 @@ public class acessoArquivoVenda extends acessoArquivo{
 
     //Lê um arquivo e retorna uma lista de objetos Venda.
     @Override
-    public List<Venda> ler(FileReader arquivo) throws acessoArquivoException {
+    public List<Venda> ler(File file) throws acessoArquivoException {
         List lista = new ArrayList<Venda>();
         BufferedReader reader = null;
         String[] campos = null;
         try{
             try{
-                reader = new BufferedReader(arquivo);
+                reader = new BufferedReader(new FileReader(file));
                 while(reader.ready()){
                     campos = reader.readLine().split(DELIMITADOR);
                     verificarPreCondicoes(campos);
@@ -44,7 +46,7 @@ public class acessoArquivoVenda extends acessoArquivo{
                 if(reader != null)
                     reader.close();
             }
-        } catch(IOException ex){
+        }  catch (IOException ex) {
             lista = null;
             throw new acessoArquivoException(MSG_ERRO_ACESSO_ARQUIVO);
         } catch(acessoArquivoException ex){

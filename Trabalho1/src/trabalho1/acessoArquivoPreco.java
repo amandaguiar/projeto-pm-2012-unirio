@@ -6,6 +6,7 @@
 package trabalho1;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileReader;
 import java.util.List;
 import java.io.IOException;
@@ -29,13 +30,13 @@ public class acessoArquivoPreco extends acessoArquivo{
     
     //Lê um arquivo e retorna uma lista de objetos Preco.
     @Override
-    public List<Preco> ler(FileReader file) throws acessoArquivoException {
+    public List<Preco> ler(File file) throws acessoArquivoException {
         List lista = new ArrayList<Preco>();
         BufferedReader reader = null;
         String[] campos = null;
         try{
             try{
-                reader = new BufferedReader(file);
+                reader = new BufferedReader(new FileReader(file));
                 while(reader.ready()){
                     campos = reader.readLine().split(DELIMITADOR);
                     verificarPreCondicoes(campos);

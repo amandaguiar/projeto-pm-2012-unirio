@@ -7,7 +7,6 @@ package trabalho1;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.util.List;
 import java.util.Scanner;
 
@@ -56,49 +55,34 @@ public class acessoArquivoComissao extends acessoArquivo{
              return vendasDeVendedores; 
     }
     
-    public List<Venda> getVendas() throws FileNotFoundException, acessoArquivoException {
+    public List<Venda> getVendas() throws acessoArquivoException {
             acessoArquivo accArqVenda = new acessoArquivoVenda();
             Scanner input = new Scanner(System.in);
             System.out.println("Nome do arquivo de vendas: ");
             String ARQ_VENDAS = input.nextLine();
-         try {
-            List<Venda> listVendas = accArqVenda.ler(new FileReader(new File(ARQ_VENDAS)));
-            return listVendas;       
-        }catch (acessoArquivoException ex) {
-            throw new acessoArquivoException("Erro ao tentar acessar o arquivo de Vendas");
-        }catch (FileNotFoundException ex) {
-            throw new FileNotFoundException("Arquivo nao encontrado");
-    }
+         
+            List<Venda> listVendas = accArqVenda.ler(new File(ARQ_VENDAS));
+            return listVendas;
 }
     
-    public List<Preco> getPrecos() throws FileNotFoundException, acessoArquivoException {
+    public List<Preco> getPrecos() throws acessoArquivoException {
             acessoArquivo accArqPreco = new acessoArquivoPreco();
             Scanner input = new Scanner(System.in);
             System.out.println("Nome do arquivo de precos: ");
             String ARQ_PRECOS = input.nextLine();
-        try {
-            List<Preco> listPrecos = accArqPreco.ler(new FileReader(new File(ARQ_PRECOS)));
-            return listPrecos;       
-        }catch (acessoArquivoException ex) {
-            throw new acessoArquivoException("Erro ao tentar acessar o arquivo de Precos");
-        }catch (FileNotFoundException ex) {
-            throw new FileNotFoundException("Arquivo nao encontrado");
-    }
+        
+            List<Preco> listPrecos = accArqPreco.ler(new File(ARQ_PRECOS));
+            return listPrecos;
 }
    
-    public List<Vendedor> getVendedores() throws FileNotFoundException, acessoArquivoException {
+    public List<Vendedor> getVendedores() throws acessoArquivoException {
             acessoArquivo accArqVendedor = new acessoArquivoVendedor();
             Scanner input = new Scanner(System.in);
             System.out.println("Nome do arquivo de vendedores: ");
             String ARQ_VENDEDORES = input.nextLine();
-        try {
-            List<Vendedor> listVendedores = accArqVendedor.ler(new FileReader(new File(ARQ_VENDEDORES)));
-            return listVendedores;       
-    }catch (acessoArquivoException ex) {
-        throw new acessoArquivoException("Erro ao tentar acessar o arquivo de Vendedores");
-    }catch (FileNotFoundException ex) {
-        throw new FileNotFoundException("Arquivo nao encontrado");
-    }
+
+            List<Vendedor> listVendedores = accArqVendedor.ler(new File(ARQ_VENDEDORES));
+            return listVendedores;
 }
     
     @Override
@@ -109,7 +93,7 @@ public class acessoArquivoComissao extends acessoArquivo{
     
     
     @Override
-    public List<Comissao> ler(FileReader file) throws acessoArquivoException {
+    public List<Comissao> ler(File file) throws acessoArquivoException {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 }
