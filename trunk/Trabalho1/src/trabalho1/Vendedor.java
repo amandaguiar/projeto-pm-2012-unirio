@@ -5,10 +5,6 @@
 
 package trabalho1;
 
-/**
- *
- * @author Jean
- */
 public class Vendedor {
     
     private String codigo;
