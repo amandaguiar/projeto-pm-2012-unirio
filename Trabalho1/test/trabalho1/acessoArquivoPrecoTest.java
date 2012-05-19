@@ -53,7 +53,7 @@ public class acessoArquivoPrecoTest {
     public void LerNumCamposIncorretoTest() {
         try{
             acessoArquivo accArqPreco = new acessoArquivoPreco();
-            List<Venda> resultadoObtido = accArqPreco.ler(new File(arquivoNumCamposIncorretoTest));
+            List<Preco> resultadoObtido = accArqPreco.ler(new File(arquivoNumCamposIncorretoTest));
             Assert.fail();
             
         } catch(acessoArquivoException ex){
