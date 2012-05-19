@@ -5,6 +5,7 @@
 
 package trabalho1;
 
+import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -35,11 +36,13 @@ public class Comissao {
     }
     
     public Comissao(){
-        this.mes = 5;
-        this.codVendedor = "000";
-        this.nomeVendedor = "Zé da Silva";
-        this.valorTotalGeral = 1800;
-        this.categoriaVendedor = 1;
+        this.mes = 0;
+        this.codVendedor = null;
+        this.nomeVendedor = null;
+        this.valorTotalProdutos = null;
+        this.valorTotalGeral = 0.0;
+        this.comissao = 0.0;
+        this.categoriaVendedor = 0;
     }
 
     public String getCodVendedor() {
@@ -83,6 +86,11 @@ public class Comissao {
     }
 
     public double getValorTotalGeral() {
+        valorTotalGeral = 0.0;
+        Iterator it = valorTotalProdutos.iterator();
+        while(it.hasNext()){
+            valorTotalGeral = valorTotalGeral + Double.parseDouble(it.next().toString());
+        }
         return valorTotalGeral;
     }
 
@@ -116,7 +124,7 @@ public class Comissao {
     }
     
     public double calculaComissaoCat2(){
-        if(valorTotalGeral >= cat2ValorLimite2){
+        if(valorTotalGeral > cat2ValorLimite2){
         comissao = valorTotalGeral * 0.3;
         return comissao;
         }
