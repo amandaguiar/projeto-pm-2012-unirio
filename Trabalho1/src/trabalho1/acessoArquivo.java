@@ -27,8 +27,8 @@ public abstract class acessoArquivo implements IAcessoArquivo{
     public static final String MSG_ERRO_ACESSO_ARQUIVO = "Erro no acesso ao arquivo";
 
     @Override
-    public abstract List<IAcessoArquivo> ler(FileReader file) throws acessoArquivoException;
-   
+    public abstract List ler(FileReader file) throws acessoArquivoException;
+
     @Override
     public void escrever(ArrayList<Object> obj, FileWriter saida) {
         throw new UnsupportedOperationException("Not supported yet.");

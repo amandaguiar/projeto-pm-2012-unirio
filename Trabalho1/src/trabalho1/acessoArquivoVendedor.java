@@ -17,7 +17,7 @@ import java.util.List;
 public class acessoArquivoVendedor extends acessoArquivo{
 
     @Override
-    public List<IAcessoArquivo> ler(FileReader file) throws acessoArquivoException{
+    public List<Vendedor> ler(FileReader file) throws acessoArquivoException{
         BufferedReader reader = null;
         try {
             try {

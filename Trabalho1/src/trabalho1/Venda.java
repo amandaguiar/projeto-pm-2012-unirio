@@ -39,6 +39,30 @@ public class Venda {
         return data;
     }
 
+    public int getDia(){
+        return data.get(Calendar.DAY_OF_MONTH);
+    }
+
+    public int getMes(){
+        return data.get(Calendar.MONTH) + 1;
+    }
+
+    public int getAno(){
+        return data.get(Calendar.YEAR);
+    }
+
+    public int getQtdeProdutoA(){
+        return qtdeProdutos.get(0);
+    }
+
+    public int getQtdeProdutoB(){
+        return qtdeProdutos.get(1);
+    }
+
+    public int getQtdeProdutoC(){
+        return qtdeProdutos.get(2);
+    }
+
     public void setData(GregorianCalendar data) {
         this.data = data;
     }
