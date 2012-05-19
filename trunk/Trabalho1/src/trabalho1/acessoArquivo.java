@@ -4,7 +4,7 @@
  */
 package trabalho1;
 
-import java.io.FileReader;
+import java.io.File;
 import java.io.FileWriter;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -27,7 +27,7 @@ public abstract class acessoArquivo implements IAcessoArquivo{
     public static final String MSG_ERRO_ACESSO_ARQUIVO = "Erro no acesso ao arquivo";
 
     @Override
-    public abstract List ler(FileReader file) throws acessoArquivoException;
+    public abstract List ler(File file) throws acessoArquivoException;
 
     @Override
     public void escrever(ArrayList<Object> obj, FileWriter saida) {

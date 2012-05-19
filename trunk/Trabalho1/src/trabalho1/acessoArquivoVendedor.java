@@ -6,6 +6,7 @@
 package trabalho1;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.List;
@@ -17,11 +18,11 @@ import java.util.List;
 public class acessoArquivoVendedor extends acessoArquivo{
 
     @Override
-    public List<Vendedor> ler(FileReader file) throws acessoArquivoException{
+    public List<Vendedor> ler(File file) throws acessoArquivoException{
         BufferedReader reader = null;
         try {
             try {
-                reader = new BufferedReader(new FileReader("Vendedor.txt"));
+                reader = new BufferedReader(new FileReader(file));
                 String linha;
                 while (reader.ready()) {
                     linha = reader.readLine();
