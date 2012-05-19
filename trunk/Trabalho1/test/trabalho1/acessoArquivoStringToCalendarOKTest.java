@@ -39,10 +39,21 @@ public class acessoArquivoStringToCalendarOKTest {
     }
 
     @Test
-    public void acessoArquivoStringToCalendarTestOK() {
+    public void acessoArquivoStringToCalendarTestOK_Venda() {
         try{
             acessoArquivo accArqVenda = new acessoArquivoVenda();
             GregorianCalendar resultadoObtido = accArqVenda.stringToCalendar(data);
+            Assert.assertEquals(resultEsperado, resultadoObtido);
+        }catch(Exception ex){
+            Assert.fail();
+        }
+    }
+    
+    @Test
+    public void acessoArquivoStringToCalendarTestOK_Preco() {
+        try{
+            acessoArquivo accArqPreco = new acessoArquivoPreco();
+            GregorianCalendar resultadoObtido = accArqPreco.stringToCalendar(data);
             Assert.assertEquals(resultEsperado, resultadoObtido);
         }catch(Exception ex){
             Assert.fail();
