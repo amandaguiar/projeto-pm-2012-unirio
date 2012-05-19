@@ -38,10 +38,21 @@ public class acessoArquivoStringToCalendarDataInvalidaTest {
     }
 
     @Test
-    public void acessoArquivoStringToCalendarDataInvalidaTest() {
+    public void acessoArquivoStringToCalendarDataInvalidaTest_Venda() {
         try{
             acessoArquivo accArqVenda = new acessoArquivoVenda();
             GregorianCalendar resultadoObtido = accArqVenda.stringToCalendar(data);
+            Assert.fail();
+        }catch(acessoArquivoException ex){
+            Assert.assertEquals(acessoArquivo.MSG_DATA_INVALIDA, ex.getMessage());
+        }
+    }
+    
+    @Test
+    public void acessoArquivoStringToCalendarDataInvalidaTest_Preco() {
+        try{
+            acessoArquivo accArqPreco = new acessoArquivoPreco();
+            GregorianCalendar resultadoObtido = accArqPreco.stringToCalendar(data);
             Assert.fail();
         }catch(acessoArquivoException ex){
             Assert.assertEquals(acessoArquivo.MSG_DATA_INVALIDA, ex.getMessage());
