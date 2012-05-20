@@ -18,10 +18,10 @@ import java.util.Map;
  * @author Jean
  */
 public class CalculoComissao {
-    private static final double cat1ValorLimite1 = 1000.00;
-    private static final double cat1ValorLimite2 = 1800.00;
-    private static final double cat2ValorLimite1 = 2000.00;
-    private static final double cat2ValorLimite2 = 4000.00;
+    private static final double CAT_1_LIMITE_MIN = 1000.00;
+    private static final double CAT_1_LIMITE_MAX = 1800.00;
+    private static final double CAT_2_LIMITE_MIN = 2000.00;
+    private static final double CAT_2_LIMITE_MAX = 4000.00;
 
     public static double getValorTotalGeral(List<Double> valorTotalProdutos) {
         double valorTotalGeral = 0.0;
@@ -34,13 +34,13 @@ public class CalculoComissao {
 
     public static double calculaComissaoCat1(double valorTotalGeral){
         double comissao;
-        if(valorTotalGeral >= cat1ValorLimite2){
-            double valorRestante = valorTotalGeral - cat1ValorLimite2;
+        if(valorTotalGeral >= CAT_1_LIMITE_MAX){
+            double valorRestante = valorTotalGeral - CAT_1_LIMITE_MAX;
             comissao = 220 + (valorRestante*0.2);
             return comissao;
         }
-        else if(valorTotalGeral >= cat1ValorLimite1){
-            double valorRestante = valorTotalGeral - cat1ValorLimite1;
+        else if(valorTotalGeral >= CAT_1_LIMITE_MIN){
+            double valorRestante = valorTotalGeral - CAT_1_LIMITE_MIN;
             comissao = 100 + (valorRestante*0.15);
             return comissao;
         }
@@ -52,17 +52,17 @@ public class CalculoComissao {
 
     public static double calculaComissaoCat2(double valorTotalGeral){
         double comissao;
-        if(valorTotalGeral > cat2ValorLimite2){
-        comissao = valorTotalGeral * 0.3;
-        return comissao;
+        if(valorTotalGeral > CAT_2_LIMITE_MAX){
+            comissao = valorTotalGeral * 0.3;
+            return comissao;
         }
-        else if(valorTotalGeral >= cat2ValorLimite1){
-        comissao = valorTotalGeral * 0.2;
-        return comissao;
+        else if(valorTotalGeral >= CAT_1_LIMITE_MIN){
+            comissao = valorTotalGeral * 0.2;
+            return comissao;
         }
         else{
-        comissao = valorTotalGeral * 0.1;
-        return comissao;
+            comissao = valorTotalGeral * 0.1;
+            return comissao;
         }
     }
 
@@ -97,18 +97,20 @@ public class CalculoComissao {
 
 
         listaVenda = accArqVenda.ler(new File(arqVendas));
-        for (int i = 0; i < listaVenda.size(); i++)
-            if (mes != listaVenda.get(i).getMes())
-            listaVenda.remove(listaVenda.get(i));
-
+        for (int i = 0; i < listaVenda.size(); i++){
+            if (mes != listaVenda.get(i).getMes()) {
+                listaVenda.remove(listaVenda.get(i));
+            }
+        }
         listaPreco = accArqPreco.ler(new File(arqPrecos));
-        for (int i = 0; i < listaPreco.size(); i++)
-            if (mes != listaPreco.get(i).getMes())
-            listaPreco.remove(listaPreco.get(i));
-
+        for (int i = 0; i < listaPreco.size(); i++){
+            if (mes != listaPreco.get(i).getMes()) {
+                listaPreco.remove(listaPreco.get(i));    
+            }
+        }
+        
         listaVendedor = accArqVendedor.ler(new File(arqVendedores));
-
-
+        
         int quantidadeTotalA = 0;
         int quantidadeTotalB = 0;
         int quantidadeTotalC = 0;
