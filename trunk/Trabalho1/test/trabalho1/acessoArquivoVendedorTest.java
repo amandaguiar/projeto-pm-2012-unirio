@@ -19,7 +19,7 @@ import org.junit.Test;
 public class acessoArquivoVendedorTest {
     public static final String fileOk = ("Arquivos de testes\\acessoArquivoVendedorOkTest.txt");
     public static final String fileNumCamposIncorretoTest = ("Arquivos de testes\\acessoArquivoVendedorNumCamposIncorretoTest.txt");
-
+    public static final String fileEspacosCamposTest = ("Arquivos de testes\\acessoArquivoVendedorEspacosCamposTest.txt");
    
     @Test
     public void LerOkTest() {
@@ -44,7 +44,7 @@ public class acessoArquivoVendedorTest {
     }
     
     @Test
-    public void LerNumeroDeCamposIncorretoTest() {
+    public void lerNumeroDeCamposIncorretoTest() {
         try{
             acessoArquivo acessoArquivoVendedor = new acessoArquivoVendedor();
             List<Vendedor> resultadoObtido = acessoArquivoVendedor.ler(new File(fileNumCamposIncorretoTest));
@@ -54,4 +54,19 @@ public class acessoArquivoVendedorTest {
             Assert.assertEquals(acessoArquivo.MSG_NUMERO_DE_CAMPOS_INCORRETO, ex.getMessage());
         }
     }
+    
+    @Test
+    public void lerCamposComEspacosTest() {
+        try{
+            acessoArquivo acessoArquivoVendedor = new acessoArquivoVendedor();
+            List<Vendedor> resultadoObtido = acessoArquivoVendedor.ler(new File(fileEspacosCamposTest));
+            Assert.fail();
+            
+        } catch(acessoArquivoException ex){
+            Assert.assertEquals(acessoArquivo.MSG_NUMERO_DE_CAMPOS_INCORRETO, ex.getMessage());
+        }
+    }
+    
+    
+   
 }
