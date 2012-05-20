@@ -33,7 +33,10 @@ public class acessoArquivoStringToCalendarOKTest {
     public static Collection<Object []> data() {
         Object[][] testData = new Object[][] {
             {"01/12/2011", new GregorianCalendar(2011,11,1)},
-            {"01/01/2011", new GregorianCalendar(2011,0,1)}
+            {"02/12/2011", new GregorianCalendar(2011,11,2)},
+            {"31/01/2011", new GregorianCalendar(2011,0,31)},
+            {"28/02/2011", new GregorianCalendar(2011,1,28)},
+            {"30/11/2011", new GregorianCalendar(2011,10,30)}
         };
         return Arrays.asList(testData);
     }
