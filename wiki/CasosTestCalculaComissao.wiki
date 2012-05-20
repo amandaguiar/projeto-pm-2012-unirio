@@ -18,3 +18,6 @@
 ||16||2||4001.00||1200.30||
 ||17||2||5000.00||1500.00||
 ||18||2||10000.00||3000.00||
+
+Critérios para a definição dos casos de teste:
+Classes de equivalência em conjunto com valores limite - foram escolhidos valores próximos aos limites definidos pela especificação, de acordo com a categoria do vendedor. Por exemplo, para um vendedor de categoria 1, os valores relevantes são 1000 e 1800. Já para um vendedor de categoria 2, os valores relevantes são 2000 e 4000. Foram inseridos alguns valores dentro desses intervalos, assim como alguns valores fora para observar o comportamento do sistema.
