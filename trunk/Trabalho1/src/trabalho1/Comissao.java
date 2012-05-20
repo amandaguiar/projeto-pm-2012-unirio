@@ -14,6 +14,7 @@ public class Comissao {
     private int mes;
     private String codigo;
     private String nome;
+    private List<Integer> qtdTotalProduto;
     private List<Double> valorTotalProduto;
     private double valorTotalGeral;
     private double comissao;
@@ -74,7 +75,27 @@ public class Comissao {
     public void setValorTotalProduto(List<Double> valorTotalProduto) {
         this.valorTotalProduto = valorTotalProduto;
     }
-    
-    
-    
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Comissao other = (Comissao) obj;
+        if ((this.codigo == null) ? (other.codigo != null) : !this.codigo.equals(other.codigo)) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 3;
+        hash = 67 * hash + (this.codigo != null ? this.codigo.hashCode() : 0);
+        return hash;
+    }
+       
 }
