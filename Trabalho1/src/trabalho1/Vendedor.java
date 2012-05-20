@@ -41,4 +41,33 @@ public class Vendedor {
         this.nome = nome;
     }
 
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Vendedor other = (Vendedor) obj;
+        if ((this.codigo == null) ? (other.codigo != null) : !this.codigo.equals(other.codigo)) {
+            return false;
+        }
+        if ((this.nome == null) ? (other.nome != null) : !this.nome.equals(other.nome)) {
+            return false;
+        }
+        if (this.categoria != other.categoria) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 3;
+        hash = 53 * hash + (this.codigo != null ? this.codigo.hashCode() : 0);
+        hash = 53 * hash + (this.nome != null ? this.nome.hashCode() : 0);
+        hash = 53 * hash + this.categoria;
+        return hash;
+    }
 }
