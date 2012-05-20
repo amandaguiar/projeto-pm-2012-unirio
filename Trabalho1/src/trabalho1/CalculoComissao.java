@@ -76,7 +76,7 @@ public class CalculoComissao {
                 return 0;
         }
     }
-    
+        
     public static double roundTwoDecimals(double d) {
             DecimalFormat twoDForm = new DecimalFormat("#.##");
         return Double.valueOf(twoDForm.format(d));
@@ -87,7 +87,7 @@ public class CalculoComissao {
         acessoArquivoVenda accArqVenda = new acessoArquivoVenda();
         acessoArquivoPreco accArqPreco = new acessoArquivoPreco();        
         acessoArquivoVendedor accArqVendedor = new acessoArquivoVendedor();
-        //acessoArquivoComissao accArqComissao = new acessoArquivoComissao();
+        acessoArquivoComissao accArqComissao = new acessoArquivoComissao();
         
         List<Venda> listaVenda = new ArrayList<Venda>();
         List<Preco> listaPreco = new ArrayList<Preco>();
@@ -122,4 +122,24 @@ public class CalculoComissao {
         return comissoes;
     }
     
+     public List<Integer> getQuantidadeTotalProduto(Map<String,Comissao> Comissoes) {
+         Comissoes = new HashMap<String,Comissao>();
+         List<Venda> listaVenda = new ArrayList<Venda>();
+         int quantidadeTotalA = 0;
+         int quantidadeTotalB = 0;
+         int quantidadeTotalC = 0;
+         
+         for(Comissao c : Comissoes){
+            for (Iterator<Venda> it = listaVenda.iterator(); it.hasNext();) {
+                Venda v = it.next();
+                if(c.getCodigo().equals(v.getCodVendedor())) {
+                    quantidadeTotalA += v.getQtdeProdutoA();
+                    quantidadeTotalB += v.getQtdeProdutoB();
+                    quantidadeTotalC += v.getQtdeProdutoC();
+                }
+            } 
+     }
+    
+  }
+     
 }
