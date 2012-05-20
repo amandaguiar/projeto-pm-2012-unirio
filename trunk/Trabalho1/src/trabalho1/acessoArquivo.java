@@ -20,9 +20,9 @@ public abstract class acessoArquivo implements IAcessoArquivo{
 
     public static final String FORMATO_DATA = "\\d\\d/\\d\\d/\\d\\d\\d\\d";
     
-    public static final String MSG_FORMATO_DATA_INVALIDO = "Formato da data inv√°lido.";
-    public static final String MSG_DATA_INVALIDA = "Data inv√°lida";
-    public static final String MSG_NUMERO_DE_CAMPOS_INCORRETO = "N√∫mero de campos incorreto";
+    public static final String MSG_FORMATO_DATA_INVALIDO = "Formato da data inv·lido.";
+    public static final String MSG_DATA_INVALIDA = "Data inv·lida";
+    public static final String MSG_NUMERO_DE_CAMPOS_INCORRETO = "N˙mero de campos incorreto";
 
     public static final String MSG_ERRO_ACESSO_ARQUIVO = "Erro no acesso ao arquivo";
 
@@ -34,7 +34,7 @@ public abstract class acessoArquivo implements IAcessoArquivo{
         throw new UnsupportedOperationException("Not supported yet.");
     }
     
-    //Verifica se a data contida na String √© v√°lida e gera um novo GregorianCalendar.
+    //Verifica se a data contida na String È v·lida e gera um novo GregorianCalendar.
     @Override
     public GregorianCalendar stringToCalendar(String valor) throws acessoArquivoException {
 
@@ -69,23 +69,23 @@ public abstract class acessoArquivo implements IAcessoArquivo{
     @Override
     public abstract void verificarPreCondicoes(String[] campos) throws acessoArquivoException;
 
-    //Verifica se todos os campos s√£o v√°lidos e quantos campos o array possui
+    //Verifica se todos os campos s„o v·lidos e quantos campos o array possui
     public void verificarQtdeCamposValidos(String campos[], int numCampos) throws acessoArquivoException{
-        String[] copiaCampos = Arrays.copyOf(campos, campos.length); //criando uma c√≥pia do array
-        Arrays.sort(copiaCampos);  //√â necess√°rio organizar o array para a busca bin√°ria funcionar
+        String[] copiaCampos = Arrays.copyOf(campos, campos.length); //criando uma cÛpia do array
+        Arrays.sort(copiaCampos);  //… necess·rio organizar o array para a busca bin·ria funcionar
         
         int binarySearchNulo = Arrays.binarySearch(copiaCampos, ""); //Buscar campo nulo
         
-        //Buscar espa√ßo
+        //Buscar espaÁo
         String[] espacos = null;
         for (int i=0;i<copiaCampos.length;i++){
             espacos = copiaCampos[i].split(" ");
-            if (espacos == null){
+            if (espacos.length == 0){
                 break;
             }
         }
         
-        if(copiaCampos.length != numCampos || binarySearchNulo >= 0 || espacos == null)
+        if(copiaCampos.length != numCampos || binarySearchNulo >= 0 || espacos.length == 0)
             throw new acessoArquivoException(MSG_NUMERO_DE_CAMPOS_INCORRETO);
         
     }
