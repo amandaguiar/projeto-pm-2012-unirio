@@ -5,6 +5,7 @@
 
 package trabalho1;
 
+import java.text.DecimalFormat;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -75,6 +76,11 @@ public class CalculoComissao {
         }
     }
     
+    public static double roundTwoDecimals(double d) {
+            DecimalFormat twoDForm = new DecimalFormat("#.##");
+        return Double.valueOf(twoDForm.format(d));
+}
+
     public void gerarComissao(int mes, String arqVendas, String arqPrecos, String arqVendedores, String arqComissao) throws acessoArquivoException{      
         
         acessoArquivoVenda accArqVenda = new acessoArquivoVenda();
