@@ -5,8 +5,11 @@
 
 package trabalho1;
 
+import java.io.File;
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Scanner;
 
 /**
  *
@@ -71,4 +74,43 @@ public class CalculoComissao {
                 return 0;
         }
     }
+    
+    public void gerarComissao(int mes, String arqVendas, String arqPrecos, String arqVendedores, String arqComissao) throws acessoArquivoException{      
+        
+        acessoArquivoVenda accArqVenda = new acessoArquivoVenda();
+        acessoArquivoPreco accArqPreco = new acessoArquivoPreco();        
+        acessoArquivoVendedor accArqVendedor = new acessoArquivoVendedor();
+        //acessoArquivoComissao accArqComissao = new acessoArquivoComissao();
+        
+        List<Venda> listaVenda = new ArrayList<Venda>();
+        List<Preco> listaPreco = new ArrayList<Preco>();
+        List<Vendedor> listaVendedor = new ArrayList<Vendedor>();               
+        //Comissao comissao = new Comissao();        
+        
+        listaVenda = accArqVenda.ler(new File(arqVendas));                
+        for (int i = 0; i < listaVenda.size(); i++)
+            if (mes != listaVenda.get(i).getMes())
+            listaVenda.remove(listaVenda.get(i));
+        
+        listaPreco = accArqPreco.ler(new File(arqPrecos));
+        for (int i = 0; i < listaPreco.size(); i++)
+            if (mes != listaPreco.get(i).getMes())
+            listaPreco.remove(listaPreco.get(i));        
+        
+        listaVendedor = accArqVendedor.ler(new File(arqVendedores));
+        
+        int categoria = 0;
+        String codigo = "";
+        for (int i = 0; i < listaVendedor.size(); i++){
+            categoria = listaVendedor.get(i).getCategoria();
+            codigo = listaVendedor.get(i).getCodigo();
+            if (categoria == 1){
+                //comissao.calculaComissaoCat1();
+            }                       
+            if (categoria == 2) {
+                //comissao.calculaComissaoCat2();
+            }
+        }
+    }
+    
 }
