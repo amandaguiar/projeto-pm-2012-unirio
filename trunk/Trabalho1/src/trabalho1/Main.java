@@ -15,7 +15,7 @@ import java.util.Scanner;
  */
 public class Main {
     
-    public void main(String[] args) throws acessoArquivoException{
+    public static void main(String[] args) throws acessoArquivoException{
         
         int mes;
         String arqVendas = "";
@@ -24,50 +24,27 @@ public class Main {
         String arqComissao = "";       
         Scanner scanner = new Scanner(System.in);        
         
-        acessoArquivoVenda accArqVenda = new acessoArquivoVenda();
-        acessoArquivoPreco accArqPreco = new acessoArquivoPreco();        
-        acessoArquivoVendedor accArqVendedor = new acessoArquivoVendedor();
-        acessoArquivoComissao accArqComissao = new acessoArquivoComissao();
-        
-        CalculoComissao com = new CalculoComissao();
-        
-        List<Venda> listaVenda = new ArrayList<Venda>();
-        List<Preco> listaPreco = new ArrayList<Preco>();
-        List<Vendedor> listaVendedor = new ArrayList<Vendedor>();               
-        List<CalculoComissao> comissao = new ArrayList<CalculoComissao>();
-        
         mes = Integer.parseInt(scanner.nextLine());
         arqVendas = scanner.nextLine();
         arqPrecos = scanner.nextLine();
         arqVendedores = scanner.nextLine();
-        arqComissao = scanner.nextLine();
+        arqComissao = scanner.nextLine();        
         
-        listaVenda = accArqVenda.ler(new File(arqVendas));
-        getVendasNoMes(mes, listaVenda);
-        listaPreco = accArqPreco.ler(new File(arqPrecos));
-        listaVendedor = accArqVendedor.ler(new File(arqVendedores));
+        CalculoComissao cc = new CalculoComissao();        
+        cc.gerarComissao(mes, arqVendas, arqPrecos, arqVendedores, arqComissao);        
         
-        int categoria = 0;
-        for (int i = 0; i < listaVendedor.size(); i++){
-            categoria = listaVendedor.get(i).getCategoria();
-            if (categoria == 1){
-                //com.calculaComissaoCat1();
-            }                       
-            if (categoria == 2) {
-                //com.calculaComissaoCat2();
-            }            
-            comissao.add(com);
-        }
         
     }
     
     /* Essa função compara o mês entrado com os meses presentes no arquivo de venda.
     * Para cada ocorrência de igualdade, a linha de venda é adicionada em um array.
     */
-    public void getVendasNoMes(int mes, List<Venda> listaVenda) throws acessoArquivoException {        
-                
-        for (int i = 0; i < listaVenda.size(); i++)
-            if (mes == listaVenda.get(i).getMes())
-            listaVenda.remove(listaVenda.get(i));          
-    }
+//    public List<Venda> getVendasNoMes(int mes, List<Venda> listaVenda) throws acessoArquivoException {        
+//        List<Venda> vendasNoMes = null;       
+//        
+//        for (int i = 0; i < listaVenda.size(); i++)
+//            if (mes == listaVenda.get(i).getMes())
+//            vendasNoMes.add(listaVenda.get(i));
+//        return vendasNoMes;  
+//    }
 }
