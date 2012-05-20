@@ -102,7 +102,7 @@ public class acessoArquivoComissao extends acessoArquivo {
     }
 
     @Override
-    public List<Comissao> ler(File file) throws acessoArquivoException {
+    public List<CalculoComissao> ler(File file) throws acessoArquivoException {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 

@@ -29,12 +29,12 @@ public class Main {
         acessoArquivoVendedor accArqVendedor = new acessoArquivoVendedor();
         acessoArquivoComissao accArqComissao = new acessoArquivoComissao();
         
-        Comissao com = new Comissao();
+        CalculoComissao com = new CalculoComissao();
         
         List<Venda> listaVenda = new ArrayList<Venda>();
         List<Preco> listaPreco = new ArrayList<Preco>();
         List<Vendedor> listaVendedor = new ArrayList<Vendedor>();               
-        List<Comissao> comissao = new ArrayList<Comissao>();
+        List<CalculoComissao> comissao = new ArrayList<CalculoComissao>();
         
         mes = Integer.parseInt(scanner.nextLine());
         arqVendas = scanner.nextLine();
