@@ -18,18 +18,20 @@ import org.junit.Test;
  */
 public class acessoArquivoVendedorTest {
     public static final String fileOk = ("Arquivos de testes\\acessoArquivoVendedorOkTest.txt");
+    public static final String fileNumCamposIncorretoTest = ("Arquivos de testes\\acessoArquivoVendedorNumCamposIncorretoTest.txt");
+
    
     @Test
     public void LerOkTest() {
         try{
             acessoArquivo arquivoVendedor = new acessoArquivoVendedor();
-            List<Vendedor> resultObtido = arquivoVendedor.ler(new File(fileOk));
+            List<Vendedor> resultadoObtido = arquivoVendedor.ler(new File(fileOk));
             List<Vendedor> resultadoEsperado = new ArrayList<Vendedor>();
             resultadoEsperado.add(gerarResultadoEsperado("0020","MANOEL DA SILVA",1));
             resultadoEsperado.add(gerarResultadoEsperado("0021","JOANA ANGELICA",2));
                       
-            Assert.assertEquals(resultadoEsperado.get(0), resultObtido.get(0));
-            Assert.assertEquals(resultadoEsperado.get(1), resultObtido.get(1));
+            Assert.assertEquals(resultadoEsperado.get(0), resultadoObtido.get(0));
+            Assert.assertEquals(resultadoEsperado.get(1), resultadoObtido.get(1));
 
         } catch(acessoArquivoException ex){
             Assert.fail();
@@ -39,5 +41,17 @@ public class acessoArquivoVendedorTest {
     public Vendedor gerarResultadoEsperado(String codigoVendedor, String nomeVendedor, int categoriaVendedor) {
         Vendedor vendedor = new Vendedor(codigoVendedor, nomeVendedor, categoriaVendedor);
         return vendedor;
+    }
+    
+    @Test
+    public void LerNumeroDeCamposIncorretoTest() {
+        try{
+            acessoArquivo acessoArquivoVendedor = new acessoArquivoVendedor();
+            List<Vendedor> resultadoObtido = acessoArquivoVendedor.ler(new File(fileNumCamposIncorretoTest));
+            Assert.fail();
+            
+        } catch(acessoArquivoException ex){
+            Assert.assertEquals(acessoArquivo.MSG_NUMERO_DE_CAMPOS_INCORRETO, ex.getMessage());
+        }
     }
 }

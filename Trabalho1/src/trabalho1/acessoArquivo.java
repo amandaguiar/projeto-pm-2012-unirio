@@ -74,8 +74,18 @@ public abstract class acessoArquivo implements IAcessoArquivo{
         String[] copiaCampos = Arrays.copyOf(campos, campos.length); //criando uma cópia do array
         Arrays.sort(copiaCampos);  //É necessário organizar o array para a busca binária funcionar
         
-        int binarySearch = Arrays.binarySearch(copiaCampos, ""); //Buscar campo nulo
-        if(copiaCampos.length != numCampos || binarySearch >= 0)
+        int binarySearchNulo = Arrays.binarySearch(copiaCampos, ""); //Buscar campo nulo
+        //Buscar espaço
+        String[] espacos = null;
+        for (int i=0;i<=copiaCampos.length;i++){
+            espacos = copiaCampos[i].split(" ");
+            if (espacos.equals(null)){
+                break;
+            }
+        }
+        
+        if(copiaCampos.length != numCampos || binarySearchNulo >= 0 || espacos == null)
             throw new acessoArquivoException(MSG_NUMERO_DE_CAMPOS_INCORRETO);
+        
     }
 }
