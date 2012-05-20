@@ -20,7 +20,8 @@ public class acessoArquivoVendedorTest {
     public static final String fileOk = ("Arquivos de testes\\acessoArquivoVendedorOkTest.txt");
     public static final String fileNumCamposIncorretoTest = ("Arquivos de testes\\acessoArquivoVendedorNumCamposIncorretoTest.txt");
     public static final String fileEspacosCamposTest = ("Arquivos de testes\\acessoArquivoVendedorEspacosCamposTest.txt");
-   
+    public static final String fileCategoriaInvalidaTest = ("Arquivos de testes\\acessoArquivoVendedorCategoriaInvalidaTest.txt");
+
     @Test
     public void LerOkTest() {
         try{
@@ -67,6 +68,15 @@ public class acessoArquivoVendedorTest {
         }
     }
     
-    
-   
+    @Test
+    public void lerCamposComCategoriaInvalidaTest() {
+        try{
+            acessoArquivo acessoArquivoVendedor = new acessoArquivoVendedor();
+            List<Vendedor> resultadoObtido = acessoArquivoVendedor.ler(new File(fileCategoriaInvalidaTest));
+            Assert.fail();
+            
+        } catch(acessoArquivoException ex){
+            Assert.assertEquals(acessoArquivoVendedor.MSG_ERRO_VENDEDOR_INVALIDO, ex.getMessage());
+        }
+    }   
 }
