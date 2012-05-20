@@ -94,6 +94,8 @@ public class CalculoComissao {
         List<Vendedor> listaVendedor = new ArrayList<Vendedor>();               
         Map<String,Comissao> comissoes = new HashMap<String,Comissao>();
         
+        
+        
         listaVenda = accArqVenda.ler(new File(arqVendas));                
         for (int i = 0; i < listaVenda.size(); i++)
             if (mes != listaVenda.get(i).getMes())
@@ -106,40 +108,33 @@ public class CalculoComissao {
         
         listaVendedor = accArqVendedor.ler(new File(arqVendedores));
         
+        
+        int quantidadeTotalA = 0;
+        int quantidadeTotalB = 0;
+        int quantidadeTotalC = 0;
+
         int categoria = 0;
         String codigo = "";
         for (int i = 0; i < listaVendedor.size(); i++){
             categoria = listaVendedor.get(i).getCategoria();
             codigo = listaVendedor.get(i).getCodigo();
-            if (categoria == 1){
-                //comissao.calculaComissaoCat1();
-            }                       
-            if (categoria == 2) {
-                //comissao.calculaComissaoCat2();
-            }
-        }
-        
-        return comissoes;
-    }
-    
-     public List<Integer> getQuantidadeTotalProduto(Map<String,Comissao> Comissoes) {
-         Comissoes = new HashMap<String,Comissao>();
-         List<Venda> listaVenda = new ArrayList<Venda>();
-         int quantidadeTotalA = 0;
-         int quantidadeTotalB = 0;
-         int quantidadeTotalC = 0;
-         
-         for(Comissao c : Comissoes){
+            Comissao com = new Comissao();
             for (Iterator<Venda> it = listaVenda.iterator(); it.hasNext();) {
                 Venda v = it.next();
-                if(c.getCodigo().equals(v.getCodVendedor())) {
+                if(codigo.equals(v.getCodVendedor())) {
                     quantidadeTotalA += v.getQtdeProdutoA();
                     quantidadeTotalB += v.getQtdeProdutoB();
                     quantidadeTotalC += v.getQtdeProdutoC();
                 }
-            } 
-     }
-    
-  }
-     
+            }
+                com.getQtdTotalProduto().add(quantidadeTotalA);
+                com.getQtdTotalProduto().add(quantidadeTotalB);
+                com.getQtdTotalProduto().add(quantidadeTotalC);
+                com.setMes(mes);
+                com.setCodigo(codigo);
+                com.setNome(listaVendedor.get(i).getNome());
+        }
+        return comissoes;
+    }
+         
 }
