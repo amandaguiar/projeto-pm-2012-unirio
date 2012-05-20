@@ -15,7 +15,7 @@ import java.util.Scanner;
  */
 public class Main {
     
-    public static void main(String[] args) throws acessoArquivoException{
+    public void main(String[] args) throws acessoArquivoException{
         
         int mes;
         String arqVendas = "";
@@ -43,6 +43,7 @@ public class Main {
         arqComissao = scanner.nextLine();
         
         listaVenda = accArqVenda.ler(new File(arqVendas));
+        getVendasNoMes(mes, listaVenda);
         listaPreco = accArqPreco.ler(new File(arqPrecos));
         listaVendedor = accArqVendedor.ler(new File(arqVendedores));
         
@@ -60,4 +61,13 @@ public class Main {
         
     }
     
+    /* Essa função compara o mês entrado com os meses presentes no arquivo de venda.
+    * Para cada ocorrência de igualdade, a linha de venda é adicionada em um array.
+    */
+    public void getVendasNoMes(int mes, List<Venda> listaVenda) throws acessoArquivoException {        
+                
+        for (int i = 0; i < listaVenda.size(); i++)
+            if (mes == listaVenda.get(i).getMes())
+            listaVenda.remove(listaVenda.get(i));          
+    }
 }

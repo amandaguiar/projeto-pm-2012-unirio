@@ -90,15 +90,5 @@ public class acessoArquivoVenda extends acessoArquivo{
         return listaQtdes;
     }
     
-    /* Essa função compara o mês entrado com os meses presentes no arquivo de venda.
-    * Para cada ocorrência de igualdade, a linha de venda é adicionada em um array.
-    */
-    public List<Venda> getVendasNoMes(int mes, List<Venda> listaVenda) throws acessoArquivoException {        
-        List<Venda> vendasNoMes = null;       
-        
-        for (int i = 0; i < listaVenda.size(); i++)
-            if (mes == listaVenda.get(i).getMes())
-            vendasNoMes.add(listaVenda.get(i));
-        return vendasNoMes;  
-    }
+    
 }
