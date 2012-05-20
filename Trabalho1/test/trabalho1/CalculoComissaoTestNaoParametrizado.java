@@ -34,11 +34,5 @@ public class CalculoComissaoTestNaoParametrizado {
     double resultado = CalculoComissao.getValorTotalGeral(valorTotalProdutos);
     Assert.assertEquals(2122.10, resultado);
     }
-    
-    @Test
-    public void testCalculaComissaoCat1() {
-        
-    }
-    
-    
+  
 }
