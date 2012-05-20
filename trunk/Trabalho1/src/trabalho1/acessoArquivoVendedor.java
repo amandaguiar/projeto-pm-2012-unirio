@@ -64,7 +64,7 @@ public class acessoArquivoVendedor extends acessoArquivo{
     
     //Verifica se as categorias informadas são válidas (1 ou 2).
     public void verificarCategoria(String categoria) throws acessoArquivoException{
-        if (Integer.parseInt(categoria) != 1 || Integer.parseInt(categoria) != 2 ) {
+        if (!( Integer.parseInt(categoria) == 1 || Integer.parseInt(categoria) == 2)) {
             throw new acessoArquivoException(MSG_ERRO_VENDEDOR_INVALIDO);
         }
     }
