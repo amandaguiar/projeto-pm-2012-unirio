@@ -22,7 +22,7 @@ public class CalculoComissao {
     private static final double cat1ValorLimite2 = 1800.00;
     private static final double cat2ValorLimite1 = 2000.00;
     private static final double cat2ValorLimite2 = 4000.00;
-    
+
     public static double getValorTotalGeral(List<Double> valorTotalProdutos) {
         double valorTotalGeral = 0.0;
         Iterator it = valorTotalProdutos.iterator();
@@ -49,7 +49,7 @@ public class CalculoComissao {
             return comissao;
         }
     }
-    
+
     public static double calculaComissaoCat2(double valorTotalGeral){
         double comissao;
         if(valorTotalGeral > cat2ValorLimite2){
@@ -65,7 +65,7 @@ public class CalculoComissao {
         return comissao;
         }
     }
-    
+
     public static double calculaComissao(int categoriaVendedor, double valorTotalGeral){
         switch (categoriaVendedor){
             case 1:
@@ -76,39 +76,39 @@ public class CalculoComissao {
                 return 0;
         }
     }
-        
+
     public static double roundTwoDecimals(double d) {
             DecimalFormat twoDForm = new DecimalFormat("#.##");
         return Double.valueOf(twoDForm.format(d));
     }
 
-    public Map<String,Comissao> gerarComissoes(int mes, String arqVendas, String arqPrecos, String arqVendedores, String arqComissao) throws acessoArquivoException{      
-        
+    public Map<String,Comissao> gerarComissoes(int mes, String arqVendas, String arqPrecos, String arqVendedores, String arqComissao) throws acessoArquivoException{
+
         acessoArquivoVenda accArqVenda = new acessoArquivoVenda();
-        acessoArquivoPreco accArqPreco = new acessoArquivoPreco();        
+        acessoArquivoPreco accArqPreco = new acessoArquivoPreco();
         acessoArquivoVendedor accArqVendedor = new acessoArquivoVendedor();
         acessoArquivoComissao accArqComissao = new acessoArquivoComissao();
-        
+
         List<Venda> listaVenda = new ArrayList<Venda>();
         List<Preco> listaPreco = new ArrayList<Preco>();
-        List<Vendedor> listaVendedor = new ArrayList<Vendedor>();               
+        List<Vendedor> listaVendedor = new ArrayList<Vendedor>();
         Map<String,Comissao> comissoes = new HashMap<String,Comissao>();
-        
-        
-        
-        listaVenda = accArqVenda.ler(new File(arqVendas));                
+
+
+
+        listaVenda = accArqVenda.ler(new File(arqVendas));
         for (int i = 0; i < listaVenda.size(); i++)
             if (mes != listaVenda.get(i).getMes())
             listaVenda.remove(listaVenda.get(i));
-        
+
         listaPreco = accArqPreco.ler(new File(arqPrecos));
         for (int i = 0; i < listaPreco.size(); i++)
             if (mes != listaPreco.get(i).getMes())
-            listaPreco.remove(listaPreco.get(i));        
-        
+            listaPreco.remove(listaPreco.get(i));
+
         listaVendedor = accArqVendedor.ler(new File(arqVendedores));
-        
-        
+
+
         int quantidadeTotalA = 0;
         int quantidadeTotalB = 0;
         int quantidadeTotalC = 0;
@@ -136,5 +136,5 @@ public class CalculoComissao {
         }
         return comissoes;
     }
-         
+
 }

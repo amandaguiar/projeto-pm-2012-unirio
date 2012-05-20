@@ -28,7 +28,7 @@ public class acessoArquivoComissao extends acessoArquivo {
 //    double precoTotalB;
 //    double precoTotalC;
 //
-//    for (int i=0;i<preco.size();i++) 
+//    for (int i=0;i<preco.size();i++)
 //        if(mes == preco.get(i).getMes())
 //            precoNoMes.add(preco.get(i));
 //

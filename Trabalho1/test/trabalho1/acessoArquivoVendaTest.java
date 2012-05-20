@@ -6,8 +6,6 @@
 package trabalho1;
 
 import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.GregorianCalendar;
 import java.util.List;
@@ -21,17 +19,16 @@ import org.junit.Test;
 
 public class acessoArquivoVendaTest {
 
-    public static final String fileOk = ("Arquivos de testes\\acessoArquivoVendaOkTest.txt");
-    public static final String fileNumCamposIncorretoTest = ("Arquivos de testes\\acessoArquivoVendaNumCamposIncorretoTest.txt");
-    public static final String fileQtdeNegativoTest = ("Arquivos de testes\\acessoArquivoQtdeNegativoTest.txt");
-    public static final String fileQtdeNaoNumeroTest = ("Arquivos de testes\\acessoArquivoVendaQtdeNaoNumeroTest.txt");
-    public static final String fileCampoNuloTest = ("Arquivos de testes\\acessoArquivoVendaCampoNuloTest.txt");
-    
+    public static final String arquivoOK = ("Arquivos de testes\\acessoArquivoVendaOkTest.txt");
+    public static final String arquivoNaoOK = ("Arquivos de testes\\acessoArquivoVendaNaoOKTest.txt");
+    public static final String arquivoNaoEncontrado = ("Arquivos de testes\\arquivoNaoEncontrado.txt");
+
+    //Testar a função "ler" passando uma entrada válida.
     @Test
-    public void LerOkTest() {
+    public void lerOKTest() {
         try{
             acessoArquivo accArqVenda = new acessoArquivoVenda();
-            List<Venda> resultObtido = accArqVenda.ler(new File(fileOk));
+            List<Venda> resultObtido = accArqVenda.ler(new File(arquivoOK));
             List<Venda> resultEsperado = gerarResultEsperado(2011,(03-1),10,"0020",10,30,50);
                       
             Assert.assertEquals(resultEsperado.get(0), resultObtido.get(0));
@@ -40,7 +37,7 @@ public class acessoArquivoVendaTest {
         }
     }
 
-    
+    //Função para gerar o resultado esperado de um teste.
     public List<Venda> gerarResultEsperado(int ano, int mes, int dia, String codVendedor,
                                                     int qtdeA, int qtdeB, int qtdeC) {
         List<Venda> resultEsperado = new ArrayList<Venda>();
@@ -53,23 +50,38 @@ public class acessoArquivoVendaTest {
         return resultEsperado;
     }
 
+    //Testar a função "ler" passando uma entrada com número de campos incorretos
     @Test
-    public void LerNumCamposIncorretoTest() {
+    public void lerNaoOKTest() {
         try{
             acessoArquivo accArqVenda = new acessoArquivoVenda();
-            List<Venda> resultObtido = accArqVenda.ler(new File(fileNumCamposIncorretoTest));
+            accArqVenda.ler(new File(arquivoNaoOK));
             Assert.fail();
-            
         } catch(acessoArquivoException ex){
             Assert.assertEquals(acessoArquivo.MSG_NUMERO_DE_CAMPOS_INCORRETO, ex.getMessage());
         }
     }
-    
+
     @Test
-    public void LerCampoNuloTest() {
+    public void lerArquivoNaoEncontrado() {
         try{
             acessoArquivo accArqVenda = new acessoArquivoVenda();
-            List<Venda> resultObtido = accArqVenda.ler(new File(fileCampoNuloTest));
+            accArqVenda.ler(new File(arquivoNaoEncontrado));
+            Assert.fail();
+        } catch(acessoArquivoException ex){
+            Assert.assertEquals(acessoArquivo.MSG_ERRO_ACESSO_ARQUIVO, ex.getMessage());
+        }
+    }
+
+
+    //Testes para a função "verificarPreCondicoes"
+
+    @Test
+    public void verificarPreCondicoesNumCamposMenosUmTest() {
+        try{
+            acessoArquivo accArqVenda = new acessoArquivoVenda();
+            String[] campos = "10/03/2011;40;20;60".split(acessoArquivoVenda.DELIMITADOR);
+            accArqVenda.verificarPreCondicoes(campos);
             Assert.fail();
             
         } catch(acessoArquivoException ex){
@@ -78,10 +90,84 @@ public class acessoArquivoVendaTest {
     }
 
     @Test
-    public void LerQtdeNegativoTest() {
+    public void verificarPreCondicoesNumCamposMaisUmTest() {
         try{
             acessoArquivo accArqVenda = new acessoArquivoVenda();
-            List<IAcessoArquivo> resultObtido = accArqVenda.ler(new File(fileQtdeNegativoTest));
+            String[] campos = "10/03/2011;0020;40;20;60;90".split(acessoArquivoVenda.DELIMITADOR);
+            accArqVenda.verificarPreCondicoes(campos);
+            Assert.fail();
+
+        } catch(acessoArquivoException ex){
+            Assert.assertEquals(acessoArquivo.MSG_NUMERO_DE_CAMPOS_INCORRETO, ex.getMessage());
+        }
+    }
+
+    @Test
+    public void verificarPreCondicoesQtdeNuloTest() {
+        try{
+            acessoArquivo accArqVenda = new acessoArquivoVenda();
+            String[] campos = "10/03/2011;0020;40;;60".split(acessoArquivoVenda.DELIMITADOR);
+            accArqVenda.verificarPreCondicoes(campos);
+            Assert.fail();
+            
+        } catch(acessoArquivoException ex){
+            Assert.assertEquals(acessoArquivo.MSG_NUMERO_DE_CAMPOS_INCORRETO, ex.getMessage());
+        }
+    }
+
+    @Test
+    public void verificarPreCondicoesCodVendedorNuloTest() {
+        try{
+            acessoArquivo accArqVenda = new acessoArquivoVenda();
+            String[] campos = "10/03/2011;;40;20;60".split(acessoArquivoVenda.DELIMITADOR);
+            accArqVenda.verificarPreCondicoes(campos);
+            Assert.fail();
+
+        } catch(acessoArquivoException ex){
+            Assert.assertEquals(acessoArquivo.MSG_NUMERO_DE_CAMPOS_INCORRETO, ex.getMessage());
+        }
+    }
+
+    @Test
+    public void verificarPreCondicoesValorLimiteQtdeMenosUmTest() {
+        try{
+            acessoArquivo accArqVenda = new acessoArquivoVenda();
+            String[] campos = "11/03/2011;0018;-1;20;60".split(acessoArquivoVenda.DELIMITADOR);
+            accArqVenda.verificarPreCondicoes(campos);
+            Assert.fail();
+        } catch(acessoArquivoException ex){
+            Assert.assertEquals(acessoArquivoVenda.MSG_QTDE_INVALIDA, ex.getMessage());
+        }
+    }
+    
+    @Test
+    public void verificarPreCondicoesValorLimiteQtdeTest() {
+        try{
+            acessoArquivo accArqVenda = new acessoArquivoVenda();
+            String[] campos = "11/03/2011;0018;40;0;60".split(acessoArquivoVenda.DELIMITADOR);
+            accArqVenda.verificarPreCondicoes(campos);
+        } catch(acessoArquivoException ex){
+            Assert.fail();
+        }
+    }
+
+    @Test
+    public void verificarPreCondicoesValorLimiteQtdeMaisUmTest() {
+        try{
+            acessoArquivo accArqVenda = new acessoArquivoVenda();
+            String[] campos = "11/03/2011;0018;40;20;1".split(acessoArquivoVenda.DELIMITADOR);
+            accArqVenda.verificarPreCondicoes(campos);
+        } catch(acessoArquivoException ex){
+            Assert.fail();
+        }
+    }
+
+    @Test
+    public void verificarPreCondicoesQtdeNaoNumeroTest() {
+        try{
+            acessoArquivo accArqVenda = new acessoArquivoVenda();
+            String[] campos = "10/03/2011;0020;10;asd;50".split(acessoArquivoVenda.DELIMITADOR);
+            accArqVenda.verificarPreCondicoes(campos);
             Assert.fail();
         } catch(acessoArquivoException ex){
             Assert.assertEquals(acessoArquivoVenda.MSG_QTDE_INVALIDA, ex.getMessage());
@@ -89,14 +175,16 @@ public class acessoArquivoVendaTest {
     }
 
     @Test
-    public void LerQtdeNaoNumeroTest() {
+    public void verificarPreCondicoesCampoContendoEspacosTest() {
         try{
             acessoArquivo accArqVenda = new acessoArquivoVenda();
-            List<IAcessoArquivo> resultObtido = accArqVenda.ler(new File(fileQtdeNaoNumeroTest));
+            String[] campos = "10/03/2011;0020;    ;20;60".split(acessoArquivoVenda.DELIMITADOR);
+            accArqVenda.verificarPreCondicoes(campos);
             Assert.fail();
         } catch(acessoArquivoException ex){
-            Assert.assertEquals(acessoArquivoVenda.MSG_QTDE_INVALIDA, ex.getMessage());
+            Assert.assertEquals(acessoArquivoVenda.MSG_NUMERO_DE_CAMPOS_INCORRETO, ex.getMessage());
         }
     }
-    
+
+
 }

@@ -32,7 +32,8 @@ public class acessoArquivoStringToCalendarDataInvalidaTest {
         Object[][] testData = new Object[][] {
             {"00/12/2011"},
             {"01/00/2011"},
-            {"01/12/0000"}
+            {"01/12/0000"},
+            {"01/13/2011"}
         };
         return Arrays.asList(testData);
     }
