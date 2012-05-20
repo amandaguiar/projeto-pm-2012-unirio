@@ -8,7 +8,10 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 /**
  *
@@ -106,13 +109,36 @@ public class acessoArquivoComissao extends acessoArquivo {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
-    public void escrever(int mes, String ARQ_VENDAS, String ARQ_PRECOS, String ARQ_VENDEDORES, String ARQ_COMISSAO) throws acessoArquivoException {
+    public void escrever(Map<String, Comissao> comissoes, String ARQUIVO_COMISSAO) throws acessoArquivoException {
         BufferedWriter writer = null;
 
         try {
             try {
-                writer = new BufferedWriter(new FileWriter(new File(ARQ_COMISSAO)), 4096);
-
+                writer = new BufferedWriter(new FileWriter(new File(ARQUIVO_COMISSAO)), 4096);
+                
+                Set<String> keySet = comissoes.keySet();
+                for(String s: keySet){
+                    Comissao comissao = comissoes.get(s); 
+                    
+                    int mes = comissao.getMes();
+                    String codigo = comissao.getCodigo();
+                    String nome = comissao.getNome();
+                    Double valorTotalA = comissao.getValorTotalProdutoA();
+                    Double valorTotalB = comissao.getValorTotalProdutoB();
+                    Double valorTotalC = comissao.getValorTotalProdutoC();
+                    Double valorTotalGeral = comissao.getValorTotalGeral();
+                    Double valorComissao = comissao.getComissao();
+                    
+                    writer.write(Integer.toString(mes) + ";" + 
+                                codigo + ";" + nome + ";" + 
+                                Double.toString(valorTotalA) + ";" +
+                                Double.toString(valorTotalB) + ";" + 
+                                Double.toString(valorTotalC) + ";" + 
+                                Double.toString(valorTotalGeral) + ";" + 
+                                Double.toString(valorComissao));
+                    
+                    writer.newLine();
+                }
 
             } finally {
                 if (writer != null) {
