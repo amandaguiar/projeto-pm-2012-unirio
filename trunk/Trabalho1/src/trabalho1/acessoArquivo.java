@@ -75,11 +75,12 @@ public abstract class acessoArquivo implements IAcessoArquivo{
         Arrays.sort(copiaCampos);  //É necessário organizar o array para a busca binária funcionar
         
         int binarySearchNulo = Arrays.binarySearch(copiaCampos, ""); //Buscar campo nulo
+        
         //Buscar espaço
         String[] espacos = null;
-        for (int i=0;i<=copiaCampos.length;i++){
+        for (int i=0;i<copiaCampos.length;i++){
             espacos = copiaCampos[i].split(" ");
-            if (espacos.equals(null)){
+            if (espacos == null){
                 break;
             }
         }
