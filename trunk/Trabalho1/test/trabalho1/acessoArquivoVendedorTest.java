@@ -24,7 +24,7 @@ public class acessoArquivoVendedorTest {
         try{
             acessoArquivo arquivoVendedor = new acessoArquivoVendedor();
             List<Vendedor> resultObtido = arquivoVendedor.ler(new File(fileOk));
-            List<Vendedor> resultadoEsperado = null;
+            List<Vendedor> resultadoEsperado = new ArrayList<Vendedor>();
             resultadoEsperado.add(gerarResultadoEsperado("0020","MANOEL DA SILVA",1));
             resultadoEsperado.add(gerarResultadoEsperado("0021","JOANA ANGELICA",2));
                       
@@ -35,6 +35,7 @@ public class acessoArquivoVendedorTest {
             Assert.fail();
         }
     }
+    
     public Vendedor gerarResultadoEsperado(String codigoVendedor, String nomeVendedor, int categoriaVendedor) {
         Vendedor vendedor = new Vendedor(codigoVendedor, nomeVendedor, categoriaVendedor);
         return vendedor;
