@@ -28,6 +28,15 @@ public class Comissao {
         this.comissao = comissao;
     }
 
+    public Comissao() {
+        this.mes = 0;
+        this.codigo = "";
+        this.nome = "";
+        this.valorTotalProduto = null;
+        this.valorTotalGeral = 0.0;
+        this.comissao = 0.0;
+    }
+
     public String getCodigo() {
         return codigo;
     }
@@ -60,6 +69,14 @@ public class Comissao {
         this.nome = nome;
     }
 
+    public List<Integer> getQtdTotalProduto() {
+        return qtdTotalProduto;
+    }
+
+    public void setQtdTotalProduto(List<Integer> qtdTotalProduto) {
+        this.qtdTotalProduto = qtdTotalProduto;
+    }
+    
     public double getValorTotalGeral() {
         return valorTotalGeral;
     }
