@@ -8,9 +8,10 @@ package trabalho1;
 import java.text.DecimalFormat;
 import java.io.File;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Scanner;
+import java.util.Map;
 
 /**
  *
@@ -79,9 +80,9 @@ public class CalculoComissao {
     public static double roundTwoDecimals(double d) {
             DecimalFormat twoDForm = new DecimalFormat("#.##");
         return Double.valueOf(twoDForm.format(d));
-}
+    }
 
-    public void gerarComissao(int mes, String arqVendas, String arqPrecos, String arqVendedores, String arqComissao) throws acessoArquivoException{      
+    public Map<String,Comissao> gerarComissoes(int mes, String arqVendas, String arqPrecos, String arqVendedores, String arqComissao) throws acessoArquivoException{      
         
         acessoArquivoVenda accArqVenda = new acessoArquivoVenda();
         acessoArquivoPreco accArqPreco = new acessoArquivoPreco();        
@@ -91,7 +92,7 @@ public class CalculoComissao {
         List<Venda> listaVenda = new ArrayList<Venda>();
         List<Preco> listaPreco = new ArrayList<Preco>();
         List<Vendedor> listaVendedor = new ArrayList<Vendedor>();               
-        //Comissao comissao = new Comissao();        
+        Map<String,Comissao> comissoes = new HashMap<String,Comissao>();
         
         listaVenda = accArqVenda.ler(new File(arqVendas));                
         for (int i = 0; i < listaVenda.size(); i++)
@@ -117,6 +118,8 @@ public class CalculoComissao {
                 //comissao.calculaComissaoCat2();
             }
         }
+        
+        return comissoes;
     }
     
 }

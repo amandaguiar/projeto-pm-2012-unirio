@@ -6,7 +6,9 @@ package trabalho1;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Scanner;
 
 /**
@@ -23,6 +25,7 @@ public class Main {
         String arqVendedores = "";
         String arqComissao = "";       
         Scanner scanner = new Scanner(System.in);        
+        Map<String, Comissao> comissoes = new HashMap<String,Comissao>();
         
         mes = Integer.parseInt(scanner.nextLine());
         arqVendas = scanner.nextLine();
@@ -31,7 +34,7 @@ public class Main {
         arqComissao = scanner.nextLine();        
         
         CalculoComissao cc = new CalculoComissao();        
-        cc.gerarComissao(mes, arqVendas, arqPrecos, arqVendedores, arqComissao);        
+        comissoes = cc.gerarComissoes(mes, arqVendas, arqPrecos, arqVendedores, arqComissao);        
         
         
     }
