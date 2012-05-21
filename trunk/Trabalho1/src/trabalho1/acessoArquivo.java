@@ -5,11 +5,10 @@
 package trabalho1;
 
 import java.io.File;
-import java.io.FileWriter;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.GregorianCalendar;
 import java.util.List;
+import java.util.Map;
 import java.util.regex.Pattern;
 
 /**
@@ -30,7 +29,7 @@ public abstract class acessoArquivo implements IAcessoArquivo{
     public abstract List ler(File file) throws acessoArquivoException;
 
     @Override
-    public void escrever(ArrayList<Object> obj, FileWriter saida) {
+    public void escrever(Map<String, Comissao> comissoes, File ARQUIVO_COMISSAO) throws acessoArquivoException {
         throw new UnsupportedOperationException("Not supported yet.");
     }
     
