@@ -11,6 +11,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 /**
  *
@@ -87,6 +88,11 @@ public class acessoArquivoVenda extends acessoArquivo{
             listaQtdes.add(Integer.parseInt(campos[i]));
 
         return listaQtdes;
+    }
+    
+    @Override
+    public void escrever(Map<String, Comissao> comissoes, String ARQUIVO_COMISSAO) throws acessoArquivoException {
+        throw new UnsupportedOperationException("Not supported yet.");
     }
     
     

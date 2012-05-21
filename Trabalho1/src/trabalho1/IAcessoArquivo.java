@@ -17,7 +17,7 @@ import java.util.Map;
 public interface IAcessoArquivo {
 
     public abstract List ler(File file) throws acessoArquivoException;
-    public void escrever(Map<String, Comissao> comissoes, File ARQUIVO_COMISSAO) throws acessoArquivoException;
+    public abstract void escrever(Map<String, Comissao> comissoes, String ARQUIVO_COMISSAO) throws acessoArquivoException;
     public GregorianCalendar stringToCalendar(String valor) throws acessoArquivoException;
     public abstract void verificarPreCondicoes(String[] campos) throws acessoArquivoException;
 

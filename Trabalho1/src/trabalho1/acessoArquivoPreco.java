@@ -11,6 +11,7 @@ import java.io.FileReader;
 import java.util.List;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Map;
 
 /**
  *
@@ -27,6 +28,11 @@ public class acessoArquivoPreco extends acessoArquivo{
     public static final int QUANT_CAMPOS = 4; //Quantidade de campos em uma linha do arquivo.
     public static final String MSG_PRECO_INVALIDO = "Preço de um produto é inválido.";
     
+    
+    @Override
+    public void escrever(Map<String, Comissao> comissoes, String ARQUIVO_COMISSAO) throws acessoArquivoException {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
     
     //Lê um arquivo e retorna uma lista de objetos Preco.
     @Override

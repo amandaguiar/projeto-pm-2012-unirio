@@ -32,6 +32,7 @@ public class acessoArquivoComissao extends acessoArquivo {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
+    @Override
     public void escrever(Map<String, Comissao> comissoes, String ARQUIVO_COMISSAO) throws acessoArquivoException {
         BufferedWriter writer = null;
 
