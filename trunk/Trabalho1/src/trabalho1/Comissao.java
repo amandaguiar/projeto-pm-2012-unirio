@@ -151,7 +151,6 @@ public class Comissao {
         this.valorTotalGeral = valorTotalGeral;
     }
 
-
     @Override
     public boolean equals(Object obj) {
         if (obj == null) {
@@ -161,7 +160,40 @@ public class Comissao {
             return false;
         }
         final Comissao other = (Comissao) obj;
+        if (this.mes != other.mes) {
+            return false;
+        }
         if ((this.codigo == null) ? (other.codigo != null) : !this.codigo.equals(other.codigo)) {
+            return false;
+        }
+        if ((this.nome == null) ? (other.nome != null) : !this.nome.equals(other.nome)) {
+            return false;
+        }
+        if (this.categoria != other.categoria) {
+            return false;
+        }
+        if (this.qtdeTotalProdutoA != other.qtdeTotalProdutoA) {
+            return false;
+        }
+        if (this.qtdeTotalProdutoB != other.qtdeTotalProdutoB) {
+            return false;
+        }
+        if (this.qtdeTotalProdutoC != other.qtdeTotalProdutoC) {
+            return false;
+        }
+        if (Double.doubleToLongBits(this.valorTotalProdutoA) != Double.doubleToLongBits(other.valorTotalProdutoA)) {
+            return false;
+        }
+        if (Double.doubleToLongBits(this.valorTotalProdutoB) != Double.doubleToLongBits(other.valorTotalProdutoB)) {
+            return false;
+        }
+        if (Double.doubleToLongBits(this.valorTotalProdutoC) != Double.doubleToLongBits(other.valorTotalProdutoC)) {
+            return false;
+        }
+        if (Double.doubleToLongBits(this.valorTotalGeral) != Double.doubleToLongBits(other.valorTotalGeral)) {
+            return false;
+        }
+        if (Double.doubleToLongBits(this.comissao) != Double.doubleToLongBits(other.comissao)) {
             return false;
         }
         return true;
@@ -169,9 +201,22 @@ public class Comissao {
 
     @Override
     public int hashCode() {
-        int hash = 3;
-        hash = 67 * hash + (this.codigo != null ? this.codigo.hashCode() : 0);
+        int hash = 5;
+        hash = 59 * hash + this.mes;
+        hash = 59 * hash + (this.codigo != null ? this.codigo.hashCode() : 0);
+        hash = 59 * hash + (this.nome != null ? this.nome.hashCode() : 0);
+        hash = 59 * hash + this.categoria;
+        hash = 59 * hash + this.qtdeTotalProdutoA;
+        hash = 59 * hash + this.qtdeTotalProdutoB;
+        hash = 59 * hash + this.qtdeTotalProdutoC;
+        hash = 59 * hash + (int) (Double.doubleToLongBits(this.valorTotalProdutoA) ^ (Double.doubleToLongBits(this.valorTotalProdutoA) >>> 32));
+        hash = 59 * hash + (int) (Double.doubleToLongBits(this.valorTotalProdutoB) ^ (Double.doubleToLongBits(this.valorTotalProdutoB) >>> 32));
+        hash = 59 * hash + (int) (Double.doubleToLongBits(this.valorTotalProdutoC) ^ (Double.doubleToLongBits(this.valorTotalProdutoC) >>> 32));
+        hash = 59 * hash + (int) (Double.doubleToLongBits(this.valorTotalGeral) ^ (Double.doubleToLongBits(this.valorTotalGeral) >>> 32));
+        hash = 59 * hash + (int) (Double.doubleToLongBits(this.comissao) ^ (Double.doubleToLongBits(this.comissao) >>> 32));
         return hash;
     }
+
+
        
 }
