@@ -31,7 +31,7 @@ public class acessoArquivoComissao extends acessoArquivo {
     public List<CalculoComissao> ler(File file) throws acessoArquivoException {
         throw new UnsupportedOperationException("Not supported yet.");
     }
-
+    
     @Override
     public void escrever(Map<String, Comissao> comissoes, String ARQUIVO_COMISSAO) throws acessoArquivoException {
         BufferedWriter writer = null;

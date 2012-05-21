@@ -94,4 +94,6 @@ public class acessoArquivoPreco extends acessoArquivo{
             listaPrecos.add(Double.parseDouble(campos[i].replace(",",".")));
         return listaPrecos;
     }
+    
+    
 }
