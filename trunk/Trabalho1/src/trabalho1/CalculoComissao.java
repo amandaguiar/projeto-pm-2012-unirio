@@ -94,13 +94,13 @@ public class CalculoComissao {
         Set<String> codigosVendedores = comissoes.keySet();
         for(String s : codigosVendedores){
             if(comissoes.get(s).getCategoria() == 1){
-                calculaComissao(1, comissoes.get(s).getValorTotalGeral());
+                comissoes.get(s).setComissao(calculaComissao(1, comissoes.get(s).getValorTotalGeral()));
             }
             else if(comissoes.get(s).getCategoria() == 2){
-                calculaComissao(2, comissoes.get(s).getValorTotalGeral());
+                comissoes.get(s).setComissao(calculaComissao(2, comissoes.get(s).getValorTotalGeral()));
             }
         }
-
+        
         return comissoes;
     }
 
@@ -133,12 +133,12 @@ public class CalculoComissao {
     public void getPrecosNoMes(List<Preco> listaPreco, int mes) {
         //get Preco do Produto no Mes
         for (Preco p : listaPreco) {
-            if (p.getMes() == mes) {
+            int mes1 = p.getMes();
+            if (p.getMes() <= mes) {
                 precoProdutoANoMes = p.getPrecoProdA();
                 precoProdutoBNoMes = p.getPrecoProdB();
                 precoProdutoCNoMes = p.getPrecoProdC();
             }
         }
     }
-
 }

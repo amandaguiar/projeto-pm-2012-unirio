@@ -16,20 +16,20 @@ import java.util.List;
  *
  * @author Amanda
  */
-public class Preco {    
-    
+public class Preco {
+
     private GregorianCalendar data;
     private List<Double> precos;
 
     public static final int POS_CAT_A = 0;
     public static final int POS_CAT_B = 1;
     public static final int POS_CAT_C = 2;
-    
+
     public Preco(GregorianCalendar data, List<Double> precos) {
         this.data = data;
-        this.data.setLenient(false);     
+        this.data.setLenient(false);
         this.data.get(Calendar.MONTH);  //Inicializar todos os demais campos da Classe GregorianCalendar
-        
+
         this.precos = precos;
     }
 
@@ -48,31 +48,31 @@ public class Preco {
     public void setPrecos(List<Double> precos) {
         this.precos = precos;
     }
-    
+
     public int getDia(){
-        return data.get(Calendar.DAY_OF_MONTH);
+        return this.data.get(GregorianCalendar.DAY_OF_MONTH);
     }
 
     public int getMes(){
-        return data.get(Calendar.MONTH) + 1;
+        return (this.data.get(GregorianCalendar.MONTH) + 1);
     }
 
     public int getAno(){
-        return data.get(Calendar.YEAR);
+        return this.data.get(GregorianCalendar.YEAR);
     }
-    
+
     public Double getPrecoProdA(){
         return this.precos.get(POS_CAT_A);
     }
-    
+
     public Double getPrecoProdB(){
         return this.precos.get(POS_CAT_B);
     }
-    
+
     public Double getPrecoProdC(){
-        return this.precos.get(POS_CAT_C);        
+        return this.precos.get(POS_CAT_C);
     }
-    
+
     @Override
     public boolean equals(Object obj) {
         if (obj == null) {
