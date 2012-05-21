@@ -11,6 +11,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 /**
  *
@@ -60,6 +61,11 @@ public class acessoArquivoVendedor extends acessoArquivo{
     public void verificarPreCondicoes(String[] campos) throws acessoArquivoException{
         verificarQtdeCamposValidos(campos, numCampos);
         verificarCategoria(campos[POS_CATEGORIA]);
+    }
+    
+    @Override
+    public void escrever(Map<String, Comissao> comissoes, String ARQUIVO_COMISSAO) throws acessoArquivoException {
+        throw new UnsupportedOperationException("Not supported yet.");
     }
     
     //Verifica se as categorias informadas são válidas (1 ou 2).

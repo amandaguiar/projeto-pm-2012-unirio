@@ -29,7 +29,7 @@ public abstract class acessoArquivo implements IAcessoArquivo{
     public abstract List ler(File file) throws acessoArquivoException;
 
     @Override
-    public void escrever(Map<String, Comissao> comissoes, File ARQUIVO_COMISSAO) throws acessoArquivoException {
+    public void escrever(Map<String, Comissao> comissoes, String ARQUIVO_COMISSAO) throws acessoArquivoException {
         throw new UnsupportedOperationException("Not supported yet.");
     }
     

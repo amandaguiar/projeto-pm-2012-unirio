@@ -107,10 +107,10 @@ public class CalculoComissao {
     public void setValorTotalReais(Map<String, Comissao> comissoes) {
         Set<String> codigosVendedores = comissoes.keySet();
         for (String s : codigosVendedores) {
-            comissoes.get(s).setValorTotalProdutoA(precoProdutoANoMes * comissoes.get(s).getQtdeTotalProdutoA());
-            comissoes.get(s).setValorTotalProdutoB(precoProdutoBNoMes * comissoes.get(s).getQtdeTotalProdutoB());
-            comissoes.get(s).setValorTotalProdutoC(precoProdutoCNoMes * comissoes.get(s).getQtdeTotalProdutoC());
-            comissoes.get(s).setValorTotalGeral(comissoes.get(s).getValorTotalProdutoA() + comissoes.get(s).getValorTotalProdutoB() + comissoes.get(s).getValorTotalProdutoC());
+            comissoes.get(s).setValorTotalProdutoA(roundTwoDecimals(precoProdutoANoMes * comissoes.get(s).getQtdeTotalProdutoA()));
+            comissoes.get(s).setValorTotalProdutoB(roundTwoDecimals(precoProdutoBNoMes * comissoes.get(s).getQtdeTotalProdutoB()));
+            comissoes.get(s).setValorTotalProdutoC(roundTwoDecimals(precoProdutoCNoMes * comissoes.get(s).getQtdeTotalProdutoC()));
+            comissoes.get(s).setValorTotalGeral(roundTwoDecimals(comissoes.get(s).getValorTotalProdutoA() + comissoes.get(s).getValorTotalProdutoB() + comissoes.get(s).getValorTotalProdutoC()));
         }
     }
 
