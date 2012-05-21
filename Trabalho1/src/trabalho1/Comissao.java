@@ -4,8 +4,6 @@
  */
 package trabalho1;
 
-import java.util.List;
-
 /**
  *
  * @author Bianca
@@ -14,28 +12,33 @@ public class Comissao {
     private int mes;
     private String codigo;
     private String nome;
-    private List<Integer> qtdTotalProduto;
-    private List<Double> valorTotalProduto;
+    private int categoria;
+    private int qtdeTotalProdutoA;
+    private int qtdeTotalProdutoB;
+    private int qtdeTotalProdutoC;
+    private double valorTotalProdutoA;
+    private double valorTotalProdutoB;
+    private double valorTotalProdutoC;
     private double valorTotalGeral;
     private double comissao;
 
-    public Comissao(int mes, String codigo, String nome, List<Double> valorTotalProduto, double valorTotalGeral, double comissao) {
+
+
+    public Comissao(int mes, String codigo, String nome, int categoria){
         this.mes = mes;
         this.codigo = codigo;
         this.nome = nome;
-        this.valorTotalProduto = valorTotalProduto;
-        this.valorTotalGeral = valorTotalGeral;
-        this.comissao = comissao;
-    }
-
-    public Comissao() {
-        this.mes = 0;
-        this.codigo = "";
-        this.nome = "";
-        this.valorTotalProduto = null;
+        this.categoria = categoria;
+        this.qtdeTotalProdutoA = 0;
+        this.qtdeTotalProdutoB = 0;
+        this.qtdeTotalProdutoC = 0;
+        this.valorTotalProdutoA = 0.0;
+        this.valorTotalProdutoB = 0.0;
+        this.valorTotalProdutoC = 0.0;
         this.valorTotalGeral = 0.0;
         this.comissao = 0.0;
     }
+
 
     public String getCodigo() {
         return codigo;
@@ -69,14 +72,63 @@ public class Comissao {
         this.nome = nome;
     }
 
-    public List<Integer> getQtdTotalProduto() {
-        return qtdTotalProduto;
+    public int getCategoria() {
+        return categoria;
     }
 
-    public void setQtdTotalProduto(List<Integer> qtdTotalProduto) {
-        this.qtdTotalProduto = qtdTotalProduto;
+    public void setCategoria(int categoria) {
+        this.categoria = categoria;
     }
-    
+
+
+    public int getQtdeTotalProdutoA() {
+        return qtdeTotalProdutoA;
+    }
+
+    public void setQtdeTotalProdutoA(int qtdeTotalProdutoA) {
+        this.qtdeTotalProdutoA = qtdeTotalProdutoA;
+    }
+
+    public int getQtdeTotalProdutoB() {
+        return qtdeTotalProdutoB;
+    }
+
+    public void setQtdeTotalProdutoB(int qtdeTotalProdutoB) {
+        this.qtdeTotalProdutoB = qtdeTotalProdutoB;
+    }
+
+    public int getQtdeTotalProdutoC() {
+        return qtdeTotalProdutoC;
+    }
+
+    public void setQtdeTotalProdutoC(int qtdeTotalProdutoC) {
+        this.qtdeTotalProdutoC = qtdeTotalProdutoC;
+    }
+
+    public double getValorTotalProdutoA() {
+        return valorTotalProdutoA;
+    }
+
+    public void setValorTotalProdutoA(double valorTotalProdutoA) {
+        this.valorTotalProdutoA = valorTotalProdutoA;
+    }
+
+    public double getValorTotalProdutoB() {
+        return valorTotalProdutoB;
+    }
+
+    public void setValorTotalProdutoB(double valorTotalProdutoB) {
+        this.valorTotalProdutoB = valorTotalProdutoB;
+    }
+
+    public double getValorTotalProdutoC() {
+        return valorTotalProdutoC;
+    }
+
+    public void setValorTotalProdutoC(double valorTotalProdutoC) {
+        this.valorTotalProdutoC = valorTotalProdutoC;
+    }
+   
     public double getValorTotalGeral() {
         return valorTotalGeral;
     }
@@ -85,13 +137,6 @@ public class Comissao {
         this.valorTotalGeral = valorTotalGeral;
     }
 
-    public List<Double> getValorTotalProduto() {
-        return valorTotalProduto;
-    }
-
-    public void setValorTotalProduto(List<Double> valorTotalProduto) {
-        this.valorTotalProduto = valorTotalProduto;
-    }
 
     @Override
     public boolean equals(Object obj) {

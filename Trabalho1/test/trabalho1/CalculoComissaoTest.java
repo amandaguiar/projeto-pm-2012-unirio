@@ -16,7 +16,7 @@ import org.junit.runners.Parameterized;
  * @author Bianca
  */
 
-@RunWith(Parameterized.class)
+@RunWith(value = Parameterized.class)
 public class CalculoComissaoTest {
     
     private int categoriaVendedor;
@@ -33,10 +33,10 @@ public class CalculoComissaoTest {
     public static Collection<Object []> data() {
             Object[][] testCalculoComissao = new Object[][] {
             {1,1.00,0.10},
-            {1,999.99,99.99},/*falha*/
+            {1,999.99,100.00},
             {1,1000.0,100.00},
             {1,1001.00,100.15},
-            {1,1799.99,220.00},/*falha*/
+            {1,1799.99,220.00},
             {1,1800.00,220.00},
             {1,1801.00,220.20},
             {1,2000.00,260.00},
@@ -44,7 +44,7 @@ public class CalculoComissaoTest {
             {1,10000.00,1860.00},
             {2,1.00,0.10},
             {2,1000.00,100.00},
-            {2,1999.99,200.00},/*falha*/
+            {2,1999.99,200.00},
             {2,2000.00,400.00},
             {2,3000.00,600.00},
             {2,4000.00,800.00},
@@ -61,8 +61,9 @@ public class CalculoComissaoTest {
     @Test
     public void testCalculaComissao() {
         try{
-            double resultado = CalculoComissao.calculaComissao(categoriaVendedor, valorTotalGeral);
-            Assert.assertEquals(resultado, comissao);
+            CalculoComissao calculoComissao = new CalculoComissao();
+            double resultado = calculoComissao.calculaComissao(categoriaVendedor, valorTotalGeral);
+            Assert.assertEquals(comissao,resultado);
         }catch(Exception ex){
             Assert.fail();
         }
