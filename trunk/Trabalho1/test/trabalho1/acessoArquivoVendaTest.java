@@ -20,7 +20,7 @@ import org.junit.Test;
 public class acessoArquivoVendaTest {
 
     public static final String arquivoOK = ("Arquivos de testes\\acessoArquivoVendaOkTest.txt");
-    public static final String arquivoNaoOK = ("Arquivos de testes\\acessoArquivoVendaNaoOkTest.txt");
+    public static final String arquivoNaoOK = ("Arquivos de testes\\acessoArquivoVendaNOKTest.txt");
     public static final String arquivoNaoEncontrado = ("Arquivos de testes\\arquivoNaoEncontrado.txt");
 
     //Testar a função "ler" passando uma entrada válida.
