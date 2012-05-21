@@ -18,7 +18,8 @@ import org.junit.Test;
  */
 public class acessoArquivoVendedorTest {
     public static final String fileOk = ("Arquivos de testes\\acessoArquivoVendedorOkTest.txt");
-    public static final String fileNumCamposIncorretoTest = ("Arquivos de testes\\acessoArquivoVendedorNumCamposIncorretoTest.txt");
+    public static final String fileNumCamposMinIncorretoTest = ("Arquivos de testes\\acessoArquivoVendedorNumCamposMinIncorretoTest.txt");
+    public static final String fileNumCamposMaxIncorretoTest = ("Arquivos de testes\\acessoArquivoVendedorNumCamposMaxIncorretoTest.txt");
     public static final String fileEspacosCamposTest = ("Arquivos de testes\\acessoArquivoVendedorEspacosCamposTest.txt");
     public static final String fileCategoriaInvalidaTest = ("Arquivos de testes\\acessoArquivoVendedorCategoriaInvalidaTest.txt");
 
@@ -45,10 +46,22 @@ public class acessoArquivoVendedorTest {
     }
     
     @Test
-    public void lerNumeroDeCamposIncorretoTest() {
+    public void lerNumeroDeCamposMinIncorretoTest() {
         try{
             acessoArquivo acessoArquivoVendedor = new acessoArquivoVendedor();
-            List<Vendedor> resultadoObtido = acessoArquivoVendedor.ler(new File(fileNumCamposIncorretoTest));
+            List<Vendedor> resultadoObtido = acessoArquivoVendedor.ler(new File(fileNumCamposMinIncorretoTest));
+            Assert.fail();
+            
+        } catch(acessoArquivoException ex){
+            Assert.assertEquals(acessoArquivo.MSG_NUMERO_DE_CAMPOS_INCORRETO, ex.getMessage());
+        }
+    }
+    
+    @Test
+    public void lerNumeroDeCamposMaxIncorretoTest() {
+        try{
+            acessoArquivo acessoArquivoVendedor = new acessoArquivoVendedor();
+            List<Vendedor> resultadoObtido = acessoArquivoVendedor.ler(new File(fileNumCamposMaxIncorretoTest));
             Assert.fail();
             
         } catch(acessoArquivoException ex){
