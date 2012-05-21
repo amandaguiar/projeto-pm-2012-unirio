@@ -39,6 +39,20 @@ public class Comissao {
         this.comissao = 0.0;
     }
 
+    public Comissao(int mes, String codigo, String nome, int categoria, int qtdeTotalProdutoA, int qtdeTotalProdutoB, int qtdeTotalProdutoC, double valorTotalProdutoA, double valorTotalProdutoB, double valorTotalProdutoC, double valorTotalGeral, double comissao) {
+        this.mes = mes;
+        this.codigo = codigo;
+        this.nome = nome;
+        this.categoria = categoria;
+        this.qtdeTotalProdutoA = qtdeTotalProdutoA;
+        this.qtdeTotalProdutoB = qtdeTotalProdutoB;
+        this.qtdeTotalProdutoC = qtdeTotalProdutoC;
+        this.valorTotalProdutoA = valorTotalProdutoA;
+        this.valorTotalProdutoB = valorTotalProdutoB;
+        this.valorTotalProdutoC = valorTotalProdutoC;
+        this.valorTotalGeral = valorTotalGeral;
+        this.comissao = comissao;
+    }
 
     public String getCodigo() {
         return codigo;
