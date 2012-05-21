@@ -6,29 +6,24 @@
 /*
  * Home.java
  *
- * Created on 20/05/2012, 22:44:21
+ * Created on 21/05/2012, 00:40:23
  */
 package trabalho1;
 
 import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
  *
  * @author Amandaa
  */
-public class Home extends javax.swing.JPanel {
-    public Home(){
-        initComponents();
-    }
-    
+public class Home extends javax.swing.JFrame {
+
     /** Creates new form Home */
-    public static void main(String args[]) {
-        
+    public Home() {
+        initComponents();
     }
 
     /** This method is called from within the constructor to
@@ -40,160 +35,194 @@ public class Home extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jTextField1 = new javax.swing.JTextField();
+        jPanel1 = new javax.swing.JPanel();
         lblMes = new javax.swing.JLabel();
         lblVenda = new javax.swing.JLabel();
-        lblComissao = new javax.swing.JLabel();
-        lblVendedor = new javax.swing.JLabel();
         lblPreco = new javax.swing.JLabel();
+        lblVendedor = new javax.swing.JLabel();
+        lblComissao = new javax.swing.JLabel();
         lblTitulo = new javax.swing.JLabel();
-        btnCalcular = new javax.swing.JButton();
         txtMes = new javax.swing.JTextField();
         txtVenda = new javax.swing.JTextField();
         txtPreco = new javax.swing.JTextField();
         txtVendedor = new javax.swing.JTextField();
         txtComissao = new javax.swing.JTextField();
+        btnCalcular = new javax.swing.JButton();
 
-        jTextField1.setText("jTextField1");
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        setBackground(new java.awt.Color(102, 102, 102));
-        setForeground(new java.awt.Color(255, 255, 255));
+        jPanel1.setBackground(new java.awt.Color(102, 102, 102));
 
-        lblMes.setFont(new java.awt.Font("Tahoma", 0, 12));
+        lblMes.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         lblMes.setForeground(new java.awt.Color(255, 255, 255));
         lblMes.setText("Mês:");
 
-        lblVenda.setFont(new java.awt.Font("Tahoma", 0, 12));
+        lblVenda.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         lblVenda.setForeground(new java.awt.Color(255, 255, 255));
-        lblVenda.setText("Nome arquivo Vendas:");
+        lblVenda.setText("Nome arquivo Venda:");
 
-        lblComissao.setFont(new java.awt.Font("Tahoma", 0, 12));
-        lblComissao.setForeground(new java.awt.Color(255, 255, 255));
-        lblComissao.setText("Nome arquivo Comissão:");
+        lblPreco.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        lblPreco.setForeground(new java.awt.Color(255, 255, 255));
+        lblPreco.setText("Nome arquivo Preco:");
 
-        lblVendedor.setFont(new java.awt.Font("Tahoma", 0, 12));
+        lblVendedor.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         lblVendedor.setForeground(new java.awt.Color(255, 255, 255));
         lblVendedor.setText("Nome arquivo Vendedor:");
 
-        lblPreco.setFont(new java.awt.Font("Tahoma", 0, 12));
-        lblPreco.setForeground(new java.awt.Color(255, 255, 255));
-        lblPreco.setText("Nome arquivo Preço:");
+        lblComissao.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        lblComissao.setForeground(new java.awt.Color(255, 255, 255));
+        lblComissao.setText("Nome arquivo Comissão:");
 
-        lblTitulo.setBackground(new java.awt.Color(0, 102, 102));
-        lblTitulo.setFont(new java.awt.Font("Tahoma", 0, 18));
+        lblTitulo.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         lblTitulo.setForeground(new java.awt.Color(255, 255, 255));
         lblTitulo.setText("Cálculo de Comissão");
 
-        btnCalcular.setBackground(new java.awt.Color(102, 102, 102));
-        btnCalcular.setFont(new java.awt.Font("Tahoma", 0, 12));
+        btnCalcular.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         btnCalcular.setText("Calcular");
-        btnCalcular.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnCalcularMouseClicked(evt);
-            }
-        });
-
-        txtPreco.addActionListener(new java.awt.event.ActionListener() {
+        btnCalcular.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtPrecoActionPerformed(evt);
+                btnCalcularActionPerformed(evt);
             }
         });
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap(44, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(lblVendedor)
+                    .addComponent(lblComissao)
+                    .addComponent(lblPreco)
+                    .addComponent(lblVenda)
+                    .addComponent(lblMes))
+                .addGap(36, 36, 36)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtComissao, javax.swing.GroupLayout.DEFAULT_SIZE, 192, Short.MAX_VALUE)
+                    .addComponent(txtVenda, javax.swing.GroupLayout.DEFAULT_SIZE, 192, Short.MAX_VALUE)
+                    .addComponent(txtMes, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtPreco, javax.swing.GroupLayout.DEFAULT_SIZE, 192, Short.MAX_VALUE)
+                    .addComponent(txtVendedor, javax.swing.GroupLayout.DEFAULT_SIZE, 192, Short.MAX_VALUE))
+                .addContainerGap(62, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(181, 181, 181)
+                .addComponent(btnCalcular, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(193, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(146, 146, 146)
+                .addComponent(lblTitulo)
+                .addContainerGap(163, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(30, 30, 30)
+                .addComponent(lblTitulo)
+                .addGap(56, 56, 56)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtMes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblMes))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtVenda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblVenda))
+                .addGap(11, 11, 11)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtPreco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblPreco))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtVendedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblVendedor))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtComissao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblComissao))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 48, Short.MAX_VALUE)
+                .addComponent(btnCalcular)
+                .addGap(44, 44, 44))
+        );
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(20, 20, 20)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(lblVendedor)
-                            .addComponent(lblVenda)
-                            .addComponent(lblPreco)
-                            .addComponent(lblMes)
-                            .addComponent(lblComissao))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblTitulo)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(37, 37, 37)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(txtVendedor)
-                                    .addComponent(txtComissao)
-                                    .addComponent(txtVenda)
-                                    .addComponent(txtMes, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtPreco, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(186, 186, 186)
-                        .addComponent(btnCalcular, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(63, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(lblTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(66, 66, 66)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblMes)
-                    .addComponent(txtMes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblPreco)
-                    .addComponent(txtPreco, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblVenda)
-                    .addComponent(txtVenda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblVendedor)
-                    .addComponent(txtVendedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtComissao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblComissao))
-                .addGap(33, 33, 33)
-                .addComponent(btnCalcular)
-                .addContainerGap(45, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
+
+        pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtPrecoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPrecoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtPrecoActionPerformed
-
-    private void btnCalcularMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCalcularMouseClicked
-        
-        int mes = Integer.parseInt(txtMes.getText());
-        String arqVendas = txtVenda.getText();
-        String arqPrecos = txtPreco.getText();
-        String arqVendedores = txtVendedor.getText();
-        String arqComissao = txtComissao.getText();    
-        
-        Map<String, Comissao> comissoes = new HashMap<String,Comissao>();
-        acessoArquivoComissao accArqComissao = new acessoArquivoComissao();
-        CalculoComissao cc = new CalculoComissao();        
-        try {
-            comissoes = cc.gerarComissoes(mes, arqVendas, arqPrecos, arqVendedores, arqComissao);
-        } catch (acessoArquivoException ex) {
-            MostraMensagemErro(ex.getMessage());
+    private void btnCalcularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCalcularActionPerformed
+        int mes = Integer.parseInt(txtMes.getText());         
+        String arqVendas = txtVenda.getText();         
+        String arqPrecos = txtPreco.getText();         
+        String arqVendedores = txtVendedor.getText();         
+        String arqComissao = txtComissao.getText();          
+        Map<String, Comissao> comissoes = new HashMap<String, Comissao>();         
+        acessoArquivoComissao accArqComissao = new acessoArquivoComissao();         
+        CalculoComissao cc = new CalculoComissao();         
+        try {             
+            comissoes = cc.gerarComissoes(mes, arqVendas, arqPrecos, arqVendedores, arqComissao);         
+        } catch (acessoArquivoException ex) {             
+            MostraMensagemErro(ex.getMessage());         
+        }         
+        try {             
+            accArqComissao.escrever(comissoes, new File(arqComissao));         
+        } catch (acessoArquivoException ex) {             
+            MostraMensagemErro(ex.getMessage());         
         }
-        try {
-            accArqComissao.escrever(comissoes, new File(arqComissao));
-        } catch (acessoArquivoException ex) {
-            MostraMensagemErro(ex.getMessage());
-        }
-        
-    }//GEN-LAST:event_btnCalcularMouseClicked
+    }//GEN-LAST:event_btnCalcularActionPerformed
 
-    private void MostraMensagemErro(String message){
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String args[]) {
+        /* Set the Nimbus look and feel */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         */
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(Home.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(Home.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(Home.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(Home.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        //</editor-fold>
+
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+
+            public void run() {
+                new Home().setVisible(true);
+            }
+        });
+    }
+    
+    public void MostraMensagemErro(String message){
         JOptionPane.showMessageDialog(this, "Erro: " + message, "Erro", JOptionPane.ERROR_MESSAGE);
     }
     
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCalcular;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lblComissao;
     private javax.swing.JLabel lblMes;
     private javax.swing.JLabel lblPreco;
