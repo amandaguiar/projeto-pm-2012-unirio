@@ -10,6 +10,8 @@
  */
 package trabalho1;
 
+import java.awt.Cursor;
+import java.awt.HeadlessException;
 import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
@@ -26,6 +28,8 @@ public class Home extends javax.swing.JFrame {
         initComponents();
     }
 
+    
+
     /** This method is called from within the constructor to
      * initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is
@@ -35,6 +39,7 @@ public class Home extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jFileChooser1 = new javax.swing.JFileChooser();
         jPanel1 = new javax.swing.JPanel();
         lblMes = new javax.swing.JLabel();
         lblVenda = new javax.swing.JLabel();
@@ -42,46 +47,82 @@ public class Home extends javax.swing.JFrame {
         lblVendedor = new javax.swing.JLabel();
         lblComissao = new javax.swing.JLabel();
         lblTitulo = new javax.swing.JLabel();
-        txtMes = new javax.swing.JTextField();
         txtVenda = new javax.swing.JTextField();
         txtPreco = new javax.swing.JTextField();
         txtVendedor = new javax.swing.JTextField();
         txtComissao = new javax.swing.JTextField();
         btnCalcular = new javax.swing.JButton();
+        jComboBoxMes = new javax.swing.JComboBox();
+        jButtonSelecionarVenda = new javax.swing.JButton();
+        jButtonSelecionarPreco = new javax.swing.JButton();
+        jButtonSelecionarVendedor = new javax.swing.JButton();
+        jButtonSelecionarComissao = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Cálculo de Comissões");
 
         jPanel1.setBackground(new java.awt.Color(102, 102, 102));
+        jPanel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
-        lblMes.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        lblMes.setFont(new java.awt.Font("Tahoma", 0, 12));
         lblMes.setForeground(new java.awt.Color(255, 255, 255));
         lblMes.setText("Mês:");
 
-        lblVenda.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        lblVenda.setFont(new java.awt.Font("Tahoma", 0, 12));
         lblVenda.setForeground(new java.awt.Color(255, 255, 255));
         lblVenda.setText("Nome arquivo Venda:");
 
-        lblPreco.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        lblPreco.setFont(new java.awt.Font("Tahoma", 0, 12));
         lblPreco.setForeground(new java.awt.Color(255, 255, 255));
         lblPreco.setText("Nome arquivo Preco:");
 
-        lblVendedor.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        lblVendedor.setFont(new java.awt.Font("Tahoma", 0, 12));
         lblVendedor.setForeground(new java.awt.Color(255, 255, 255));
         lblVendedor.setText("Nome arquivo Vendedor:");
 
-        lblComissao.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        lblComissao.setFont(new java.awt.Font("Tahoma", 0, 12));
         lblComissao.setForeground(new java.awt.Color(255, 255, 255));
         lblComissao.setText("Nome arquivo Comissão:");
 
-        lblTitulo.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        lblTitulo.setFont(new java.awt.Font("Tahoma", 0, 18));
         lblTitulo.setForeground(new java.awt.Color(255, 255, 255));
-        lblTitulo.setText("Cálculo de Comissão");
+        lblTitulo.setText("Cálculo de Comissões");
 
-        btnCalcular.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        btnCalcular.setFont(new java.awt.Font("Tahoma", 0, 12));
         btnCalcular.setText("Calcular");
         btnCalcular.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCalcularActionPerformed(evt);
+            }
+        });
+
+        jComboBoxMes.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12" }));
+
+        jButtonSelecionarVenda.setText("Selecionar...");
+        jButtonSelecionarVenda.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonSelecionarVendaActionPerformed(evt);
+            }
+        });
+
+        jButtonSelecionarPreco.setText("Selecionar...");
+        jButtonSelecionarPreco.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonSelecionarPrecoActionPerformed(evt);
+            }
+        });
+
+        jButtonSelecionarVendedor.setText("Selecionar...");
+        jButtonSelecionarVendedor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonSelecionarVendedorActionPerformed(evt);
+            }
+        });
+
+        jButtonSelecionarComissao.setText("Selecionar...");
+        jButtonSelecionarComissao.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonSelecionarComissaoActionPerformed(evt);
             }
         });
 
@@ -90,56 +131,69 @@ public class Home extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(44, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(lblVendedor)
-                    .addComponent(lblComissao)
-                    .addComponent(lblPreco)
-                    .addComponent(lblVenda)
-                    .addComponent(lblMes))
-                .addGap(36, 36, 36)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtComissao, javax.swing.GroupLayout.DEFAULT_SIZE, 192, Short.MAX_VALUE)
-                    .addComponent(txtVenda, javax.swing.GroupLayout.DEFAULT_SIZE, 192, Short.MAX_VALUE)
-                    .addComponent(txtMes, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtPreco, javax.swing.GroupLayout.DEFAULT_SIZE, 192, Short.MAX_VALUE)
-                    .addComponent(txtVendedor, javax.swing.GroupLayout.DEFAULT_SIZE, 192, Short.MAX_VALUE))
-                .addContainerGap(62, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(181, 181, 181)
-                .addComponent(btnCalcular, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(193, Short.MAX_VALUE))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(146, 146, 146)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap(12, Short.MAX_VALUE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(lblVendedor)
+                            .addComponent(lblComissao)
+                            .addComponent(lblPreco)
+                            .addComponent(lblVenda)
+                            .addComponent(lblMes))
+                        .addGap(36, 36, 36)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtComissao, javax.swing.GroupLayout.DEFAULT_SIZE, 143, Short.MAX_VALUE)
+                                    .addComponent(txtVenda, javax.swing.GroupLayout.DEFAULT_SIZE, 143, Short.MAX_VALUE)
+                                    .addComponent(txtPreco, javax.swing.GroupLayout.DEFAULT_SIZE, 143, Short.MAX_VALUE)
+                                    .addComponent(txtVendedor, javax.swing.GroupLayout.DEFAULT_SIZE, 143, Short.MAX_VALUE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jButtonSelecionarComissao)
+                                    .addComponent(jButtonSelecionarVendedor)
+                                    .addComponent(jButtonSelecionarPreco)
+                                    .addComponent(jButtonSelecionarVenda)))
+                            .addComponent(jComboBoxMes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(181, 181, 181)
+                        .addComponent(btnCalcular, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(145, Short.MAX_VALUE)
                 .addComponent(lblTitulo)
-                .addContainerGap(163, Short.MAX_VALUE))
+                .addGap(122, 122, 122))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(30, 30, 30)
+                .addGap(31, 31, 31)
                 .addComponent(lblTitulo)
-                .addGap(56, 56, 56)
+                .addGap(55, 55, 55)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtMes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblMes))
+                    .addComponent(lblMes)
+                    .addComponent(jComboBoxMes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtVenda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblVenda))
+                    .addComponent(lblVenda)
+                    .addComponent(jButtonSelecionarVenda))
                 .addGap(11, 11, 11)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtPreco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblPreco))
+                    .addComponent(lblPreco)
+                    .addComponent(jButtonSelecionarPreco))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtVendedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblVendedor))
+                    .addComponent(lblVendedor)
+                    .addComponent(jButtonSelecionarVendedor))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtComissao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblComissao))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 48, Short.MAX_VALUE)
+                    .addComponent(lblComissao)
+                    .addComponent(jButtonSelecionarComissao))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
                 .addComponent(btnCalcular)
                 .addGap(44, 44, 44))
         );
@@ -148,40 +202,104 @@ public class Home extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(35, Short.MAX_VALUE))
         );
 
-        pack();
+        java.awt.Dimension screenSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
+        setBounds((screenSize.width-469)/2, (screenSize.height-438)/2, 469, 438);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCalcularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCalcularActionPerformed
-        int mes = Integer.parseInt(txtMes.getText());         
+        int mes = Integer.parseInt((String)jComboBoxMes.getSelectedItem());
         String arqVendas = txtVenda.getText();         
         String arqPrecos = txtPreco.getText();         
         String arqVendedores = txtVendedor.getText();         
         String arqComissao = txtComissao.getText();          
         Map<String, Comissao> comissoes = new HashMap<String, Comissao>();         
         acessoArquivoComissao accArqComissao = new acessoArquivoComissao();         
-        CalculoComissao cc = new CalculoComissao();         
+        CalculoComissao cc = new CalculoComissao();  
+        
+        if(!arquivosExistem(arqVendas, arqPrecos, arqVendedores))
+            return;
+        
+        setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+        
         try {             
-            comissoes = cc.gerarComissoes(mes, arqVendas, arqPrecos, arqVendedores, arqComissao);         
-        } catch (acessoArquivoException ex) {             
-            MostraMensagemErro(ex.getMessage());         
-        }         
-        try {             
-            accArqComissao.escrever(comissoes, arqComissao);         
+            comissoes = cc.gerarComissoes(mes, arqVendas, arqPrecos, arqVendedores, arqComissao);  
+            accArqComissao.escrever(comissoes, arqComissao);
+            setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+            MostraMensagemSucesso();
         } catch (acessoArquivoException ex) {             
             MostraMensagemErro(ex.getMessage());         
         }
-        MostraMensagemSucesso();
+        
     }//GEN-LAST:event_btnCalcularActionPerformed
+
+    private void jButtonSelecionarVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSelecionarVendaActionPerformed
+        
+        jFileChooser1.setApproveButtonText("Selecionar");
+        jFileChooser1.showDialog(jPanel1, null); 
+        if(jFileChooser1.getSelectedFile() == null)
+            return;
+        
+        txtVenda.setText(jFileChooser1.getSelectedFile().getAbsolutePath());
+    }//GEN-LAST:event_jButtonSelecionarVendaActionPerformed
+
+    private void jButtonSelecionarPrecoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSelecionarPrecoActionPerformed
+        jFileChooser1.setApproveButtonText("Selecionar");
+        jFileChooser1.showDialog(jPanel1, null); 
+        if(jFileChooser1.getSelectedFile() == null)
+            return;
+        
+        txtPreco.setText(jFileChooser1.getSelectedFile().getAbsolutePath());
+    }//GEN-LAST:event_jButtonSelecionarPrecoActionPerformed
+
+    private void jButtonSelecionarVendedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSelecionarVendedorActionPerformed
+        jFileChooser1.setApproveButtonText("Selecionar");
+        jFileChooser1.showDialog(jPanel1, null); 
+        if(jFileChooser1.getSelectedFile() == null)
+            return;
+        
+        txtVendedor.setText(jFileChooser1.getSelectedFile().getAbsolutePath());
+    }//GEN-LAST:event_jButtonSelecionarVendedorActionPerformed
+
+    private void jButtonSelecionarComissaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSelecionarComissaoActionPerformed
+        jFileChooser1.setApproveButtonText("Selecionar");
+        jFileChooser1.showDialog(jPanel1, null); 
+        if(jFileChooser1.getSelectedFile() == null)
+            return;
+        
+        txtComissao.setText(jFileChooser1.getSelectedFile().getAbsolutePath());
+    }//GEN-LAST:event_jButtonSelecionarComissaoActionPerformed
 
     public void MostraMensagemSucesso() {
         JOptionPane.showMessageDialog(this, "Comissão gerada com sucesso!", "Sucesso",JOptionPane.INFORMATION_MESSAGE);
+    }
+    
+    public boolean arquivosExistem(String arqVendas, String arqPrecos, String arqVendedores) throws HeadlessException {
+        if(!(new File(arqVendas).exists())){
+            JOptionPane.showMessageDialog(this, "Erro: " + "Arquivo de Vendas Não Encontrado", "Erro", JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
+        else if(!(new File(arqPrecos).exists())){
+            JOptionPane.showMessageDialog(this, "Erro: " + "Arquivo de Preços Não Encontrado", "Erro", JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
+        else if(!(new File(arqVendedores).exists())){
+            JOptionPane.showMessageDialog(this, "Erro: " + "Arquivo de Vendedores Não Encontrado", "Erro", JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
+        return true;
     }
     
     /**
@@ -227,6 +345,12 @@ public class Home extends javax.swing.JFrame {
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCalcular;
+    private javax.swing.JButton jButtonSelecionarComissao;
+    private javax.swing.JButton jButtonSelecionarPreco;
+    private javax.swing.JButton jButtonSelecionarVenda;
+    private javax.swing.JButton jButtonSelecionarVendedor;
+    private javax.swing.JComboBox jComboBoxMes;
+    private javax.swing.JFileChooser jFileChooser1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lblComissao;
     private javax.swing.JLabel lblMes;
@@ -235,7 +359,6 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JLabel lblVenda;
     private javax.swing.JLabel lblVendedor;
     private javax.swing.JTextField txtComissao;
-    private javax.swing.JTextField txtMes;
     private javax.swing.JTextField txtPreco;
     private javax.swing.JTextField txtVenda;
     private javax.swing.JTextField txtVendedor;
