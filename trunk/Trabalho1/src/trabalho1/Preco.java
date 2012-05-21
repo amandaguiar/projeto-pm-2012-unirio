@@ -50,15 +50,15 @@ public class Preco {
     }
     
     public int getDia(){
-        return this.data.DAY_OF_MONTH;
+        return data.get(Calendar.DAY_OF_MONTH);
     }
-    
+
     public int getMes(){
-        return this.data.MONTH + 1;
+        return data.get(Calendar.MONTH) + 1;
     }
-    
+
     public int getAno(){
-        return this.data.YEAR;
+        return data.get(Calendar.YEAR);
     }
     
     public Double getPrecoProdA(){
