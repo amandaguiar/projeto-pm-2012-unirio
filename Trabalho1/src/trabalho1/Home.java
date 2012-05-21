@@ -56,7 +56,6 @@ public class Home extends javax.swing.JFrame {
         jButtonSelecionarVenda = new javax.swing.JButton();
         jButtonSelecionarPreco = new javax.swing.JButton();
         jButtonSelecionarVendedor = new javax.swing.JButton();
-        jButtonSelecionarComissao = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Cálculo de Comissões");
@@ -64,31 +63,31 @@ public class Home extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(102, 102, 102));
         jPanel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
-        lblMes.setFont(new java.awt.Font("Tahoma", 0, 12));
+        lblMes.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         lblMes.setForeground(new java.awt.Color(255, 255, 255));
         lblMes.setText("Mês:");
 
-        lblVenda.setFont(new java.awt.Font("Tahoma", 0, 12));
+        lblVenda.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         lblVenda.setForeground(new java.awt.Color(255, 255, 255));
         lblVenda.setText("Nome arquivo Venda:");
 
-        lblPreco.setFont(new java.awt.Font("Tahoma", 0, 12));
+        lblPreco.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         lblPreco.setForeground(new java.awt.Color(255, 255, 255));
         lblPreco.setText("Nome arquivo Preco:");
 
-        lblVendedor.setFont(new java.awt.Font("Tahoma", 0, 12));
+        lblVendedor.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         lblVendedor.setForeground(new java.awt.Color(255, 255, 255));
         lblVendedor.setText("Nome arquivo Vendedor:");
 
-        lblComissao.setFont(new java.awt.Font("Tahoma", 0, 12));
+        lblComissao.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         lblComissao.setForeground(new java.awt.Color(255, 255, 255));
         lblComissao.setText("Nome arquivo Comissão:");
 
-        lblTitulo.setFont(new java.awt.Font("Tahoma", 0, 18));
+        lblTitulo.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         lblTitulo.setForeground(new java.awt.Color(255, 255, 255));
         lblTitulo.setText("Cálculo de Comissões");
 
-        btnCalcular.setFont(new java.awt.Font("Tahoma", 0, 12));
+        btnCalcular.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         btnCalcular.setText("Calcular");
         btnCalcular.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -119,13 +118,6 @@ public class Home extends javax.swing.JFrame {
             }
         });
 
-        jButtonSelecionarComissao.setText("Selecionar...");
-        jButtonSelecionarComissao.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonSelecionarComissaoActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -133,7 +125,7 @@ public class Home extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap(12, Short.MAX_VALUE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(lblVendedor)
                             .addComponent(lblComissao)
@@ -150,7 +142,6 @@ public class Home extends javax.swing.JFrame {
                                     .addComponent(txtVendedor, javax.swing.GroupLayout.DEFAULT_SIZE, 143, Short.MAX_VALUE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jButtonSelecionarComissao)
                                     .addComponent(jButtonSelecionarVendedor)
                                     .addComponent(jButtonSelecionarPreco)
                                     .addComponent(jButtonSelecionarVenda)))
@@ -160,7 +151,7 @@ public class Home extends javax.swing.JFrame {
                         .addComponent(btnCalcular, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(145, Short.MAX_VALUE)
+                .addContainerGap(137, Short.MAX_VALUE)
                 .addComponent(lblTitulo)
                 .addGap(122, 122, 122))
         );
@@ -191,9 +182,8 @@ public class Home extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtComissao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblComissao)
-                    .addComponent(jButtonSelecionarComissao))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
+                    .addComponent(lblComissao))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
                 .addComponent(btnCalcular)
                 .addGap(44, 44, 44))
         );
@@ -212,7 +202,7 @@ public class Home extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(35, Short.MAX_VALUE))
+                .addContainerGap(32, Short.MAX_VALUE))
         );
 
         java.awt.Dimension screenSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
@@ -272,15 +262,6 @@ public class Home extends javax.swing.JFrame {
         
         txtVendedor.setText(jFileChooser1.getSelectedFile().getAbsolutePath());
     }//GEN-LAST:event_jButtonSelecionarVendedorActionPerformed
-
-    private void jButtonSelecionarComissaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSelecionarComissaoActionPerformed
-        jFileChooser1.setApproveButtonText("Selecionar");
-        jFileChooser1.showDialog(jPanel1, null); 
-        if(jFileChooser1.getSelectedFile() == null)
-            return;
-        
-        txtComissao.setText(jFileChooser1.getSelectedFile().getAbsolutePath());
-    }//GEN-LAST:event_jButtonSelecionarComissaoActionPerformed
 
     public void MostraMensagemSucesso() {
         JOptionPane.showMessageDialog(this, "Comissão gerada com sucesso!", "Sucesso",JOptionPane.INFORMATION_MESSAGE);
@@ -345,7 +326,6 @@ public class Home extends javax.swing.JFrame {
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCalcular;
-    private javax.swing.JButton jButtonSelecionarComissao;
     private javax.swing.JButton jButtonSelecionarPreco;
     private javax.swing.JButton jButtonSelecionarVenda;
     private javax.swing.JButton jButtonSelecionarVendedor;
