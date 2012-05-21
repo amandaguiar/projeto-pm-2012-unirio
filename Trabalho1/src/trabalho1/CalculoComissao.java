@@ -100,7 +100,7 @@ public class CalculoComissao {
                 comissoes.get(s).setComissao(calculaComissao(2, comissoes.get(s).getValorTotalGeral()));
             }
         }
-        
+
         return comissoes;
     }
 
@@ -139,6 +139,25 @@ public class CalculoComissao {
                 precoProdutoBNoMes = p.getPrecoProdB();
                 precoProdutoCNoMes = p.getPrecoProdC();
             }
+        }
+    }
+
+    public void imprimir(Map<String, Comissao> comissoes){
+        Set<String> codigosVendedores = comissoes.keySet();
+        for (String s : codigosVendedores) {
+            System.out.println("Código: " + comissoes.get(s).getCodigo());
+            System.out.println("Nome: " + comissoes.get(s).getNome());
+            System.out.println("Categoria: " + comissoes.get(s).getCategoria());
+            System.out.println("Mes: " + comissoes.get(s).getMes());
+            System.out.println("QtdeTotalA: " + comissoes.get(s).getQtdeTotalProdutoA());
+            System.out.println("QtdeTotalB: " + comissoes.get(s).getQtdeTotalProdutoB());
+            System.out.println("QtdeTotalC: " + comissoes.get(s).getQtdeTotalProdutoC());
+            System.out.println("ValorTotalA: " + comissoes.get(s).getValorTotalProdutoA());
+            System.out.println("ValorTotalB: " + comissoes.get(s).getValorTotalProdutoB());
+            System.out.println("ValorTotalC: " + comissoes.get(s).getValorTotalProdutoC());
+            System.out.println("TotalGeral: " + comissoes.get(s).getValorTotalGeral());
+            System.out.println("Comissao: " + comissoes.get(s).getComissao());
+            System.out.println();
         }
     }
 }
