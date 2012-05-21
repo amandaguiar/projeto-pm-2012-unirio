@@ -6,10 +6,9 @@
 package trabalho1;
 
 import java.io.File;
-import java.io.FileWriter;
-import java.util.ArrayList;
 import java.util.GregorianCalendar;
 import java.util.List;
+import java.util.Map;
 
 /**
  *
@@ -18,7 +17,7 @@ import java.util.List;
 public interface IAcessoArquivo {
 
     public abstract List ler(File file) throws acessoArquivoException;
-    public void escrever(ArrayList<Object> obj, FileWriter saida);
+    public void escrever(Map<String, Comissao> comissoes, File ARQUIVO_COMISSAO) throws acessoArquivoException;
     public GregorianCalendar stringToCalendar(String valor) throws acessoArquivoException;
     public abstract void verificarPreCondicoes(String[] campos) throws acessoArquivoException;
 

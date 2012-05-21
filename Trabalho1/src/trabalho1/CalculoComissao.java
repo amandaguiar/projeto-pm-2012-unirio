@@ -7,66 +7,52 @@ package trabalho1;
 
 import java.text.DecimalFormat;
 import java.io.File;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 /**
  *
  * @author Jean
  */
 public class CalculoComissao {
-    private static final double CAT_1_LIMITE_MIN = 1000.00;
-    private static final double CAT_1_LIMITE_MAX = 1800.00;
-    private static final double CAT_2_LIMITE_MIN = 2000.00;
-    private static final double CAT_2_LIMITE_MAX = 4000.00;
+    private static final double cat1ValorLimite1 = 1000.00;
+    private static final double cat1ValorLimite2 = 1800.00;
+    private static final double cat2ValorLimite1 = 2000.00;
+    private static final double cat2ValorLimite2 = 4000.00;
 
-    public static double getValorTotalGeral(List<Double> valorTotalProdutos) {
-        double valorTotalGeral = 0.0;
-        Iterator it = valorTotalProdutos.iterator();
-        while(it.hasNext()){
-            valorTotalGeral = valorTotalGeral + Double.parseDouble(it.next().toString());
+    private double precoProdutoANoMes = 0.0;
+    private double precoProdutoBNoMes = 0.0;
+    private double precoProdutoCNoMes = 0.0;
+
+    public double calculaComissaoCat1(double valorTotalGeral){
+        if(valorTotalGeral > cat1ValorLimite2){
+            double valorRestante = valorTotalGeral - cat1ValorLimite2;
+            return roundTwoDecimals(220 + (valorRestante*0.2));
         }
-        return valorTotalGeral;
+        else if(valorTotalGeral >= cat1ValorLimite1){
+            double valorRestante = valorTotalGeral - cat1ValorLimite1;
+            return roundTwoDecimals(100 + (valorRestante*0.15));
+        }
+        else
+            return roundTwoDecimals(valorTotalGeral * 0.1);
+        
     }
 
-    public static double calculaComissaoCat1(double valorTotalGeral){
-        double comissao;
-        if(valorTotalGeral >= CAT_1_LIMITE_MAX){
-            double valorRestante = valorTotalGeral - CAT_1_LIMITE_MAX;
-            comissao = 220 + (valorRestante*0.2);
-            return comissao;
-        }
-        else if(valorTotalGeral >= CAT_1_LIMITE_MIN){
-            double valorRestante = valorTotalGeral - CAT_1_LIMITE_MIN;
-            comissao = 100 + (valorRestante*0.15);
-            return comissao;
-        }
-        else{
-            comissao = valorTotalGeral * 0.1;
-            return comissao;
-        }
+    public double calculaComissaoCat2(double valorTotalGeral){
+        
+        if(valorTotalGeral > cat2ValorLimite2)
+            return roundTwoDecimals(valorTotalGeral * 0.3);
+        
+        else if(valorTotalGeral >= cat2ValorLimite1)
+            return roundTwoDecimals(valorTotalGeral * 0.2);
+        
+        else
+            return roundTwoDecimals(valorTotalGeral * 0.1);
     }
 
-    public static double calculaComissaoCat2(double valorTotalGeral){
-        double comissao;
-        if(valorTotalGeral > CAT_2_LIMITE_MAX){
-            comissao = valorTotalGeral * 0.3;
-            return comissao;
-        }
-        else if(valorTotalGeral >= CAT_1_LIMITE_MIN){
-            comissao = valorTotalGeral * 0.2;
-            return comissao;
-        }
-        else{
-            comissao = valorTotalGeral * 0.1;
-            return comissao;
-        }
-    }
-
-    public static double calculaComissao(int categoriaVendedor, double valorTotalGeral){
+    public double calculaComissao(int categoriaVendedor, double valorTotalGeral){
         switch (categoriaVendedor){
             case 1:
                 return calculaComissaoCat1(valorTotalGeral);
@@ -77,9 +63,13 @@ public class CalculoComissao {
         }
     }
 
-    public static double roundTwoDecimals(double d) {
-            DecimalFormat twoDForm = new DecimalFormat("#.##");
-        return Double.valueOf(twoDForm.format(d));
+    public double roundTwoDecimals(double d) {
+        
+        DecimalFormat twoDForm = new DecimalFormat(".00");
+        String format = twoDForm.format(d);
+        String replace = format.replace(",", ".");
+        return Double.valueOf(replace);
+        
     }
 
     public Map<String,Comissao> gerarComissoes(int mes, String arqVendas, String arqPrecos, String arqVendedores, String arqComissao) throws acessoArquivoException{
@@ -87,56 +77,68 @@ public class CalculoComissao {
         acessoArquivoVenda accArqVenda = new acessoArquivoVenda();
         acessoArquivoPreco accArqPreco = new acessoArquivoPreco();
         acessoArquivoVendedor accArqVendedor = new acessoArquivoVendedor();
-        acessoArquivoComissao accArqComissao = new acessoArquivoComissao();
 
-        List<Venda> listaVenda = new ArrayList<Venda>();
-        List<Preco> listaPreco = new ArrayList<Preco>();
-        List<Vendedor> listaVendedor = new ArrayList<Vendedor>();
+        List<Venda> listaVenda = accArqVenda.ler(new File(arqVendas));
+        List<Preco> listaPreco = accArqPreco.ler(new File(arqPrecos));
+        List<Vendedor> listaVendedor = accArqVendedor.ler(new File(arqVendedores));
         Map<String,Comissao> comissoes = new HashMap<String,Comissao>();
 
+        addVendedores(listaVendedor, comissoes, mes);
 
+        setVendasVendedorNoMes(listaVenda, mes, comissoes);
 
-        listaVenda = accArqVenda.ler(new File(arqVendas));
-        for (int i = 0; i < listaVenda.size(); i++){
-            if (mes != listaVenda.get(i).getMes()) {
-                listaVenda.remove(listaVenda.get(i));
+        getPrecosNoMes(listaPreco, mes);
+
+        setValorTotalReais(comissoes);
+
+        Set<String> codigosVendedores = comissoes.keySet();
+        for(String s : codigosVendedores){
+            if(comissoes.get(s).getCategoria() == 1){
+                calculaComissao(1, comissoes.get(s).getValorTotalGeral());
+            }
+            else if(comissoes.get(s).getCategoria() == 2){
+                calculaComissao(2, comissoes.get(s).getValorTotalGeral());
             }
         }
-        listaPreco = accArqPreco.ler(new File(arqPrecos));
-        for (int i = 0; i < listaPreco.size(); i++){
-            if (mes != listaPreco.get(i).getMes()) {
-                listaPreco.remove(listaPreco.get(i));    
-            }
-        }
-        
-        listaVendedor = accArqVendedor.ler(new File(arqVendedores));
-        
-        int quantidadeTotalA = 0;
-        int quantidadeTotalB = 0;
-        int quantidadeTotalC = 0;
 
-        int categoria = 0;
-        String codigo = "";
-        for (int i = 0; i < listaVendedor.size(); i++){
-            categoria = listaVendedor.get(i).getCategoria();
-            codigo = listaVendedor.get(i).getCodigo();
-            Comissao com = new Comissao();
-            for (Iterator<Venda> it = listaVenda.iterator(); it.hasNext();) {
-                Venda v = it.next();
-                if(codigo.equals(v.getCodVendedor())) {
-                    quantidadeTotalA += v.getQtdeProdutoA();
-                    quantidadeTotalB += v.getQtdeProdutoB();
-                    quantidadeTotalC += v.getQtdeProdutoC();
-                }
-            }
-                com.getQtdTotalProduto().add(quantidadeTotalA);
-                com.getQtdTotalProduto().add(quantidadeTotalB);
-                com.getQtdTotalProduto().add(quantidadeTotalC);
-                com.setMes(mes);
-                com.setCodigo(codigo);
-                com.setNome(listaVendedor.get(i).getNome());
-        }
         return comissoes;
+    }
+
+    public void setValorTotalReais(Map<String, Comissao> comissoes) {
+        Set<String> codigosVendedores = comissoes.keySet();
+        for (String s : codigosVendedores) {
+            comissoes.get(s).setValorTotalProdutoA(precoProdutoANoMes * comissoes.get(s).getQtdeTotalProdutoA());
+            comissoes.get(s).setValorTotalProdutoB(precoProdutoBNoMes * comissoes.get(s).getQtdeTotalProdutoB());
+            comissoes.get(s).setValorTotalProdutoC(precoProdutoCNoMes * comissoes.get(s).getQtdeTotalProdutoC());
+            comissoes.get(s).setValorTotalGeral(comissoes.get(s).getValorTotalProdutoA() + comissoes.get(s).getValorTotalProdutoB() + comissoes.get(s).getValorTotalProdutoC());
+        }
+    }
+
+    public void addVendedores(List<Vendedor> listaVendedor, Map<String, Comissao> comissoes, int mes) {
+        for (Vendedor v : listaVendedor) {
+            comissoes.put(v.getCodigo(), new Comissao(mes, v.getCodigo(), v.getNome(), v.getCategoria()));
+        }
+    }
+
+    public void setVendasVendedorNoMes(List<Venda> listaVenda, int mes, Map<String, Comissao> comissoes) {
+        for (Venda v : listaVenda) {
+            if (v.getMes() == mes) {
+                comissoes.get(v.getCodVendedor()).setQtdeTotalProdutoA(comissoes.get(v.getCodVendedor()).getQtdeTotalProdutoA() + v.getQtdeProdutoA());
+                comissoes.get(v.getCodVendedor()).setQtdeTotalProdutoB(comissoes.get(v.getCodVendedor()).getQtdeTotalProdutoB() + v.getQtdeProdutoB());
+                comissoes.get(v.getCodVendedor()).setQtdeTotalProdutoC(comissoes.get(v.getCodVendedor()).getQtdeTotalProdutoC() + v.getQtdeProdutoC());
+            }
+        }
+    }
+
+    public void getPrecosNoMes(List<Preco> listaPreco, int mes) {
+        //get Preco do Produto no Mes
+        for (Preco p : listaPreco) {
+            if (p.getMes() == mes) {
+                precoProdutoANoMes = p.getPrecoProdA();
+                precoProdutoBNoMes = p.getPrecoProdB();
+                precoProdutoCNoMes = p.getPrecoProdC();
+            }
+        }
     }
 
 }
