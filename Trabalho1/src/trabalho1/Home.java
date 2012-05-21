@@ -22,10 +22,13 @@ import javax.swing.JOptionPane;
  * @author Amandaa
  */
 public class Home extends javax.swing.JPanel {
-
-    /** Creates new form Home */
-    public Home() {
+    public Home(){
         initComponents();
+    }
+    
+    /** Creates new form Home */
+    public static void main(String args[]) {
+        
     }
 
     /** This method is called from within the constructor to
