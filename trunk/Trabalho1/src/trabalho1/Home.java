@@ -173,12 +173,17 @@ public class Home extends javax.swing.JFrame {
             MostraMensagemErro(ex.getMessage());         
         }         
         try {             
-            accArqComissao.escrever(comissoes, new File(arqComissao));         
+            accArqComissao.escrever(comissoes, arqComissao);         
         } catch (acessoArquivoException ex) {             
             MostraMensagemErro(ex.getMessage());         
         }
+        MostraMensagemSucesso();
     }//GEN-LAST:event_btnCalcularActionPerformed
 
+    public void MostraMensagemSucesso() {
+        JOptionPane.showMessageDialog(this, "Comissão gerada com sucesso!", "Sucesso",JOptionPane.INFORMATION_MESSAGE);
+    }
+    
     /**
      * @param args the command line arguments
      */
