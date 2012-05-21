@@ -24,7 +24,7 @@ public class acessoArquivoVendedorTest {
     public static final String fileCategoriaInvalidaTest = ("Arquivos de testes\\acessoArquivoVendedorCategoriaInvalidaTest.txt");
 
     @Test
-    public void LerOkTest() {
+    public void lerOkTest() {
         try{
             acessoArquivo arquivoVendedor = new acessoArquivoVendedor();
             List<Vendedor> resultadoObtido = arquivoVendedor.ler(new File(fileOk));
