@@ -74,5 +74,4 @@ public class acessoArquivoVendedor extends acessoArquivo{
             throw new acessoArquivoException(MSG_ERRO_VENDEDOR_INVALIDO);
         }
     }
-    
 }
