@@ -37,7 +37,7 @@
                       <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="1" attributes="0">
                           <Component id="lblVendedor" alignment="1" min="-2" max="-2" attributes="0"/>
-                          <Component id="lnlVenda" alignment="1" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblVenda" alignment="1" min="-2" max="-2" attributes="0"/>
                           <Component id="lblPreco" alignment="1" min="-2" max="-2" attributes="0"/>
                           <Component id="lblMes" alignment="1" min="-2" max="-2" attributes="0"/>
                           <Component id="lblComissao" min="-2" max="-2" attributes="0"/>
@@ -82,7 +82,7 @@
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="lnlVenda" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblVenda" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="txtVenda" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
@@ -114,7 +114,7 @@
         <Property name="text" type="java.lang.String" value="M&#xea;s:"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="lnlVenda">
+    <Component class="javax.swing.JLabel" name="lblVenda">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Tahoma" size="12" style="0"/>

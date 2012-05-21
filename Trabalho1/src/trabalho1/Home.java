@@ -10,6 +10,13 @@
  */
 package trabalho1;
 
+import java.io.File;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Amandaa
@@ -32,7 +39,7 @@ public class Home extends javax.swing.JPanel {
 
         jTextField1 = new javax.swing.JTextField();
         lblMes = new javax.swing.JLabel();
-        lnlVenda = new javax.swing.JLabel();
+        lblVenda = new javax.swing.JLabel();
         lblComissao = new javax.swing.JLabel();
         lblVendedor = new javax.swing.JLabel();
         lblPreco = new javax.swing.JLabel();
@@ -49,33 +56,33 @@ public class Home extends javax.swing.JPanel {
         setBackground(new java.awt.Color(102, 102, 102));
         setForeground(new java.awt.Color(255, 255, 255));
 
-        lblMes.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        lblMes.setFont(new java.awt.Font("Tahoma", 0, 12));
         lblMes.setForeground(new java.awt.Color(255, 255, 255));
         lblMes.setText("Mês:");
 
-        lnlVenda.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        lnlVenda.setForeground(new java.awt.Color(255, 255, 255));
-        lnlVenda.setText("Nome arquivo Vendas:");
+        lblVenda.setFont(new java.awt.Font("Tahoma", 0, 12));
+        lblVenda.setForeground(new java.awt.Color(255, 255, 255));
+        lblVenda.setText("Nome arquivo Vendas:");
 
-        lblComissao.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        lblComissao.setFont(new java.awt.Font("Tahoma", 0, 12));
         lblComissao.setForeground(new java.awt.Color(255, 255, 255));
         lblComissao.setText("Nome arquivo Comissão:");
 
-        lblVendedor.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        lblVendedor.setFont(new java.awt.Font("Tahoma", 0, 12));
         lblVendedor.setForeground(new java.awt.Color(255, 255, 255));
         lblVendedor.setText("Nome arquivo Vendedor:");
 
-        lblPreco.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        lblPreco.setFont(new java.awt.Font("Tahoma", 0, 12));
         lblPreco.setForeground(new java.awt.Color(255, 255, 255));
         lblPreco.setText("Nome arquivo Preço:");
 
         lblTitulo.setBackground(new java.awt.Color(0, 102, 102));
-        lblTitulo.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        lblTitulo.setFont(new java.awt.Font("Tahoma", 0, 18));
         lblTitulo.setForeground(new java.awt.Color(255, 255, 255));
         lblTitulo.setText("Cálculo de Comissão");
 
         btnCalcular.setBackground(new java.awt.Color(102, 102, 102));
-        btnCalcular.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        btnCalcular.setFont(new java.awt.Font("Tahoma", 0, 12));
         btnCalcular.setText("Calcular");
         btnCalcular.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -99,7 +106,7 @@ public class Home extends javax.swing.JPanel {
                         .addGap(20, 20, 20)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(lblVendedor)
-                            .addComponent(lnlVenda)
+                            .addComponent(lblVenda)
                             .addComponent(lblPreco)
                             .addComponent(lblMes)
                             .addComponent(lblComissao))
@@ -133,7 +140,7 @@ public class Home extends javax.swing.JPanel {
                     .addComponent(txtPreco, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lnlVenda)
+                    .addComponent(lblVenda)
                     .addComponent(txtVenda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -154,9 +161,33 @@ public class Home extends javax.swing.JPanel {
     }//GEN-LAST:event_txtPrecoActionPerformed
 
     private void btnCalcularMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCalcularMouseClicked
-        // TODO add your handling code here:
+        
+        int mes = Integer.parseInt(txtMes.getText());
+        String arqVendas = txtVenda.getText();
+        String arqPrecos = txtPreco.getText();
+        String arqVendedores = txtVendedor.getText();
+        String arqComissao = txtComissao.getText();    
+        
+        Map<String, Comissao> comissoes = new HashMap<String,Comissao>();
+        acessoArquivoComissao accArqComissao = new acessoArquivoComissao();
+        CalculoComissao cc = new CalculoComissao();        
+        try {
+            comissoes = cc.gerarComissoes(mes, arqVendas, arqPrecos, arqVendedores, arqComissao);
+        } catch (acessoArquivoException ex) {
+            MostraMensagemErro(ex.getMessage());
+        }
+        try {
+            accArqComissao.escrever(comissoes, new File(arqComissao));
+        } catch (acessoArquivoException ex) {
+            MostraMensagemErro(ex.getMessage());
+        }
+        
     }//GEN-LAST:event_btnCalcularMouseClicked
 
+    private void MostraMensagemErro(String message){
+        JOptionPane.showMessageDialog(this, "Erro: " + message, "Erro", JOptionPane.ERROR_MESSAGE);
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCalcular;
     private javax.swing.JTextField jTextField1;
@@ -164,8 +195,8 @@ public class Home extends javax.swing.JPanel {
     private javax.swing.JLabel lblMes;
     private javax.swing.JLabel lblPreco;
     private javax.swing.JLabel lblTitulo;
+    private javax.swing.JLabel lblVenda;
     private javax.swing.JLabel lblVendedor;
-    private javax.swing.JLabel lnlVenda;
     private javax.swing.JTextField txtComissao;
     private javax.swing.JTextField txtMes;
     private javax.swing.JTextField txtPreco;
