@@ -23,7 +23,7 @@ public class acessoArquivoVendedor extends acessoArquivo{
     public static final int POS_COD = 0;  //Posição do código do vendedor no arquivo.
     public static final int POS_NOME = 1; // Posição do nome do vendedor no arquivo.
     public static final int POS_CATEGORIA = 2; //Posição categoria do vendedor no arquivo.
-    public static final int numCampos = 3;   //Número de campos contidos em uma linha do arquivo.
+    public static final int NUM_CAMPOS = 3;   //Número de campos contidos em uma linha do arquivo.
 
     @Override
     public List<Vendedor> ler(File file) throws acessoArquivoException{
@@ -34,10 +34,9 @@ public class acessoArquivoVendedor extends acessoArquivo{
         try {
             try {
                 reader = new BufferedReader(new FileReader(file));
-                String linha;
                 while (reader.ready()) {
                     campos = reader.readLine().split(DELIMITADOR);
-                    verificarPreCondicoes(campos);
+                    verificarPreCondicoes(campos, NUM_CAMPOS);
                     listaVendedores.add(new Vendedor(campos[POS_COD],
                                         campos[POS_NOME], 
                                         Integer.parseInt(campos[POS_CATEGORIA])));
@@ -56,22 +55,28 @@ public class acessoArquivoVendedor extends acessoArquivo{
         
         return listaVendedores;
     }
-    
+
     @Override
-    public void verificarPreCondicoes(String[] campos) throws acessoArquivoException{
+    protected void verificarPreCondicoes(String[] campos, int numCampos) throws acessoArquivoException{
         verificarQtdeCamposValidos(campos, numCampos);
-        verificarCategoria(campos[POS_CATEGORIA]);
+        verificarValidadeCampos(campos);
     }
-    
-    @Override
-    public void escrever(Map<String, Comissao> comissoes, String ARQUIVO_COMISSAO) throws acessoArquivoException {
-        throw new UnsupportedOperationException("Not supported yet.");
+
+    //Verifica se os campos são válidos.
+    protected void verificarValidadeCampos(String[] campos) throws acessoArquivoException{
+        verificarValor(campos);
     }
-    
+
     //Verifica se as categorias informadas são válidas (1 ou 2).
-    public void verificarCategoria(String categoria) throws acessoArquivoException{
+    public void verificarValor(String[] campos) throws acessoArquivoException{
+        String categoria = campos[POS_CATEGORIA];
         if (!( Integer.parseInt(categoria) == 1 || Integer.parseInt(categoria) == 2)) {
             throw new acessoArquivoException(MSG_ERRO_VENDEDOR_INVALIDO);
         }
+    }
+
+    @Override
+    public void escrever(Map<String, Comissao> comissoes, String ARQUIVO_COMISSAO) throws acessoArquivoException {
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 }

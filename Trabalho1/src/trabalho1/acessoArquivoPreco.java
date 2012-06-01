@@ -11,6 +11,7 @@ import java.io.FileReader;
 import java.util.List;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.GregorianCalendar;
 import java.util.Map;
 
 /**
@@ -25,7 +26,7 @@ public class acessoArquivoPreco extends acessoArquivo{
     public static final int POS_PRECO_PROD_B = 2; //Posição do preço do produto B no arquivo.
     public static final int POS_PRECO_PROD_C = 3; //Posição do preço do produto C no arquivo.
     public static final int PRIMEIRA_POSICAO_PRECO = 1; //Posição do primeiro preço no arquivo.
-    public static final int QUANT_CAMPOS = 4; //Quantidade de campos em uma linha do arquivo.
+    public static final int NUM_CAMPOS = 4; //Quantidade de campos em uma linha do arquivo.
     public static final String MSG_PRECO_INVALIDO = "Preço de um produto é inválido.";
     
     
@@ -45,8 +46,9 @@ public class acessoArquivoPreco extends acessoArquivo{
                 reader = new BufferedReader(new FileReader(file));
                 while(reader.ready()){
                     campos = reader.readLine().split(DELIMITADOR);
-                    verificarPreCondicoes(campos);
-                    lista.add(new Preco(stringToCalendar(campos[POS_DATA]), getPrecosArray(campos)));
+                    verificarPreCondicoes(campos, NUM_CAMPOS);
+                    GregorianCalendar data = DataUtil.stringToCalendar(campos[POS_DATA], DELIMITADOR_DATA, FORMATO_DATA);
+                    lista.add(new Preco(data, getPrecosArray(campos)));
                 }
             } finally{
                 if(reader != null)
@@ -58,22 +60,30 @@ public class acessoArquivoPreco extends acessoArquivo{
         } catch(acessoArquivoException ex){
             lista = null;
             throw new acessoArquivoException(ex.getMessage());
+        } catch(DataUtilException ex){
+            lista = null;
+            throw new acessoArquivoException(ex.getMessage());
         }
         return lista;
     }
 
     @Override
-    public void verificarPreCondicoes(String[] campos) throws acessoArquivoException{
-        verificarQtdeCamposValidos(campos, QUANT_CAMPOS);
+    protected void verificarPreCondicoes(String[] campos, int numCampos) throws acessoArquivoException{
+        verificarQtdeCamposValidos(campos, numCampos);
         verificarValidadeCampos(campos);
     }
-    
+
     //Verifica se os campos são válidos.
-    public void verificarValidadeCampos(String[] campos) throws acessoArquivoException{
-        stringToCalendar(campos[0]); //Verificar data
-        verificarPrecos(campos);
+    protected void verificarValidadeCampos(String[] campos) throws acessoArquivoException{
+
+        try{
+            DataUtil.stringToCalendar(campos[0], DELIMITADOR_DATA, FORMATO_DATA); //Essa função chama outras funções que validam a data
+            verificarPrecos(campos);
+        } catch(DataUtilException ex){
+            throw new acessoArquivoException(ex.getMessage());
+        }
     }
-    
+
     //Verifica se os preços dos produtos são válidos.
     public void verificarPrecos(String[] campos)throws acessoArquivoException{
         try{

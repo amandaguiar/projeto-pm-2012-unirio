@@ -17,12 +17,12 @@ import org.junit.runners.Parameterized;
  * @author cpmbraxis
  */
 @RunWith(value = Parameterized.class)
-public class acessoArquivoStringToCalendarOKTest {
+public class dataUtilStringToCalendarOKTest {
     
     private GregorianCalendar resultEsperado;
     private String data;
 
-    public acessoArquivoStringToCalendarOKTest(String data, GregorianCalendar resultEsperado) {
+    public dataUtilStringToCalendarOKTest(String data, GregorianCalendar resultEsperado) {
         this.data = data;
         this.resultEsperado = resultEsperado;
         this.resultEsperado.setLenient(false);
@@ -40,23 +40,11 @@ public class acessoArquivoStringToCalendarOKTest {
         };
         return Arrays.asList(testData);
     }
-
-    @Test
-    public void acessoArquivoStringToCalendarTestOK_Venda() {
-        try{
-            acessoArquivo accArqVenda = new acessoArquivoVenda();
-            GregorianCalendar resultadoObtido = accArqVenda.stringToCalendar(data);
-            Assert.assertEquals(resultEsperado, resultadoObtido);
-        }catch(Exception ex){
-            Assert.fail();
-        }
-    }
     
     @Test
-    public void acessoArquivoStringToCalendarTestOK_Preco() {
+    public void dataUtilStringToCalendarTestOK_Preco() {
         try{
-            acessoArquivo accArqPreco = new acessoArquivoPreco();
-            GregorianCalendar resultadoObtido = accArqPreco.stringToCalendar(data);
+            GregorianCalendar resultadoObtido = DataUtil.stringToCalendar(data,acessoArquivoVenda.DELIMITADOR_DATA, acessoArquivo.FORMATO_DATA);
             Assert.assertEquals(resultEsperado, resultadoObtido);
         }catch(Exception ex){
             Assert.fail();

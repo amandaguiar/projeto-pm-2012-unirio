@@ -17,12 +17,12 @@ import org.junit.runners.Parameterized;
  * @author cpmbraxis
  */
 @RunWith(value = Parameterized.class)
-public class acessoArquivoStringToCalendarFormatoDataInvalidoTest {
+public class DataUtilStringToCalendarFormatoDataInvalidoTest {
     
     private GregorianCalendar resultEsperado;
     private String data;
     
-    public acessoArquivoStringToCalendarFormatoDataInvalidoTest(String data) {
+    public DataUtilStringToCalendarFormatoDataInvalidoTest(String data) {
         this.data = data;
         this.resultEsperado = null;
     }
@@ -47,24 +47,12 @@ public class acessoArquivoStringToCalendarFormatoDataInvalidoTest {
     }
 
     @Test
-    public void acessoArquivoStringToCalendarFormatoDataInvalidoTest_Venda() {
+    public void DataUtilStringToCalendarFormatoDataInvalidoTest() {
         try{
-            acessoArquivo accArqVenda = new acessoArquivoVenda();
-            GregorianCalendar resultadoObtido = accArqVenda.stringToCalendar(data);
+            DataUtil.stringToCalendar(data,acessoArquivoVenda.DELIMITADOR_DATA, acessoArquivo.FORMATO_DATA);
             Assert.fail();
-        }catch(acessoArquivoException ex){
-            Assert.assertEquals(acessoArquivo.MSG_FORMATO_DATA_INVALIDO, ex.getMessage());
-        }
-    }
-    
-    @Test
-    public void acessoArquivoStringToCalendarFormatoDataInvalidoTest_Preco() {
-        try{
-            acessoArquivo accArqPreco = new acessoArquivoPreco();
-            GregorianCalendar resultadoObtido = accArqPreco.stringToCalendar(data);
-            Assert.fail();
-        }catch(acessoArquivoException ex){
-            Assert.assertEquals(acessoArquivo.MSG_FORMATO_DATA_INVALIDO, ex.getMessage());
+        }catch(DataUtilException ex){
+            Assert.assertEquals(DataUtil.MSG_DATA_INVALIDA, ex.getMessage());
         }
     }
 }
