@@ -81,7 +81,7 @@ public class acessoArquivoVendaTest {
         try{
             acessoArquivo accArqVenda = new acessoArquivoVenda();
             String[] campos = "10/03/2011;40;20;60".split(acessoArquivoVenda.DELIMITADOR);
-            accArqVenda.verificarPreCondicoes(campos);
+            accArqVenda.verificarPreCondicoes(campos,acessoArquivoVenda.NUM_CAMPOS);
             Assert.fail();
             
         } catch(acessoArquivoException ex){
@@ -94,7 +94,7 @@ public class acessoArquivoVendaTest {
         try{
             acessoArquivo accArqVenda = new acessoArquivoVenda();
             String[] campos = "10/03/2011;0020;40;20;60;90".split(acessoArquivoVenda.DELIMITADOR);
-            accArqVenda.verificarPreCondicoes(campos);
+            accArqVenda.verificarPreCondicoes(campos,acessoArquivoVenda.NUM_CAMPOS);
             Assert.fail();
 
         } catch(acessoArquivoException ex){
@@ -107,7 +107,7 @@ public class acessoArquivoVendaTest {
         try{
             acessoArquivo accArqVenda = new acessoArquivoVenda();
             String[] campos = "10/03/2011;0020;40;;60".split(acessoArquivoVenda.DELIMITADOR);
-            accArqVenda.verificarPreCondicoes(campos);
+            accArqVenda.verificarPreCondicoes(campos,acessoArquivoVenda.NUM_CAMPOS);
             Assert.fail();
             
         } catch(acessoArquivoException ex){
@@ -120,7 +120,7 @@ public class acessoArquivoVendaTest {
         try{
             acessoArquivo accArqVenda = new acessoArquivoVenda();
             String[] campos = "10/03/2011;;40;20;60".split(acessoArquivoVenda.DELIMITADOR);
-            accArqVenda.verificarPreCondicoes(campos);
+            accArqVenda.verificarPreCondicoes(campos,acessoArquivoVenda.NUM_CAMPOS);
             Assert.fail();
 
         } catch(acessoArquivoException ex){
@@ -133,7 +133,7 @@ public class acessoArquivoVendaTest {
         try{
             acessoArquivo accArqVenda = new acessoArquivoVenda();
             String[] campos = "11/03/2011;0018;-1;20;60".split(acessoArquivoVenda.DELIMITADOR);
-            accArqVenda.verificarPreCondicoes(campos);
+            accArqVenda.verificarPreCondicoes(campos,acessoArquivoVenda.NUM_CAMPOS);
             Assert.fail();
         } catch(acessoArquivoException ex){
             Assert.assertEquals(acessoArquivoVenda.MSG_QTDE_INVALIDA, ex.getMessage());
@@ -145,7 +145,7 @@ public class acessoArquivoVendaTest {
         try{
             acessoArquivo accArqVenda = new acessoArquivoVenda();
             String[] campos = "11/03/2011;0018;40;0;60".split(acessoArquivoVenda.DELIMITADOR);
-            accArqVenda.verificarPreCondicoes(campos);
+            accArqVenda.verificarPreCondicoes(campos,acessoArquivoVenda.NUM_CAMPOS);
         } catch(acessoArquivoException ex){
             Assert.fail();
         }
@@ -156,7 +156,7 @@ public class acessoArquivoVendaTest {
         try{
             acessoArquivo accArqVenda = new acessoArquivoVenda();
             String[] campos = "11/03/2011;0018;40;20;1".split(acessoArquivoVenda.DELIMITADOR);
-            accArqVenda.verificarPreCondicoes(campos);
+            accArqVenda.verificarPreCondicoes(campos,acessoArquivoVenda.NUM_CAMPOS);
         } catch(acessoArquivoException ex){
             Assert.fail();
         }
@@ -167,7 +167,7 @@ public class acessoArquivoVendaTest {
         try{
             acessoArquivo accArqVenda = new acessoArquivoVenda();
             String[] campos = "10/03/2011;0020;10;asd;50".split(acessoArquivoVenda.DELIMITADOR);
-            accArqVenda.verificarPreCondicoes(campos);
+            accArqVenda.verificarPreCondicoes(campos,acessoArquivoVenda.NUM_CAMPOS);
             Assert.fail();
         } catch(acessoArquivoException ex){
             Assert.assertEquals(acessoArquivoVenda.MSG_QTDE_INVALIDA, ex.getMessage());
@@ -179,12 +179,10 @@ public class acessoArquivoVendaTest {
         try{
             acessoArquivo accArqVenda = new acessoArquivoVenda();
             String[] campos = "10/03/2011;0020;    ;20;60".split(acessoArquivoVenda.DELIMITADOR);
-            accArqVenda.verificarPreCondicoes(campos);
+            accArqVenda.verificarPreCondicoes(campos,acessoArquivoVenda.NUM_CAMPOS);
             Assert.fail();
         } catch(acessoArquivoException ex){
             Assert.assertEquals(acessoArquivoVenda.MSG_NUMERO_DE_CAMPOS_INCORRETO, ex.getMessage());
         }
     }
-
-
 }

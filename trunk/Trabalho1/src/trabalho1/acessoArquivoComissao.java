@@ -8,7 +8,6 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -20,12 +19,7 @@ import java.util.Set;
 public class acessoArquivoComissao extends acessoArquivo {
 
     public static final String DELIMITADOR = ";";
-    public static final int numCampos = 8;
-
-    @Override
-    public void verificarPreCondicoes(String[] campos) throws acessoArquivoException {
-        verificarQtdeCamposValidos(campos, numCampos);
-    }
+    public static final int NUM_CAMPOS = 8;
 
     @Override
     public List<CalculoComissao> ler(File file) throws acessoArquivoException {
@@ -72,5 +66,10 @@ public class acessoArquivoComissao extends acessoArquivo {
         } catch (IOException e) {
             throw new acessoArquivoException("Erro ao escrever arquivo!");
         }
+    }
+
+    @Override
+    protected void verificarPreCondicoes(String[] campos, int numCampos) throws acessoArquivoException {
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 }

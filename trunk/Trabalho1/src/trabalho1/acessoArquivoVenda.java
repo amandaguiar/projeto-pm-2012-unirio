@@ -10,6 +10,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.Map;
 
@@ -24,7 +25,7 @@ public class acessoArquivoVenda extends acessoArquivo{
     public static final int POS_DATA = 0;  //Posição da data.
     public static final int POS_COD_VENDEDOR = 1;  //Posição do código do vendedor.
     public static final int PRIMEIRA_POSICAO_QTDE = 2; //Primeira posição das quantidades de produtos vendidos.
-    public static final int numCampos = 5;   //Número de campos contidos em uma linha do arquivo.
+    public static final int NUM_CAMPOS = 5;   //Número de campos contidos em uma linha do arquivo.
 
     //Lê um arquivo e retorna uma lista de objetos Venda.
     @Override
@@ -37,9 +38,9 @@ public class acessoArquivoVenda extends acessoArquivo{
                 reader = new BufferedReader(new FileReader(file));
                 while(reader.ready()){
                     campos = reader.readLine().split(DELIMITADOR);
-                    verificarPreCondicoes(campos);
-                    lista.add(new Venda(stringToCalendar(campos[POS_DATA]),
-                                        campos[POS_COD_VENDEDOR], 
+                    verificarPreCondicoes(campos, NUM_CAMPOS);
+                    GregorianCalendar data = DataUtil.stringToCalendar(campos[POS_DATA], DELIMITADOR_DATA, FORMATO_DATA);
+                    lista.add(new Venda(data,campos[POS_COD_VENDEDOR],
                                         getQtdesDoArray(campos)));
                 }
             } finally{
@@ -52,23 +53,31 @@ public class acessoArquivoVenda extends acessoArquivo{
         } catch(acessoArquivoException ex){
             lista = null;
             throw new acessoArquivoException(ex.getMessage());
+        } catch(DataUtilException ex){
+            lista = null;
+            throw new acessoArquivoException(ex.getMessage());
         }
         return lista;
     }
 
     @Override
-    public void verificarPreCondicoes(String[] campos) throws acessoArquivoException{
+    protected void verificarPreCondicoes(String[] campos, int numCampos) throws acessoArquivoException{
         verificarQtdeCamposValidos(campos, numCampos);
         verificarValidadeCampos(campos);
     }
-    
+
     //Verifica se os campos são válidos.
-    public void verificarValidadeCampos(String[] campos) throws acessoArquivoException{
-        stringToCalendar(campos[0]); //Essa função chama outras funções que validam a data
-        verificarQtdes(campos);
+    protected void verificarValidadeCampos(String[] campos) throws acessoArquivoException{
+
+        try{
+            DataUtil.stringToCalendar(campos[0], DELIMITADOR_DATA, FORMATO_DATA); //Essa função chama outras funções que validam a data
+            verificarQtdes(campos);
+        } catch(DataUtilException ex){
+            throw new acessoArquivoException(ex.getMessage());
+        }
     }
 
-    //Verifica se as quantidades dos produtos vendidos são válidas.
+    //Verifica se as quantidades dos produtos são válidas
     public void verificarQtdes(String[] campos)throws acessoArquivoException{
         try{
             for(int i=PRIMEIRA_POSICAO_QTDE; i < campos.length; i++){
