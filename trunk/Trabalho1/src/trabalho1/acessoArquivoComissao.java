@@ -37,24 +37,9 @@ public class acessoArquivoComissao extends acessoArquivo {
                 Set<String> keySet = comissoes.keySet();
                 for(String s: keySet){
                     Comissao comissao = comissoes.get(s); 
+                    String linha = gerarLinha(comissao);
                     
-                    int mes = comissao.getMes();
-                    String codigo = comissao.getCodigo();
-                    String nome = comissao.getNome();
-                    Double valorTotalA = comissao.getValorTotalProdutoA();
-                    Double valorTotalB = comissao.getValorTotalProdutoB();
-                    Double valorTotalC = comissao.getValorTotalProdutoC();
-                    Double valorTotalGeral = comissao.getValorTotalGeral();
-                    Double valorComissao = comissao.getComissao();
-                    
-                    writer.write(Integer.toString(mes) + ";" + 
-                                codigo + ";" + nome + ";" + 
-                                Double.toString(valorTotalA) + ";" +
-                                Double.toString(valorTotalB) + ";" + 
-                                Double.toString(valorTotalC) + ";" + 
-                                Double.toString(valorTotalGeral) + ";" + 
-                                Double.toString(valorComissao));
-                    
+                    writer.write(linha);
                     writer.newLine();
                 }
 
@@ -68,8 +53,32 @@ public class acessoArquivoComissao extends acessoArquivo {
         }
     }
 
+    private String gerarLinha(Comissao comissao){
+        String linha = "";
+
+        int mes = comissao.getMes();
+        String codigo = comissao.getCodigo();
+        String nome = comissao.getNome();
+        Double valorTotalA = comissao.getValorTotalProdutoA();
+        Double valorTotalB = comissao.getValorTotalProdutoB();
+        Double valorTotalC = comissao.getValorTotalProdutoC();
+        Double valorTotalGeral = comissao.getValorTotalGeral();
+        Double valorComissao = comissao.getComissao();
+
+        linha = mes + ";" + codigo + ";" + nome + ";" +
+              Double.toString(valorTotalA) + ";" + Double.toString(valorTotalB) + ";" +
+              Double.toString(valorTotalC) + ";" + Double.toString(valorTotalGeral) + ";" +
+              Double.toString(valorComissao);
+        return linha;
+    }
+
     @Override
-    protected void verificarPreCondicoes(String[] campos, int numCampos) throws acessoArquivoException {
+    protected void verificarPreCondicoes(String[] campos) throws acessoArquivoException {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    @Override
+    protected Object criarObjeto(String[] campos) throws DataUtilException {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 }

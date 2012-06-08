@@ -20,15 +20,22 @@ public class DataUtil {
 
     //Verifica se a data contida na String é válida e gera um novo GregorianCalendar.
     public static GregorianCalendar stringToCalendar(String valor, String delimitadorData, String formatoData ) throws DataUtilException {
-
-        verificarFormatoData(valor,formatoData);
-        String[] split = valor.split(delimitadorData);
-
+        
         GregorianCalendar newGregCal = null;
-        newGregCal = new GregorianCalendar(Integer.parseInt(split[2]), Integer.parseInt(split[1]) - 1 , Integer.parseInt(split[0]));
-        newGregCal.setLenient(false);
+        try{
+            verificarFormatoData(valor,formatoData);
+            String[] split = valor.split(delimitadorData);
 
-        verificarValidadeData(newGregCal);
+            newGregCal = new GregorianCalendar(Integer.parseInt(split[2]), Integer.parseInt(split[1]) - 1 , Integer.parseInt(split[0]));
+            newGregCal.setLenient(false);
+
+            verificarValidadeData(newGregCal);
+        } catch(NumberFormatException ex){
+            throw new DataUtilException(MSG_DATA_INVALIDA);
+        } catch(ArrayIndexOutOfBoundsException ex){
+            throw new DataUtilException(MSG_DATA_INVALIDA);
+        }
+
         return newGregCal;
     }
 

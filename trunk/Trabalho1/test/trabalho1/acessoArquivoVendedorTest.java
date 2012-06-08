@@ -5,8 +5,6 @@
 package trabalho1;
 
 import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.List;
 import org.junit.Assert;
@@ -49,7 +47,7 @@ public class acessoArquivoVendedorTest {
     public void lerNumeroDeCamposMinIncorretoTest() {
         try{
             acessoArquivo acessoArquivoVendedor = new acessoArquivoVendedor();
-            List<Vendedor> resultadoObtido = acessoArquivoVendedor.ler(new File(fileNumCamposMinIncorretoTest));
+            acessoArquivoVendedor.ler(new File(fileNumCamposMinIncorretoTest));
             Assert.fail();
             
         } catch(acessoArquivoException ex){
@@ -61,7 +59,7 @@ public class acessoArquivoVendedorTest {
     public void lerNumeroDeCamposMaxIncorretoTest() {
         try{
             acessoArquivo acessoArquivoVendedor = new acessoArquivoVendedor();
-            List<Vendedor> resultadoObtido = acessoArquivoVendedor.ler(new File(fileNumCamposMaxIncorretoTest));
+            acessoArquivoVendedor.ler(new File(fileNumCamposMaxIncorretoTest));
             Assert.fail();
             
         } catch(acessoArquivoException ex){
@@ -73,7 +71,7 @@ public class acessoArquivoVendedorTest {
     public void lerCamposComEspacosTest() {
         try{
             acessoArquivo acessoArquivoVendedor = new acessoArquivoVendedor();
-            List<Vendedor> resultadoObtido = acessoArquivoVendedor.ler(new File(fileEspacosCamposTest));
+            acessoArquivoVendedor.ler(new File(fileEspacosCamposTest));
             Assert.fail();
             
         } catch(acessoArquivoException ex){
@@ -85,11 +83,11 @@ public class acessoArquivoVendedorTest {
     public void lerCamposComCategoriaInvalidaTest() {
         try{
             acessoArquivo acessoArquivoVendedor = new acessoArquivoVendedor();
-            List<Vendedor> resultadoObtido = acessoArquivoVendedor.ler(new File(fileCategoriaInvalidaTest));
+            acessoArquivoVendedor.ler(new File(fileCategoriaInvalidaTest));
             Assert.fail();
             
         } catch(acessoArquivoException ex){
-            Assert.assertEquals(acessoArquivoVendedor.MSG_ERRO_VENDEDOR_INVALIDO, ex.getMessage());
+            Assert.assertEquals(acessoArquivo.MSG_CATEGORIA_VENDEDOR_INVALIDA, ex.getMessage());
         }
     }   
 }

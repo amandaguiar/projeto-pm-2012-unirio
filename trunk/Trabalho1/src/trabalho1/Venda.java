@@ -27,6 +27,12 @@ public class Venda {
         this.qtdeProdutos = qtdeProdutos;
     }
 
+    Venda() {
+        this.data = null;
+        this.codVendedor = null;
+        this.qtdeProdutos = null;
+    }
+
     public String getCodVendedor() {
         return codVendedor;
     }
