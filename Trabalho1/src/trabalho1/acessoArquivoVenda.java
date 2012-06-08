@@ -13,6 +13,8 @@ import java.util.ArrayList;
 import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -27,42 +29,9 @@ public class acessoArquivoVenda extends acessoArquivo{
     public static final int PRIMEIRA_POSICAO_QTDE = 2; //Primeira posição das quantidades de produtos vendidos.
     public static final int NUM_CAMPOS = 5;   //Número de campos contidos em uma linha do arquivo.
 
-    //Lê um arquivo e retorna uma lista de objetos Venda.
     @Override
-    public List<Venda> ler(File file) throws acessoArquivoException {
-        List lista = new ArrayList<Venda>();
-        BufferedReader reader = null;
-        String[] campos = null;
-        try{
-            try{
-                reader = new BufferedReader(new FileReader(file));
-                while(reader.ready()){
-                    campos = reader.readLine().split(DELIMITADOR);
-                    verificarPreCondicoes(campos, NUM_CAMPOS);
-                    GregorianCalendar data = DataUtil.stringToCalendar(campos[POS_DATA], DELIMITADOR_DATA, FORMATO_DATA);
-                    lista.add(new Venda(data,campos[POS_COD_VENDEDOR],
-                                        getQtdesDoArray(campos)));
-                }
-            } finally{
-                if(reader != null)
-                    reader.close();
-            }
-        }  catch (IOException ex) {
-            lista = null;
-            throw new acessoArquivoException(MSG_ERRO_ACESSO_ARQUIVO);
-        } catch(acessoArquivoException ex){
-            lista = null;
-            throw new acessoArquivoException(ex.getMessage());
-        } catch(DataUtilException ex){
-            lista = null;
-            throw new acessoArquivoException(ex.getMessage());
-        }
-        return lista;
-    }
-
-    @Override
-    protected void verificarPreCondicoes(String[] campos, int numCampos) throws acessoArquivoException{
-        verificarQtdeCamposValidos(campos, numCampos);
+    protected void verificarPreCondicoes(String[] campos) throws acessoArquivoException{
+        verificarQtdeCamposValidos(campos, NUM_CAMPOS);
         verificarValidadeCampos(campos);
     }
 
@@ -102,6 +71,16 @@ public class acessoArquivoVenda extends acessoArquivo{
     @Override
     public void escrever(Map<String, Comissao> comissoes, String ARQUIVO_COMISSAO) throws acessoArquivoException {
         throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    //Cria um objeto Venda a partir de um array de strings
+    @Override
+    protected Object criarObjeto(String[] campos) throws DataUtilException{
+        Venda venda = null;
+        GregorianCalendar data = DataUtil.stringToCalendar(campos[POS_DATA], DELIMITADOR_DATA, FORMATO_DATA);
+        venda = new Venda(data, campos[POS_COD_VENDEDOR], getQtdesDoArray(campos));
+        
+        return venda;
     }
     
     

@@ -18,47 +18,14 @@ import java.util.Map;
  * @author Roberta
  */
 public class acessoArquivoVendedor extends acessoArquivo{
-    public static final String DELIMITADOR = ";";  //Delimitador de cada campo no arquivo.
-    public static final String MSG_ERRO_VENDEDOR_INVALIDO = "Arquivo inválido!";
     public static final int POS_COD = 0;  //Posição do código do vendedor no arquivo.
     public static final int POS_NOME = 1; // Posição do nome do vendedor no arquivo.
     public static final int POS_CATEGORIA = 2; //Posição categoria do vendedor no arquivo.
     public static final int NUM_CAMPOS = 3;   //Número de campos contidos em uma linha do arquivo.
 
     @Override
-    public List<Vendedor> ler(File file) throws acessoArquivoException{
-        
-        BufferedReader reader = null;
-        List listaVendedores = new ArrayList<Vendedor>();
-        String[] campos = null;
-        try {
-            try {
-                reader = new BufferedReader(new FileReader(file));
-                while (reader.ready()) {
-                    campos = reader.readLine().split(DELIMITADOR);
-                    verificarPreCondicoes(campos, NUM_CAMPOS);
-                    listaVendedores.add(new Vendedor(campos[POS_COD],
-                                        campos[POS_NOME], 
-                                        Integer.parseInt(campos[POS_CATEGORIA])));
-                }
-            } finally{
-                if(reader != null)
-                    reader.close();
-            }
-        } catch(IOException ex){
-            listaVendedores = null;
-            throw new acessoArquivoException(MSG_ERRO_VENDEDOR_INVALIDO);
-        } catch(acessoArquivoException ex){
-            listaVendedores = null;
-            throw new acessoArquivoException(ex.getMessage());
-        }
-        
-        return listaVendedores;
-    }
-
-    @Override
-    protected void verificarPreCondicoes(String[] campos, int numCampos) throws acessoArquivoException{
-        verificarQtdeCamposValidos(campos, numCampos);
+    protected void verificarPreCondicoes(String[] campos) throws acessoArquivoException{
+        verificarQtdeCamposValidos(campos, NUM_CAMPOS);
         verificarValidadeCampos(campos);
     }
 
@@ -71,12 +38,21 @@ public class acessoArquivoVendedor extends acessoArquivo{
     public void verificarValor(String[] campos) throws acessoArquivoException{
         String categoria = campos[POS_CATEGORIA];
         if (!( Integer.parseInt(categoria) == 1 || Integer.parseInt(categoria) == 2)) {
-            throw new acessoArquivoException(MSG_ERRO_VENDEDOR_INVALIDO);
+            throw new acessoArquivoException(acessoArquivo.MSG_CATEGORIA_VENDEDOR_INVALIDA);
         }
     }
 
     @Override
     public void escrever(Map<String, Comissao> comissoes, String ARQUIVO_COMISSAO) throws acessoArquivoException {
         throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    //Cria um objeto Vendedor a partir de um array de strings
+    @Override
+    protected Object criarObjeto(String[] campos) throws DataUtilException {
+        Vendedor vendedor = null;
+        vendedor = new Vendedor(campos[POS_COD],campos[POS_NOME],Integer.parseInt(campos[POS_CATEGORIA]));
+        
+        return vendedor;
     }
 }

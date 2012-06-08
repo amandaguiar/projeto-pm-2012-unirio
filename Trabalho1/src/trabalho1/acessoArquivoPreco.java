@@ -34,42 +34,10 @@ public class acessoArquivoPreco extends acessoArquivo{
     public void escrever(Map<String, Comissao> comissoes, String ARQUIVO_COMISSAO) throws acessoArquivoException {
         throw new UnsupportedOperationException("Not supported yet.");
     }
-    
-    //Lê um arquivo e retorna uma lista de objetos Preco.
-    @Override
-    public List<Preco> ler(File file) throws acessoArquivoException {
-        List lista = new ArrayList<Preco>();
-        BufferedReader reader = null;
-        String[] campos = null;
-        try{
-            try{
-                reader = new BufferedReader(new FileReader(file));
-                while(reader.ready()){
-                    campos = reader.readLine().split(DELIMITADOR);
-                    verificarPreCondicoes(campos, NUM_CAMPOS);
-                    GregorianCalendar data = DataUtil.stringToCalendar(campos[POS_DATA], DELIMITADOR_DATA, FORMATO_DATA);
-                    lista.add(new Preco(data, getPrecosArray(campos)));
-                }
-            } finally{
-                if(reader != null)
-                    reader.close();
-            }
-        } catch(IOException ex){
-            lista = null;
-            throw new acessoArquivoException(MSG_ERRO_ACESSO_ARQUIVO);
-        } catch(acessoArquivoException ex){
-            lista = null;
-            throw new acessoArquivoException(ex.getMessage());
-        } catch(DataUtilException ex){
-            lista = null;
-            throw new acessoArquivoException(ex.getMessage());
-        }
-        return lista;
-    }
 
     @Override
-    protected void verificarPreCondicoes(String[] campos, int numCampos) throws acessoArquivoException{
-        verificarQtdeCamposValidos(campos, numCampos);
+    protected void verificarPreCondicoes(String[] campos) throws acessoArquivoException{
+        verificarQtdeCamposValidos(campos, NUM_CAMPOS);
         verificarValidadeCampos(campos);
     }
 
@@ -103,6 +71,16 @@ public class acessoArquivoPreco extends acessoArquivo{
         for(int i=PRIMEIRA_POSICAO_PRECO; i < campos.length; i++)
             listaPrecos.add(Double.parseDouble(campos[i].replace(",",".")));
         return listaPrecos;
+    }
+
+    //Cria um objeto Preco a partir de um array de strings
+    @Override
+    protected Object criarObjeto(String[] campos) throws DataUtilException {
+        Preco preco = null;
+        GregorianCalendar data = DataUtil.stringToCalendar(campos[POS_DATA], DELIMITADOR_DATA, FORMATO_DATA);
+        preco = new Preco(data, getPrecosArray(campos));
+
+        return preco;
     }
     
     
