@@ -2,8 +2,11 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package trabalho1;
+package trabalho1.AcessoArquivo;
 
+import trabalho1.AcessoArquivo.acessoArquivo;
+import trabalho1.AcessoArquivo.acessoArquivoException;
+import trabalho1.AcessoArquivo.acessoArquivoPreco;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -12,6 +15,7 @@ import java.util.GregorianCalendar;
 import java.util.List;
 import org.junit.Assert;
 import org.junit.Test;
+import trabalho1.ObjetosNegocio.Preco;
 
 /**
  *

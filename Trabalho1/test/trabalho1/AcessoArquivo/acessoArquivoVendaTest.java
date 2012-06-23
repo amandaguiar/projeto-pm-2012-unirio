@@ -3,7 +3,8 @@
  * and open the template in the editor.
  */
 
-package trabalho1;
+package trabalho1.AcessoArquivo;
+
 
 import java.io.File;
 import java.util.ArrayList;
@@ -11,6 +12,7 @@ import java.util.GregorianCalendar;
 import java.util.List;
 import org.junit.Assert;
 import org.junit.Test;
+import trabalho1.ObjetosNegocio.Venda;
 
 /**
  *

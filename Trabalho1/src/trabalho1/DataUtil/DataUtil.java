@@ -3,7 +3,7 @@
  * and open the template in the editor.
  */
 
-package trabalho1;
+package trabalho1.DataUtil;
 
 import java.util.GregorianCalendar;
 import java.util.regex.Pattern;

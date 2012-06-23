@@ -2,8 +2,12 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package trabalho1;
+package trabalho1.DataUtil;
 
+import trabalho1.DataUtil.DataUtilException;
+import trabalho1.DataUtil.DataUtil;
+import trabalho1.AcessoArquivo.acessoArquivoVenda;
+import trabalho1.AcessoArquivo.acessoArquivo;
 import java.util.Arrays;
 import java.util.Collection;
 import org.junit.Assert;
