@@ -3,14 +3,22 @@
  * and open the template in the editor.
  */
 
-package trabalho1;
+package trabalho1.RegrasCalculo;
 
+import trabalho1.AcessoArquivo.acessoArquivoException;
+import trabalho1.AcessoArquivo.acessoArquivoVendedor;
+import trabalho1.AcessoArquivo.acessoArquivoVenda;
+import trabalho1.AcessoArquivo.acessoArquivoPreco;
 import java.text.DecimalFormat;
 import java.io.File;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import trabalho1.ObjetosNegocio.Comissao;
+import trabalho1.ObjetosNegocio.Preco;
+import trabalho1.ObjetosNegocio.Venda;
+import trabalho1.ObjetosNegocio.Vendedor;
 
 /**
  *

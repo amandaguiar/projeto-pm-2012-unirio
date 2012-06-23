@@ -3,7 +3,7 @@
  * and open the template in the editor.
  */
 
-package trabalho1;
+package trabalho1.AcessoArquivo;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -12,6 +12,9 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import trabalho1.ObjetosNegocio.Comissao;
+import trabalho1.DataUtil.DataUtilException;
+import trabalho1.ObjetosNegocio.Vendedor;
 
 /**
  *

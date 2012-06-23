@@ -3,8 +3,11 @@
  * and open the template in the editor.
  */
 
-package trabalho1;
+package trabalho1.RegrasCalculo;
 
+import trabalho1.ObjetosNegocio.Comissao;
+import trabalho1.RegrasCalculo.CalculoComissao;
+import trabalho1.AcessoArquivo.acessoArquivoException;
 import java.util.HashMap;
 import java.util.Map;
 import org.junit.Assert;

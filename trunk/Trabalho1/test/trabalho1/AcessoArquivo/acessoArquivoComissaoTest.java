@@ -2,8 +2,10 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package trabalho1;
+package trabalho1.AcessoArquivo;
 
+import trabalho1.AcessoArquivo.acessoArquivoComissao;
+import trabalho1.AcessoArquivo.acessoArquivoException;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -12,6 +14,7 @@ import java.util.HashMap;
 import java.util.List;
 import org.junit.Assert;
 import org.junit.Test;
+import trabalho1.ObjetosNegocio.Comissao;
 
 /**
  *

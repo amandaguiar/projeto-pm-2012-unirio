@@ -2,8 +2,9 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package trabalho1;
+package trabalho1.RegrasCalculo;
 
+import trabalho1.RegrasCalculo.CalculoComissao;
 import junit.framework.Assert;
 import java.util.Arrays;
 import java.util.Collection;

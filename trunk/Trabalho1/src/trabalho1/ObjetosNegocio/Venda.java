@@ -3,7 +3,7 @@
  * and open the template in the editor.
  */
 
-package trabalho1;
+package trabalho1.ObjetosNegocio;
 
 import java.util.Calendar;
 import java.util.GregorianCalendar;
