@@ -25,60 +25,23 @@ import trabalho1.ObjetosNegocio.Vendedor;
  * @author Jean
  */
 public class CalculoComissao {
-    private static final double cat1ValorLimite1 = 1000.00;
-    private static final double cat1ValorLimite2 = 1800.00;
-    private static final double cat2ValorLimite1 = 2000.00;
-    private static final double cat2ValorLimite2 = 4000.00;
 
     private double precoProdutoANoMes = 0.0;
     private double precoProdutoBNoMes = 0.0;
     private double precoProdutoCNoMes = 0.0;
 
-    public double calculaComissaoCat1(double valorTotalGeral){
-        if(valorTotalGeral > cat1ValorLimite2){
-            double valorRestante = valorTotalGeral - cat1ValorLimite2;
-            return roundTwoDecimals(220 + (valorRestante*0.2));
-        }
-        else if(valorTotalGeral >= cat1ValorLimite1){
-            double valorRestante = valorTotalGeral - cat1ValorLimite1;
-            return roundTwoDecimals(100 + (valorRestante*0.15));
-        }
-        else
-            return roundTwoDecimals(valorTotalGeral * 0.1);
-        
-    }
-
-    public double calculaComissaoCat2(double valorTotalGeral){
-        
-        if(valorTotalGeral > cat2ValorLimite2)
-            return roundTwoDecimals(valorTotalGeral * 0.3);
-        
-        else if(valorTotalGeral >= cat2ValorLimite1)
-            return roundTwoDecimals(valorTotalGeral * 0.2);
-        
-        else
-            return roundTwoDecimals(valorTotalGeral * 0.1);
-    }
-
     public double calculaComissao(int categoriaVendedor, double valorTotalGeral){
-        switch (categoriaVendedor){
+        switch(categoriaVendedor){
             case 1:
-                return calculaComissaoCat1(valorTotalGeral);
+                return new CalculoComissaoCat1().CalculaComissao(valorTotalGeral);
             case 2:
-                return calculaComissaoCat2(valorTotalGeral);
+                return new CalculoComissaoCat2().CalculaComissao(valorTotalGeral);
             default:
-                return 0;
+                return 0.0;
         }
     }
 
-    public double roundTwoDecimals(double d) {
-        
-        DecimalFormat twoDForm = new DecimalFormat(".00");
-        String format = twoDForm.format(d);
-        String replace = format.replace(",", ".");
-        return Double.valueOf(replace);
-        
-    }
+
 
     public Map<String,Comissao> gerarComissoes(int mes, String arqVendas, String arqPrecos, String arqVendedores, String arqComissao) throws acessoArquivoException{
 
@@ -115,10 +78,10 @@ public class CalculoComissao {
     public void setValorTotalReais(Map<String, Comissao> comissoes) {
         Set<String> codigosVendedores = comissoes.keySet();
         for (String s : codigosVendedores) {
-            comissoes.get(s).setValorTotalProdutoA(roundTwoDecimals(precoProdutoANoMes * comissoes.get(s).getQtdeTotalProdutoA()));
-            comissoes.get(s).setValorTotalProdutoB(roundTwoDecimals(precoProdutoBNoMes * comissoes.get(s).getQtdeTotalProdutoB()));
-            comissoes.get(s).setValorTotalProdutoC(roundTwoDecimals(precoProdutoCNoMes * comissoes.get(s).getQtdeTotalProdutoC()));
-            comissoes.get(s).setValorTotalGeral(roundTwoDecimals(comissoes.get(s).getValorTotalProdutoA() + comissoes.get(s).getValorTotalProdutoB() + comissoes.get(s).getValorTotalProdutoC()));
+            comissoes.get(s).setValorTotalProdutoA(CalculoUtils.roundTwoDecimals(precoProdutoANoMes * comissoes.get(s).getQtdeTotalProdutoA()));
+            comissoes.get(s).setValorTotalProdutoB(CalculoUtils.roundTwoDecimals(precoProdutoBNoMes * comissoes.get(s).getQtdeTotalProdutoB()));
+            comissoes.get(s).setValorTotalProdutoC(CalculoUtils.roundTwoDecimals(precoProdutoCNoMes * comissoes.get(s).getQtdeTotalProdutoC()));
+            comissoes.get(s).setValorTotalGeral(CalculoUtils.roundTwoDecimals(comissoes.get(s).getValorTotalProdutoA() + comissoes.get(s).getValorTotalProdutoB() + comissoes.get(s).getValorTotalProdutoC()));
         }
     }
 
