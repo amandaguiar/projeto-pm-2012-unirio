@@ -29,7 +29,7 @@ public class acessoArquivoVendaTest {
     @Test
     public void lerOKTest() {
         try{
-            acessoArquivo accArqVenda = new acessoArquivoVenda();
+            acessoArquivoTXT accArqVenda = new acessoArquivoVendaTXT();
             List<Venda> resultObtido = accArqVenda.ler(new File(arquivoOK));
             List<Venda> resultEsperado = gerarResultEsperado(2011,(03-1),10,"0020",10,30,50);
                       
@@ -56,22 +56,22 @@ public class acessoArquivoVendaTest {
     @Test
     public void lerNaoOKTest() {
         try{
-            acessoArquivo accArqVenda = new acessoArquivoVenda();
+            acessoArquivoTXT accArqVenda = new acessoArquivoVendaTXT();
             accArqVenda.ler(new File(arquivoNaoOK));
             Assert.fail();
         } catch(acessoArquivoException ex){
-            Assert.assertEquals(acessoArquivo.MSG_NUMERO_DE_CAMPOS_INCORRETO, ex.getMessage());
+            Assert.assertEquals(acessoArquivoTXT.MSG_NUMERO_DE_CAMPOS_INCORRETO, ex.getMessage());
         }
     }
 
     @Test
     public void lerArquivoNaoEncontrado() {
         try{
-            acessoArquivo accArqVenda = new acessoArquivoVenda();
+            acessoArquivoTXT accArqVenda = new acessoArquivoVendaTXT();
             accArqVenda.ler(new File(arquivoNaoEncontrado));
             Assert.fail();
         } catch(acessoArquivoException ex){
-            Assert.assertEquals(acessoArquivo.MSG_ERRO_ACESSO_ARQUIVO, ex.getMessage());
+            Assert.assertEquals(acessoArquivoTXT.MSG_ERRO_ACESSO_ARQUIVO, ex.getMessage());
         }
     }
 
@@ -81,72 +81,72 @@ public class acessoArquivoVendaTest {
     @Test
     public void verificarPreCondicoesNumCamposMenosUmTest() {
         try{
-            acessoArquivo accArqVenda = new acessoArquivoVenda();
-            String[] campos = "10/03/2011;40;20;60".split(acessoArquivoVenda.DELIMITADOR);
+            acessoArquivoTXT accArqVenda = new acessoArquivoVendaTXT();
+            String[] campos = "10/03/2011;40;20;60".split(acessoArquivoVendaTXT.DELIMITADOR);
             accArqVenda.verificarPreCondicoes(campos);
             Assert.fail();
             
         } catch(acessoArquivoException ex){
-            Assert.assertEquals(acessoArquivo.MSG_NUMERO_DE_CAMPOS_INCORRETO, ex.getMessage());
+            Assert.assertEquals(acessoArquivoTXT.MSG_NUMERO_DE_CAMPOS_INCORRETO, ex.getMessage());
         }
     }
 
     @Test
     public void verificarPreCondicoesNumCamposMaisUmTest() {
         try{
-            acessoArquivo accArqVenda = new acessoArquivoVenda();
-            String[] campos = "10/03/2011;0020;40;20;60;90".split(acessoArquivoVenda.DELIMITADOR);
+            acessoArquivoTXT accArqVenda = new acessoArquivoVendaTXT();
+            String[] campos = "10/03/2011;0020;40;20;60;90".split(acessoArquivoVendaTXT.DELIMITADOR);
             accArqVenda.verificarPreCondicoes(campos);
             Assert.fail();
 
         } catch(acessoArquivoException ex){
-            Assert.assertEquals(acessoArquivo.MSG_NUMERO_DE_CAMPOS_INCORRETO, ex.getMessage());
+            Assert.assertEquals(acessoArquivoTXT.MSG_NUMERO_DE_CAMPOS_INCORRETO, ex.getMessage());
         }
     }
 
     @Test
     public void verificarPreCondicoesQtdeNuloTest() {
         try{
-            acessoArquivo accArqVenda = new acessoArquivoVenda();
-            String[] campos = "10/03/2011;0020;40;;60".split(acessoArquivoVenda.DELIMITADOR);
+            acessoArquivoTXT accArqVenda = new acessoArquivoVendaTXT();
+            String[] campos = "10/03/2011;0020;40;;60".split(acessoArquivoVendaTXT.DELIMITADOR);
             accArqVenda.verificarPreCondicoes(campos);
             Assert.fail();
             
         } catch(acessoArquivoException ex){
-            Assert.assertEquals(acessoArquivo.MSG_NUMERO_DE_CAMPOS_INCORRETO, ex.getMessage());
+            Assert.assertEquals(acessoArquivoTXT.MSG_NUMERO_DE_CAMPOS_INCORRETO, ex.getMessage());
         }
     }
 
     @Test
     public void verificarPreCondicoesCodVendedorNuloTest() {
         try{
-            acessoArquivo accArqVenda = new acessoArquivoVenda();
-            String[] campos = "10/03/2011;;40;20;60".split(acessoArquivoVenda.DELIMITADOR);
+            acessoArquivoTXT accArqVenda = new acessoArquivoVendaTXT();
+            String[] campos = "10/03/2011;;40;20;60".split(acessoArquivoVendaTXT.DELIMITADOR);
             accArqVenda.verificarPreCondicoes(campos);
             Assert.fail();
 
         } catch(acessoArquivoException ex){
-            Assert.assertEquals(acessoArquivo.MSG_NUMERO_DE_CAMPOS_INCORRETO, ex.getMessage());
+            Assert.assertEquals(acessoArquivoTXT.MSG_NUMERO_DE_CAMPOS_INCORRETO, ex.getMessage());
         }
     }
 
     @Test
     public void verificarPreCondicoesValorLimiteQtdeMenosUmTest() {
         try{
-            acessoArquivo accArqVenda = new acessoArquivoVenda();
-            String[] campos = "11/03/2011;0018;-1;20;60".split(acessoArquivoVenda.DELIMITADOR);
+            acessoArquivoTXT accArqVenda = new acessoArquivoVendaTXT();
+            String[] campos = "11/03/2011;0018;-1;20;60".split(acessoArquivoVendaTXT.DELIMITADOR);
             accArqVenda.verificarPreCondicoes(campos);
             Assert.fail();
         } catch(acessoArquivoException ex){
-            Assert.assertEquals(acessoArquivoVenda.MSG_QTDE_INVALIDA, ex.getMessage());
+            Assert.assertEquals(acessoArquivoVendaTXT.MSG_QTDE_INVALIDA, ex.getMessage());
         }
     }
     
     @Test
     public void verificarPreCondicoesValorLimiteQtdeTest() {
         try{
-            acessoArquivo accArqVenda = new acessoArquivoVenda();
-            String[] campos = "11/03/2011;0018;40;0;60".split(acessoArquivoVenda.DELIMITADOR);
+            acessoArquivoTXT accArqVenda = new acessoArquivoVendaTXT();
+            String[] campos = "11/03/2011;0018;40;0;60".split(acessoArquivoVendaTXT.DELIMITADOR);
             accArqVenda.verificarPreCondicoes(campos);
         } catch(acessoArquivoException ex){
             Assert.fail();
@@ -156,8 +156,8 @@ public class acessoArquivoVendaTest {
     @Test
     public void verificarPreCondicoesValorLimiteQtdeMaisUmTest() {
         try{
-            acessoArquivo accArqVenda = new acessoArquivoVenda();
-            String[] campos = "11/03/2011;0018;40;20;1".split(acessoArquivoVenda.DELIMITADOR);
+            acessoArquivoTXT accArqVenda = new acessoArquivoVendaTXT();
+            String[] campos = "11/03/2011;0018;40;20;1".split(acessoArquivoVendaTXT.DELIMITADOR);
             accArqVenda.verificarPreCondicoes(campos);
         } catch(acessoArquivoException ex){
             Assert.fail();
@@ -167,24 +167,24 @@ public class acessoArquivoVendaTest {
     @Test
     public void verificarPreCondicoesQtdeNaoNumeroTest() {
         try{
-            acessoArquivo accArqVenda = new acessoArquivoVenda();
-            String[] campos = "10/03/2011;0020;10;asd;50".split(acessoArquivoVenda.DELIMITADOR);
+            acessoArquivoTXT accArqVenda = new acessoArquivoVendaTXT();
+            String[] campos = "10/03/2011;0020;10;asd;50".split(acessoArquivoVendaTXT.DELIMITADOR);
             accArqVenda.verificarPreCondicoes(campos);
             Assert.fail();
         } catch(acessoArquivoException ex){
-            Assert.assertEquals(acessoArquivoVenda.MSG_QTDE_INVALIDA, ex.getMessage());
+            Assert.assertEquals(acessoArquivoVendaTXT.MSG_QTDE_INVALIDA, ex.getMessage());
         }
     }
 
     @Test
     public void verificarPreCondicoesCampoContendoEspacosTest() {
         try{
-            acessoArquivo accArqVenda = new acessoArquivoVenda();
-            String[] campos = "10/03/2011;0020;    ;20;60".split(acessoArquivoVenda.DELIMITADOR);
+            acessoArquivoTXT accArqVenda = new acessoArquivoVendaTXT();
+            String[] campos = "10/03/2011;0020;    ;20;60".split(acessoArquivoVendaTXT.DELIMITADOR);
             accArqVenda.verificarPreCondicoes(campos);
             Assert.fail();
         } catch(acessoArquivoException ex){
-            Assert.assertEquals(acessoArquivoVenda.MSG_NUMERO_DE_CAMPOS_INCORRETO, ex.getMessage());
+            Assert.assertEquals(acessoArquivoVendaTXT.MSG_NUMERO_DE_CAMPOS_INCORRETO, ex.getMessage());
         }
     }
 }

@@ -4,9 +4,9 @@
  */
 package trabalho1.AcessoArquivo;
 
-import trabalho1.AcessoArquivo.acessoArquivo;
+import trabalho1.AcessoArquivo.acessoArquivoTXT;
 import trabalho1.AcessoArquivo.acessoArquivoException;
-import trabalho1.AcessoArquivo.acessoArquivoVendedor;
+import trabalho1.AcessoArquivo.acessoArquivoVendedorTXT;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
@@ -24,11 +24,29 @@ public class acessoArquivoVendedorTest {
     public static final String fileNumCamposMaxIncorretoTest = ("Arquivos de testes\\acessoArquivoVendedorNumCamposMaxIncorretoTest.txt");
     public static final String fileEspacosCamposTest = ("Arquivos de testes\\acessoArquivoVendedorEspacosCamposTest.txt");
     public static final String fileCategoriaInvalidaTest = ("Arquivos de testes\\acessoArquivoVendedorCategoriaInvalidaTest.txt");
+    public static final String fileXMLOk = ("Arquivos de testes\\acessoArquivoXMLVendedor.xml");
 
+    @Test
+    public void lerXMLOkTest() {
+        try{
+            acessoArquivoTXT arquivoVendedor = new acessoArquivoVendedorTXT();
+            List<Vendedor> resultadoObtido = arquivoVendedor.ler(new File(fileXMLOk));
+            List<Vendedor> resultadoEsperado = new ArrayList<Vendedor>();
+            resultadoEsperado.add(gerarResultadoEsperado("0020","MANOEL DA SILVA",1));
+            resultadoEsperado.add(gerarResultadoEsperado("0021","JOANA ANGELICA",2));
+                      
+            Assert.assertEquals(resultadoEsperado.get(0), resultadoObtido.get(0));
+            Assert.assertEquals(resultadoEsperado.get(1), resultadoObtido.get(1));
+
+        } catch(acessoArquivoException ex){
+            Assert.fail();
+        }
+    }
+    
     @Test
     public void lerOkTest() {
         try{
-            acessoArquivo arquivoVendedor = new acessoArquivoVendedor();
+            acessoArquivoTXT arquivoVendedor = new acessoArquivoVendedorTXT();
             List<Vendedor> resultadoObtido = arquivoVendedor.ler(new File(fileOk));
             List<Vendedor> resultadoEsperado = new ArrayList<Vendedor>();
             resultadoEsperado.add(gerarResultadoEsperado("0020","MANOEL DA SILVA",1));
@@ -50,48 +68,48 @@ public class acessoArquivoVendedorTest {
     @Test
     public void lerNumeroDeCamposMinIncorretoTest() {
         try{
-            acessoArquivo acessoArquivoVendedor = new acessoArquivoVendedor();
+            acessoArquivoTXT acessoArquivoVendedor = new acessoArquivoVendedorTXT();
             acessoArquivoVendedor.ler(new File(fileNumCamposMinIncorretoTest));
             Assert.fail();
             
         } catch(acessoArquivoException ex){
-            Assert.assertEquals(acessoArquivo.MSG_NUMERO_DE_CAMPOS_INCORRETO, ex.getMessage());
+            Assert.assertEquals(acessoArquivoTXT.MSG_NUMERO_DE_CAMPOS_INCORRETO, ex.getMessage());
         }
     }
     
     @Test
     public void lerNumeroDeCamposMaxIncorretoTest() {
         try{
-            acessoArquivo acessoArquivoVendedor = new acessoArquivoVendedor();
+            acessoArquivoTXT acessoArquivoVendedor = new acessoArquivoVendedorTXT();
             acessoArquivoVendedor.ler(new File(fileNumCamposMaxIncorretoTest));
             Assert.fail();
             
         } catch(acessoArquivoException ex){
-            Assert.assertEquals(acessoArquivo.MSG_NUMERO_DE_CAMPOS_INCORRETO, ex.getMessage());
+            Assert.assertEquals(acessoArquivoTXT.MSG_NUMERO_DE_CAMPOS_INCORRETO, ex.getMessage());
         }
     }
     
     @Test
     public void lerCamposComEspacosTest() {
         try{
-            acessoArquivo acessoArquivoVendedor = new acessoArquivoVendedor();
+            acessoArquivoTXT acessoArquivoVendedor = new acessoArquivoVendedorTXT();
             acessoArquivoVendedor.ler(new File(fileEspacosCamposTest));
             Assert.fail();
             
         } catch(acessoArquivoException ex){
-            Assert.assertEquals(acessoArquivo.MSG_NUMERO_DE_CAMPOS_INCORRETO, ex.getMessage());
+            Assert.assertEquals(acessoArquivoTXT.MSG_NUMERO_DE_CAMPOS_INCORRETO, ex.getMessage());
         }
     }
     
     @Test
     public void lerCamposComCategoriaInvalidaTest() {
         try{
-            acessoArquivo acessoArquivoVendedor = new acessoArquivoVendedor();
+            acessoArquivoTXT acessoArquivoVendedor = new acessoArquivoVendedorTXT();
             acessoArquivoVendedor.ler(new File(fileCategoriaInvalidaTest));
             Assert.fail();
             
         } catch(acessoArquivoException ex){
-            Assert.assertEquals(acessoArquivo.MSG_CATEGORIA_VENDEDOR_INVALIDA, ex.getMessage());
+            Assert.assertEquals(acessoArquivoTXT.MSG_CATEGORIA_VENDEDOR_INVALIDA, ex.getMessage());
         }
     }   
 }

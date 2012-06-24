@@ -19,7 +19,7 @@ import trabalho1.DataUtil.DataUtilException;
  *
  * @author Bianca e Filipe
  */
-public class acessoArquivoComissao extends acessoArquivo {
+public class acessoArquivoComissaoTXT extends acessoArquivoTXT {
 
     public static final String DELIMITADOR = ";";
     public static final int NUM_CAMPOS = 8;

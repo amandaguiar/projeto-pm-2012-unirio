@@ -24,7 +24,7 @@ import trabalho1.ObjetosNegocio.Venda;
  *
  * @author Jean
  */
-public class acessoArquivoVenda extends acessoArquivo{
+public class acessoArquivoVendaTXT extends acessoArquivoTXT {
 
     public static final String DELIMITADOR = ";";  //Delimitador de cada campo no arquivo.
     public static final String MSG_QTDE_INVALIDA = "Arquivo contém produto com quantidade inválida";

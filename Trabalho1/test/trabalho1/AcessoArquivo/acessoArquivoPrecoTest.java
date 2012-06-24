@@ -4,9 +4,9 @@
  */
 package trabalho1.AcessoArquivo;
 
-import trabalho1.AcessoArquivo.acessoArquivo;
+import trabalho1.AcessoArquivo.acessoArquivoTXT;
 import trabalho1.AcessoArquivo.acessoArquivoException;
-import trabalho1.AcessoArquivo.acessoArquivoPreco;
+import trabalho1.AcessoArquivo.acessoArquivoPrecoTXT;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -33,7 +33,7 @@ public class acessoArquivoPrecoTest {
     @Test
     public void lerOkTest() {
         try{
-            acessoArquivo accArqPreco = new acessoArquivoPreco();
+            acessoArquivoTXT accArqPreco = new acessoArquivoPrecoTXT();
             List<Preco> resultObtido = accArqPreco.ler(new File(ARQUIVO_OK));
             List<Preco> resultEsperado = ResultadoEsperado(2011,(03-1),10,5.5,7.1,2.3);                      
             Assert.assertEquals(resultEsperado.get(0), resultObtido.get(0));
@@ -56,46 +56,46 @@ public class acessoArquivoPrecoTest {
     @Test
     public void LerNumCamposIncorretoTest() {
         try{
-            acessoArquivo accArqPreco = new acessoArquivoPreco();
+            acessoArquivoTXT accArqPreco = new acessoArquivoPrecoTXT();
             List<Preco> resultadoObtido = accArqPreco.ler(new File(arquivoNumCamposIncorretoTest));
             Assert.fail();
             
         } catch(acessoArquivoException ex){
-            Assert.assertEquals(acessoArquivo.MSG_NUMERO_DE_CAMPOS_INCORRETO, ex.getMessage());
+            Assert.assertEquals(acessoArquivoTXT.MSG_NUMERO_DE_CAMPOS_INCORRETO, ex.getMessage());
         }
     }
     
     @Test
     public void LerCampoNuloTest() {
         try{
-            acessoArquivo accArqPreco = new acessoArquivoPreco();
+            acessoArquivoTXT accArqPreco = new acessoArquivoPrecoTXT();
             List<Preco> resultadoObtido = accArqPreco.ler(new File(arquivoCampoNuloTest));
             Assert.fail();
             
         } catch(acessoArquivoException ex){
-            Assert.assertEquals(acessoArquivo.MSG_NUMERO_DE_CAMPOS_INCORRETO, ex.getMessage());
+            Assert.assertEquals(acessoArquivoTXT.MSG_NUMERO_DE_CAMPOS_INCORRETO, ex.getMessage());
         }
     }
 
     @Test
     public void LerPrecoNegativoTest() {
         try{
-            acessoArquivo accArqPreco = new acessoArquivoPreco();
+            acessoArquivoTXT accArqPreco = new acessoArquivoPrecoTXT();
             List<IAcessoArquivo> resultadoObtido = accArqPreco.ler(new File(arquivoNegativoTest));
             Assert.fail();
         } catch(acessoArquivoException ex){
-            Assert.assertEquals(acessoArquivoPreco.MSG_PRECO_INVALIDO, ex.getMessage());
+            Assert.assertEquals(acessoArquivoPrecoTXT.MSG_PRECO_INVALIDO, ex.getMessage());
         }
     }
 
     @Test
     public void LerQtdeNaoNumeroTest() {
         try{
-            acessoArquivo accArqPreco = new acessoArquivoPreco();
+            acessoArquivoTXT accArqPreco = new acessoArquivoPrecoTXT();
             List<IAcessoArquivo> resultadoObtido = accArqPreco.ler(new File(arquivoNaoNumeroTest));
             Assert.fail();
         } catch(acessoArquivoException ex){
-            Assert.assertEquals(acessoArquivoPreco.MSG_PRECO_INVALIDO, ex.getMessage());
+            Assert.assertEquals(acessoArquivoPrecoTXT.MSG_PRECO_INVALIDO, ex.getMessage());
         }
     }
 }

@@ -6,9 +6,9 @@
 package trabalho1.RegrasCalculo;
 
 import trabalho1.AcessoArquivo.acessoArquivoException;
-import trabalho1.AcessoArquivo.acessoArquivoVendedor;
-import trabalho1.AcessoArquivo.acessoArquivoVenda;
-import trabalho1.AcessoArquivo.acessoArquivoPreco;
+import trabalho1.AcessoArquivo.acessoArquivoVendedorTXT;
+import trabalho1.AcessoArquivo.acessoArquivoVendaTXT;
+import trabalho1.AcessoArquivo.acessoArquivoPrecoTXT;
 import java.text.DecimalFormat;
 import java.io.File;
 import java.util.HashMap;
@@ -82,9 +82,9 @@ public class CalculoComissao {
 
     public Map<String,Comissao> gerarComissoes(int mes, String arqVendas, String arqPrecos, String arqVendedores, String arqComissao) throws acessoArquivoException{
 
-        acessoArquivoVenda accArqVenda = new acessoArquivoVenda();
-        acessoArquivoPreco accArqPreco = new acessoArquivoPreco();
-        acessoArquivoVendedor accArqVendedor = new acessoArquivoVendedor();
+        acessoArquivoVendaTXT accArqVenda = new acessoArquivoVendaTXT();
+        acessoArquivoPrecoTXT accArqPreco = new acessoArquivoPrecoTXT();
+        acessoArquivoVendedorTXT accArqVendedor = new acessoArquivoVendedorTXT();
 
         List<Venda> listaVenda = accArqVenda.ler(new File(arqVendas));
         List<Preco> listaPreco = accArqPreco.ler(new File(arqPrecos));

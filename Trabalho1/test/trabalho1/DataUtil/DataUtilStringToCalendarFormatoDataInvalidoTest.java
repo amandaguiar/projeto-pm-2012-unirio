@@ -6,8 +6,8 @@ package trabalho1.DataUtil;
 
 import trabalho1.DataUtil.DataUtilException;
 import trabalho1.DataUtil.DataUtil;
-import trabalho1.AcessoArquivo.acessoArquivoVenda;
-import trabalho1.AcessoArquivo.acessoArquivo;
+import trabalho1.AcessoArquivo.acessoArquivoVendaTXT;
+import trabalho1.AcessoArquivo.acessoArquivoTXT;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.GregorianCalendar;
@@ -53,7 +53,7 @@ public class DataUtilStringToCalendarFormatoDataInvalidoTest {
     @Test
     public void DataUtilStringToCalendarFormatoDataInvalidoTest() {
         try{
-            DataUtil.stringToCalendar(data,acessoArquivoVenda.DELIMITADOR_DATA, acessoArquivo.FORMATO_DATA);
+            DataUtil.stringToCalendar(data,acessoArquivoVendaTXT.DELIMITADOR_DATA, acessoArquivoTXT.FORMATO_DATA);
             Assert.fail();
         }catch(DataUtilException ex){
             Assert.assertEquals(DataUtil.MSG_DATA_INVALIDA, ex.getMessage());
