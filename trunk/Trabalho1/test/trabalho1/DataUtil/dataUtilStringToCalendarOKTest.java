@@ -5,8 +5,8 @@
 package trabalho1.DataUtil;
 
 import trabalho1.DataUtil.DataUtil;
-import trabalho1.AcessoArquivo.acessoArquivoVenda;
-import trabalho1.AcessoArquivo.acessoArquivo;
+import trabalho1.AcessoArquivo.acessoArquivoVendaTXT;
+import trabalho1.AcessoArquivo.acessoArquivoTXT;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.GregorianCalendar;
@@ -47,7 +47,7 @@ public class dataUtilStringToCalendarOKTest {
     @Test
     public void dataUtilStringToCalendarTestOK_Preco() {
         try{
-            GregorianCalendar resultadoObtido = DataUtil.stringToCalendar(data,acessoArquivoVenda.DELIMITADOR_DATA, acessoArquivo.FORMATO_DATA);
+            GregorianCalendar resultadoObtido = DataUtil.stringToCalendar(data,acessoArquivoVendaTXT.DELIMITADOR_DATA, acessoArquivoTXT.FORMATO_DATA);
             Assert.assertEquals(resultEsperado, resultadoObtido);
         }catch(Exception ex){
             Assert.fail();

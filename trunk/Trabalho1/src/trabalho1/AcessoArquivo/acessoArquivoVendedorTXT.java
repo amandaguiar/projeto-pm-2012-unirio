@@ -20,7 +20,8 @@ import trabalho1.ObjetosNegocio.Vendedor;
  *
  * @author Roberta
  */
-public class acessoArquivoVendedor extends acessoArquivo{
+public class acessoArquivoVendedorTXT extends acessoArquivoTXT {
+    
     public static final int POS_COD = 0;  //Posição do código do vendedor no arquivo.
     public static final int POS_NOME = 1; // Posição do nome do vendedor no arquivo.
     public static final int POS_CATEGORIA = 2; //Posição categoria do vendedor no arquivo.
@@ -41,7 +42,7 @@ public class acessoArquivoVendedor extends acessoArquivo{
     public void verificarValor(String[] campos) throws acessoArquivoException{
         String categoria = campos[POS_CATEGORIA];
         if (!( Integer.parseInt(categoria) == 1 || Integer.parseInt(categoria) == 2)) {
-            throw new acessoArquivoException(acessoArquivo.MSG_CATEGORIA_VENDEDOR_INVALIDA);
+            throw new acessoArquivoException(acessoArquivoTXT.MSG_CATEGORIA_VENDEDOR_INVALIDA);
         }
     }
 

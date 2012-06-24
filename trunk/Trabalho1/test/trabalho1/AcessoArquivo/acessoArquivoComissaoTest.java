@@ -4,7 +4,7 @@
  */
 package trabalho1.AcessoArquivo;
 
-import trabalho1.AcessoArquivo.acessoArquivoComissao;
+import trabalho1.AcessoArquivo.acessoArquivoComissaoTXT;
 import trabalho1.AcessoArquivo.acessoArquivoException;
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -31,7 +31,7 @@ public class acessoArquivoComissaoTest {
             HashMap<String, Comissao> comissoes = new HashMap<String, Comissao>();
             comissoes.put("1234", new Comissao(05, "0020", "MANOEL", 2, 1, 1, 1, 1000, 500, 1000, 2500, 500));
             
-            acessoArquivoComissao calculo = new acessoArquivoComissao();
+            acessoArquivoComissaoTXT calculo = new acessoArquivoComissaoTXT();
             calculo.escrever(comissoes, arquivoComissaoResultado);
             
             compararArquivos(arquivoComissao, arquivoComissaoResultado);

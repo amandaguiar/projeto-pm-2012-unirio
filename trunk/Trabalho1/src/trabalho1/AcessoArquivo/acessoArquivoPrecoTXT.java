@@ -22,7 +22,7 @@ import trabalho1.ObjetosNegocio.Preco;
  *
  * @author Amanda
  */
-public class acessoArquivoPreco extends acessoArquivo{
+public class acessoArquivoPrecoTXT extends acessoArquivoTXT {
 
     public static final String DELIMITADOR = ";";  //Delimitador de cada campo no arquivo.
     public static final int POS_DATA = 0;  //Posição da data.

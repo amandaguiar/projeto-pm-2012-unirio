@@ -11,7 +11,7 @@
 package trabalho1.GUI;
 
 import trabalho1.AcessoArquivo.acessoArquivoException;
-import trabalho1.AcessoArquivo.acessoArquivoComissao;
+import trabalho1.AcessoArquivo.acessoArquivoComissaoTXT;
 import java.awt.Cursor;
 import java.awt.HeadlessException;
 import java.io.File;
@@ -253,7 +253,7 @@ public class Home extends javax.swing.JFrame {
         String arqVendedores = txtVendedor.getText();         
         String arqComissao = txtComissao.getText();          
         Map<String, Comissao> comissoes = new HashMap<String, Comissao>();         
-        acessoArquivoComissao accArqComissao = new acessoArquivoComissao();         
+        acessoArquivoComissaoTXT accArqComissao = new acessoArquivoComissaoTXT();         
         CalculoComissao cc = new CalculoComissao();  
         
         if(!arquivosExistem(arqVendas, arqPrecos, arqVendedores))
