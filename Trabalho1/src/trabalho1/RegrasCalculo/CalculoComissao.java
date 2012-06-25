@@ -33,9 +33,9 @@ public class CalculoComissao {
     public double calculaComissao(int categoriaVendedor, double valorTotalGeral){
         switch(categoriaVendedor){
             case 1:
-                return new CalculoComissaoCat1().CalculaComissao(valorTotalGeral);
+                return new CalculoComissaoCat1().calculaComissao(valorTotalGeral);
             case 2:
-                return new CalculoComissaoCat2().CalculaComissao(valorTotalGeral);
+                return new CalculoComissaoCat2().calculaComissao(valorTotalGeral);
             default:
                 return 0.0;
         }

@@ -13,16 +13,16 @@ import java.util.List;
  * @author Bianca
  */
 public class CalculoComissaoCat2 {
-    
-    private FaixasValores[] faixasCat2;
+    public static final int NUM_FAIXAS = 3;
+    private FaixasValores[] faixasCat2 = new FaixasValores[NUM_FAIXAS];
     
     public void criaFaixas(){
-    faixasCat2[0] = new FaixasValores(2000.0, 0.1);
-    faixasCat2[1] = new FaixasValores(4000.0, 0.2);
-    faixasCat2[2] = new FaixasValores(Double.MAX_VALUE, 0.3);
+        faixasCat2[0] = new FaixasValores(2000.0, 0.1);
+        faixasCat2[1] = new FaixasValores(4000.0, 0.2);
+        faixasCat2[2] = new FaixasValores(Double.MAX_VALUE, 0.3);
     }
 
-    public double CalculaComissao(double valorTotalGeral) {
+    public double calculaComissao(double valorTotalGeral) {
         this.criaFaixas();
         double valorComissao = 0.0;
         for(int i=0; i< faixasCat2.length; i++){
