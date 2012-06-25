@@ -22,7 +22,9 @@ public class Comissao {
     private double valorTotalGeral;
     private double comissao;
 
-
+    public Comissao() {
+        
+    }
 
     public Comissao(int mes, String codigo, String nome, int categoria){
         this.mes = mes;
