@@ -30,14 +30,14 @@ public class CalculoComissaoCat1{
         double auxiliar = 0;
         int tam = faixasCat1.length;
         for(int i = 0; i < tam; i++){
-            if(valorTotalGeral <= faixasCat1[i].getValorLimite()){
+            if(valorTotalGeral < faixasCat1[i].getValorLimite()){
                 if(i==0){
                     somaParcial = valorTotalGeral * faixasCat1[0].getPercentual();
                 }
-                else{
+                else if(valorTotalGeral >= faixasCat1[i-1].getValorLimite()){
                     auxiliar = (valorTotalGeral - faixasCat1[i-1].getValorLimite()) * faixasCat1[i].getPercentual();
                     for(int j=i-1; j==0; j--){
-                    somaParcial = somaParcial + faixasCat1[j].getSomaParcial();
+                        somaParcial = somaParcial + faixasCat1[j].getSomaParcial();
                     }
                     somaParcial = somaParcial + auxiliar;
                 }
