@@ -24,7 +24,24 @@ public class acessoArquivoVendedorTest {
     public static final String fileNumCamposMaxIncorretoTest = ("Arquivos de testes\\acessoArquivoVendedorNumCamposMaxIncorretoTest.txt");
     public static final String fileEspacosCamposTest = ("Arquivos de testes\\acessoArquivoVendedorEspacosCamposTest.txt");
     public static final String fileCategoriaInvalidaTest = ("Arquivos de testes\\acessoArquivoVendedorCategoriaInvalidaTest.txt");
+    public static final String fileXMLOk = ("Arquivos de testes\\acessoArquivoVendedorXML.xml");
+    
+    @Test
+    public void lerXMLOkTest() {
+        try{
+            acessoArquivoXML arquivoVendedor = new acessoArquivoVendedorXML();
+            List<Vendedor> resultadoObtido = arquivoVendedor.ler(new File(fileXMLOk));
+            List<Vendedor> resultadoEsperado = new ArrayList<Vendedor>();
+            resultadoEsperado.add(gerarResultadoEsperado("0020","MANOEL DA SILVA",1));
+            resultadoEsperado.add(gerarResultadoEsperado("0021","JOANA ANGELICA",2));
+                      
+            Assert.assertEquals(resultadoEsperado.get(0), resultadoObtido.get(0));
+            Assert.assertEquals(resultadoEsperado.get(1), resultadoObtido.get(1));
 
+        } catch(acessoArquivoException ex){
+            Assert.fail();
+        }
+    }
     
     @Test
     public void lerOkTest() {

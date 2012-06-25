@@ -10,7 +10,10 @@ public class Vendedor {
     private String codigo;
     private String nome;
     private int categoria;
-
+    
+    public Vendedor() {
+        
+    }
     public Vendedor(String codigo, String nome, int categoria) {
         this.codigo = codigo;
         this.nome = nome;
