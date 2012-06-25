@@ -1,30 +1,32 @@
-<?xml version="1.0" encoding="UTF-8"?> 
+<?xml version="1.0" encoding="UTF-8"?>
 <java version="1.7.0_01" class="java.beans.XMLDecoder">
-<object class="java.util.ArrayList">
+ <object class="java.util.ArrayList">
   <void method="add">
    <object class="trabalho1.ObjetosNegocio.Preco">
-     <void property="data">
-     <object void="java.util.GregorianCalendar">
-		<void method="get(Calendar.DAY_OF_MONTH)">
-			<int>10</int>
-		</void>
-		<void method="get(Calendar.MONTH)">
-			<int>03</int>
-		</void>
-		<void method="get(Calendar.YEAR)">
-			<int>2011</int>
-		</void>
-	</object>
+   <void property="data">
+     <object class="java.util.GregorianCalendar">
+      <void property="lenient">
+       <boolean>false</boolean>
+      </void>
+      <void property="time">
+       <object class="java.util.Date">
+        <long>1299726000000</long>
+       </object>
+      </void>
+     </object>
     </void>
-    <void property="precos">
-     <object class="java.util.List">
-		<void method="add">
-			<double>5.5</double>
-			<double>7.1</double>
-			<double>2.3</double>
-		</void>
-	</object>
-	 </object>
+ <void property="precos">
+     <object class="java.util.ArrayList">
+      <void method="add">
+       <double>5.5</double>
+      </void>
+      <void method="add">
+       <double>7.1</double>
+      </void>
+      <void method="add">
+       <double>2.3</double>
+      </void>
+     </object>
     </void>
    </object>
   </void>
