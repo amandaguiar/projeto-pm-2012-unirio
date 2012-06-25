@@ -4,7 +4,6 @@
  */
 package trabalho1.RegrasCalculo;
 
-import trabalho1.RegrasCalculo.CalculoComissao;
 import junit.framework.Assert;
 import java.util.Arrays;
 import java.util.Collection;
