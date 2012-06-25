@@ -8,14 +8,17 @@ package trabalho1.AcessoArquivo;
 import java.beans.XMLDecoder;
 import java.beans.XMLEncoder;
 import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.util.ArrayList;
+import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.Map;
 import trabalho1.ObjetosNegocio.Comissao;
+import trabalho1.ObjetosNegocio.Venda;
 import trabalho1.ObjetosNegocio.Vendedor;
 
 /**
@@ -35,12 +38,11 @@ public abstract class acessoArquivoXML implements IAcessoArquivo {
         
     //Lê um arquivo e retorna uma lista de objetos.
     @Override
-    public List ler(File file) throws acessoArquivoException {
-                
+    public List ler(File file) throws acessoArquivoException {                
         List lista = null;     
-        XMLDecoder xmldecoder = null;
-        
+        XMLDecoder xmldecoder = null;        
         try {
+            
             xmldecoder = new XMLDecoder(new BufferedInputStream(new FileInputStream(file)));                  
             lista = (ArrayList)xmldecoder.readObject();                        
             

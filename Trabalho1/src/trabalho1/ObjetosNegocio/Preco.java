@@ -25,6 +25,10 @@ public class Preco {
     public static final int POS_CAT_B = 1;
     public static final int POS_CAT_C = 2;
 
+    public Preco() {
+        
+    }
+    
     public Preco(GregorianCalendar data, List<Double> precos) {
         this.data = data;
         this.data.setLenient(false);

@@ -36,7 +36,7 @@ public class acessoArquivoComissaoTest {
             acessoArquivoComissaoXML calculo = new acessoArquivoComissaoXML();
             calculo.escrever(comissoes, arquivoComissaoResultadoXML);
             
-            //compararArquivos(arquivoComissao, arquivoComissaoResultadoXML);
+            //(arquivoComissao, arquivoComissaoResultadoXML);
              
         } catch(acessoArquivoException ex){
             Assert.fail();
