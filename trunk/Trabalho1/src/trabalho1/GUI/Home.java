@@ -10,26 +10,49 @@
  */
 package trabalho1.GUI;
 
+import java.util.Enumeration;
 import trabalho1.AcessoArquivo.acessoArquivoException;
-import trabalho1.AcessoArquivo.acessoArquivoComissaoTXT;
 import java.awt.Cursor;
 import java.awt.HeadlessException;
 import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
+import javax.swing.ButtonGroup;
 import javax.swing.JOptionPane;
-import trabalho1.RegrasCalculo.CalculoComissao;
+import javax.swing.JRadioButton;
+import trabalho1.AcessoArquivo.AcessoArquivoAPP;
+import trabalho1.AcessoArquivo.acessoArquivoXML;
 import trabalho1.ObjetosNegocio.Comissao;
+import trabalho1.RegrasCalculo.CalculoComissaoAPP;
 
 /**
  *
  * @author Amandaa
  */
 public class Home extends javax.swing.JFrame {
+    public static final String SELECAO_ARQUIVO_XML = "Arquivo XML";
+    public static final String SELECAO_PONTO_E_VIRGULA = "Arquivo separado por ponto e v\u00edrgula";
+    private static final String ARQUIVO_DE_PRECOS_NAO_ENCONTRADO = "Arquivo de Pre\u00e7os N\u00e3o Encontrado";
+    private static final String ARQUIVO_DE_VENDEDORES_NAO_ENCONTRADO = "Arquivo de Vendedores N\u00e3o Encontrado";
+    private static final String JFILECHOOSER_APPROVE_BUTTON = "Selecionar";
+    private static final String MSG_ARQUIVO_DE_VENDAS_NAO_ENCONTRADO = "Arquivo de Vendas N\u00e3o Encontrado";
+    private static final String TITULO_JFILECHOOSER_PRECO = "Selecionar Arquivo Pre\u00e7o";
+    private static final String TITULO_JFILECHOOSER_VENDA = "Selecionar Arquivo Venda";
+    private static final String TITULO_JFILECHOOSER_VENDEDOR = "Selecionar Arquivo Vendedor";
 
     /** Creates new form Home */
     public Home() {
         initComponents();
+    }
+
+    private boolean abrirJFileChooser(String tituloFileChooser) throws HeadlessException {
+        jFileChooser1.setDialogTitle(tituloFileChooser);
+        jFileChooser1.setApproveButtonText(JFILECHOOSER_APPROVE_BUTTON);
+        jFileChooser1.showDialog(jPanel1, null);
+        if (jFileChooser1.getSelectedFile() == null) {
+            return true;
+        }
+        return false;
     }
 
     
@@ -131,12 +154,12 @@ public class Home extends javax.swing.JFrame {
         jRadioButtonArquivoXML.setBackground(new java.awt.Color(102, 102, 102));
         buttonGroupTipoArquivo.add(jRadioButtonArquivoXML);
         jRadioButtonArquivoXML.setForeground(new java.awt.Color(255, 255, 255));
-        jRadioButtonArquivoXML.setText("Arquivo XML");
+        jRadioButtonArquivoXML.setText(SELECAO_ARQUIVO_XML);
 
         jRadioButtonArquivoPontoVirgula.setBackground(new java.awt.Color(102, 102, 102));
         buttonGroupTipoArquivo.add(jRadioButtonArquivoPontoVirgula);
         jRadioButtonArquivoPontoVirgula.setForeground(new java.awt.Color(255, 255, 255));
-        jRadioButtonArquivoPontoVirgula.setText("Arquivo separado por ponto e vírgula");
+        jRadioButtonArquivoPontoVirgula.setText(SELECAO_PONTO_E_VIRGULA);
 
         jLabelTipoArquivo.setFont(new java.awt.Font("Tahoma", 1, 12));
         jLabelTipoArquivo.setForeground(new java.awt.Color(255, 255, 255));
@@ -236,7 +259,7 @@ public class Home extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 359, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -251,21 +274,33 @@ public class Home extends javax.swing.JFrame {
         String arqVendas = txtVenda.getText();         
         String arqPrecos = txtPreco.getText();         
         String arqVendedores = txtVendedor.getText();         
-        String arqComissao = txtComissao.getText();          
-        Map<String, Comissao> comissoes = new HashMap<String, Comissao>();         
-        acessoArquivoComissaoTXT accArqComissao = new acessoArquivoComissaoTXT();         
-        CalculoComissao cc = new CalculoComissao();  
+        String arqComissao = txtComissao.getText();
+
+        Map<String, Comissao> comissoes = new HashMap<String, Comissao>();        
+        String tipoAcessoArquivo = null;
         
         if(!arquivosExistem(arqVendas, arqPrecos, arqVendedores))
             return;
-        
+        if((tipoAcessoArquivo = getSelectionText(buttonGroupTipoArquivo)) == null)
+            return;
+
         setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
         
-        try {             
-            comissoes = cc.gerarComissoes(mes, arqVendas, arqPrecos, arqVendedores, arqComissao);  
-            accArqComissao.escrever(comissoes, arqComissao);
-            setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
-            MostraMensagemSucesso();
+        try {
+            try{
+                CalculoComissaoAPP calculoComissoes = new CalculoComissaoAPP();
+                comissoes = calculoComissoes.ativarGerarComissoes(mes, arqVendas, arqPrecos, arqVendedores,
+                                                                  arqComissao, tipoAcessoArquivo);
+
+                
+                AcessoArquivoAPP accArqComissao = new AcessoArquivoAPP();
+                accArqComissao.ativarEscreverComissao(comissoes, arqComissao, tipoAcessoArquivo);
+
+                setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+                MostraMensagemSucesso();
+            } finally {
+                setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+            }
         } catch (acessoArquivoException ex) {             
             MostraMensagemErro(ex.getMessage());         
         }
@@ -274,10 +309,7 @@ public class Home extends javax.swing.JFrame {
 
     private void jButtonSelecionarVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSelecionarVendaActionPerformed
 
-        jFileChooser1.setDialogTitle("Selecionar Arquivo Venda");
-        jFileChooser1.setApproveButtonText("Selecionar");
-        jFileChooser1.showDialog(jPanel1, null); 
-        if(jFileChooser1.getSelectedFile() == null)
+        if(abrirJFileChooser((TITULO_JFILECHOOSER_VENDA)))
             return;
         
         txtVenda.setText(jFileChooser1.getSelectedFile().getAbsolutePath());
@@ -285,10 +317,7 @@ public class Home extends javax.swing.JFrame {
 
     private void jButtonSelecionarPrecoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSelecionarPrecoActionPerformed
         
-        jFileChooser1.setDialogTitle("Selecionar Arquivo Preço");
-        jFileChooser1.setApproveButtonText("Selecionar");
-        jFileChooser1.showDialog(jPanel1, null); 
-        if(jFileChooser1.getSelectedFile() == null)
+        if(abrirJFileChooser(TITULO_JFILECHOOSER_PRECO))
             return;
         
         txtPreco.setText(jFileChooser1.getSelectedFile().getAbsolutePath());
@@ -296,30 +325,44 @@ public class Home extends javax.swing.JFrame {
 
     private void jButtonSelecionarVendedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSelecionarVendedorActionPerformed
 
-        jFileChooser1.setDialogTitle("Selecionar Arquivo Vendedor");
-        jFileChooser1.setApproveButtonText("Selecionar");
-        jFileChooser1.showDialog(jPanel1, null); 
-        if(jFileChooser1.getSelectedFile() == null)
+        if(abrirJFileChooser(TITULO_JFILECHOOSER_VENDEDOR))
             return;
         
         txtVendedor.setText(jFileChooser1.getSelectedFile().getAbsolutePath());
     }//GEN-LAST:event_jButtonSelecionarVendedorActionPerformed
 
+    //Este método retorna o texto do radio button selecionado em um button group.
+    public String getSelectionText(ButtonGroup group) {
+        for (Enumeration e=group.getElements(); e.hasMoreElements(); ) {
+            JRadioButton b = (JRadioButton)e.nextElement();
+            if (b.getModel() == group.getSelection()) {
+                return b.getText();
+            }
+        }
+        
+        MostraMensagemErro("Escolha um tipo de arquivo");
+        return null;
+    }
+
     public void MostraMensagemSucesso() {
         JOptionPane.showMessageDialog(this, "Comissão gerada com sucesso!", "Sucesso",JOptionPane.INFORMATION_MESSAGE);
+    }
+
+    public void MostraMensagemErro(String message){
+        JOptionPane.showMessageDialog(this, "Erro: " + message, "Erro", JOptionPane.ERROR_MESSAGE);
     }
     
     public boolean arquivosExistem(String arqVendas, String arqPrecos, String arqVendedores) throws HeadlessException {
         if(!(new File(arqVendas).exists())){
-            JOptionPane.showMessageDialog(this, "Erro: " + "Arquivo de Vendas Não Encontrado", "Erro", JOptionPane.ERROR_MESSAGE);
+            MostraMensagemErro(MSG_ARQUIVO_DE_VENDAS_NAO_ENCONTRADO);
             return false;
         }
         else if(!(new File(arqPrecos).exists())){
-            JOptionPane.showMessageDialog(this, "Erro: " + "Arquivo de Preços Não Encontrado", "Erro", JOptionPane.ERROR_MESSAGE);
+            MostraMensagemErro(ARQUIVO_DE_PRECOS_NAO_ENCONTRADO);
             return false;
         }
         else if(!(new File(arqVendedores).exists())){
-            JOptionPane.showMessageDialog(this, "Erro: " + "Arquivo de Vendedores Não Encontrado", "Erro", JOptionPane.ERROR_MESSAGE);
+            MostraMensagemErro(ARQUIVO_DE_VENDEDORES_NAO_ENCONTRADO);
             return false;
         }
         return true;
@@ -361,9 +404,7 @@ public class Home extends javax.swing.JFrame {
         });
     }
     
-    public void MostraMensagemErro(String message){
-        JOptionPane.showMessageDialog(this, "Erro: " + message, "Erro", JOptionPane.ERROR_MESSAGE);
-    }
+    
     
     
     // Variables declaration - do not modify//GEN-BEGIN:variables

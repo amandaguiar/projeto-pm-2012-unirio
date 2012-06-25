@@ -6,15 +6,12 @@
 package trabalho1.RegrasCalculo;
 
 import trabalho1.AcessoArquivo.acessoArquivoException;
-import trabalho1.AcessoArquivo.acessoArquivoVendedorTXT;
-import trabalho1.AcessoArquivo.acessoArquivoVendaTXT;
-import trabalho1.AcessoArquivo.acessoArquivoPrecoTXT;
-import java.text.DecimalFormat;
 import java.io.File;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import trabalho1.AcessoArquivo.IAcessoArquivo;
 import trabalho1.ObjetosNegocio.Comissao;
 import trabalho1.ObjetosNegocio.Preco;
 import trabalho1.ObjetosNegocio.Venda;
@@ -24,11 +21,24 @@ import trabalho1.ObjetosNegocio.Vendedor;
  *
  * @author Jean
  */
-public class CalculoComissao {
+public class CalculoComissao implements ICalculoComissao{
 
     private double precoProdutoANoMes = 0.0;
     private double precoProdutoBNoMes = 0.0;
     private double precoProdutoCNoMes = 0.0;
+
+    private IAcessoArquivo accArqVenda;
+    private IAcessoArquivo accArqPreco;
+    private IAcessoArquivo accArqVendedor;
+
+    public CalculoComissao() {
+    }
+
+    public CalculoComissao(IAcessoArquivo accArqVenda, IAcessoArquivo accArqPreco, IAcessoArquivo accArqVendedor) {
+        this.accArqVenda = accArqVenda;
+        this.accArqPreco = accArqPreco;
+        this.accArqVendedor = accArqVendedor;
+    }
 
     public double calculaComissao(int categoriaVendedor, double valorTotalGeral){
         switch(categoriaVendedor){
@@ -41,13 +51,8 @@ public class CalculoComissao {
         }
     }
 
-
-
     public Map<String,Comissao> gerarComissoes(int mes, String arqVendas, String arqPrecos, String arqVendedores, String arqComissao) throws acessoArquivoException{
 
-        acessoArquivoVendaTXT accArqVenda = new acessoArquivoVendaTXT();
-        acessoArquivoPrecoTXT accArqPreco = new acessoArquivoPrecoTXT();
-        acessoArquivoVendedorTXT accArqVendedor = new acessoArquivoVendedorTXT();
 
         List<Venda> listaVenda = accArqVenda.ler(new File(arqVendas));
         List<Preco> listaPreco = accArqPreco.ler(new File(arqPrecos));
