@@ -6,12 +6,17 @@
 package trabalho1.AcessoArquivo;
 
 
+import java.beans.XMLEncoder;
+import java.io.BufferedOutputStream;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.util.ArrayList;
 import java.util.GregorianCalendar;
 import java.util.List;
 import org.junit.Assert;
 import org.junit.Test;
+import trabalho1.DataUtil.DataUtilException;
 import trabalho1.ObjetosNegocio.Venda;
 
 /**
@@ -24,10 +29,10 @@ public class acessoArquivoVendaTest {
     public static final String arquivoOK = ("Arquivos de testes\\acessoArquivoVendaOkTest.txt");
     public static final String arquivoNaoOK = ("Arquivos de testes\\acessoArquivoVendaNOKTest.txt");
     public static final String arquivoNaoEncontrado = ("Arquivos de testes\\arquivoNaoEncontrado.txt");
-    public static final String fileXMLOk = ("Arquivos de testes\\acessoArquivoVendaXML2.xml");
+    public static final String fileXMLOk = ("Arquivos de testes\\acessoArquivoVendaXML.xml");
     
     @Test
-    public void lerXMLOkTest() {
+    public void lerXMLOkTest() throws FileNotFoundException, DataUtilException {
         try{
             acessoArquivoXML arquivoVendas = new acessoArquivoVendaXML();
             List<Venda> resultadoObtido = arquivoVendas.ler(new File(fileXMLOk));
