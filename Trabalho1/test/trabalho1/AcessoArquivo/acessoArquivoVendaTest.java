@@ -24,7 +24,27 @@ public class acessoArquivoVendaTest {
     public static final String arquivoOK = ("Arquivos de testes\\acessoArquivoVendaOkTest.txt");
     public static final String arquivoNaoOK = ("Arquivos de testes\\acessoArquivoVendaNOKTest.txt");
     public static final String arquivoNaoEncontrado = ("Arquivos de testes\\arquivoNaoEncontrado.txt");
+    public static final String fileXMLOk = ("Arquivos de testes\\acessoArquivoVendaXML.xml");
+    
+    @Test
+    public void lerXMLOkTest() {
+        try{
+            acessoArquivoXML arquivoVendas = new acessoArquivoVendaXML();
+            List<Venda> resultadoObtido = arquivoVendas.ler(new File(fileXMLOk));
+            List<Venda> resultadoEsperado = new ArrayList<Venda>();
+           // resultadoEsperado.add(gerarResultEsperado(2011,(03-1),10,"0020",10,30,50));
+            //resultadoEsperado.add(gerarResultEsperado(2011,(03-1),12,"0019",20,40,60));
+                      
+            Assert.assertEquals(resultadoEsperado.get(0), resultadoObtido.get(0));
+            Assert.assertEquals(resultadoEsperado.get(1), resultadoObtido.get(1));
 
+        } catch(acessoArquivoException ex){
+            Assert.fail();
+        }
+    }
+    
+    
+    
     //Testar a função "ler" passando uma entrada válida.
     @Test
     public void lerOKTest() {

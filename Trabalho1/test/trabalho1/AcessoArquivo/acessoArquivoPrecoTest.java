@@ -29,6 +29,28 @@ public class acessoArquivoPrecoTest {
     public static final String arquivoNegativoTest = ("Arquivos de testes\\acessoArquivoPrecoNegativoTest.txt");
     public static final String arquivoNaoNumeroTest = ("Arquivos de testes\\acessoArquivoPrecoNaoNumeroTest.txt");
     public static final String arquivoCampoNuloTest = ("Arquivos de testes\\acessoArquivoPrecoCampoNuloTest.txt");
+    public static final String fileXMLOk = ("Arquivos de testes\\acessoArquivoPrecoXML.xml");
+    
+    @Test
+    public void lerXMLOkTest() {
+        try{
+            acessoArquivoXML arquivoPreco = new acessoArquivoPrecoXML();
+            List<Preco> resultadoObtido = arquivoPreco.ler(new File(fileXMLOk));
+            List<Preco> resultadoEsperado = ResultadoEsperado(2011,(03-1),10,5.5,7.1,2.3);
+            //resultadoEsperado.add(ResultadoEsperado(2011,(03-1),10,5.5,7.1,2.3));
+            //resultadoEsperado.add(ResultadoEsperado(2011,(03-1),12,10.5,8.1,4.3));
+                      
+            Assert.assertEquals(resultadoEsperado.get(0), resultadoObtido.get(0));
+            Assert.assertEquals(resultadoEsperado.get(1), resultadoObtido.get(1));
+
+        } catch(acessoArquivoException ex){
+            Assert.fail();
+        }
+    }
+    
+    
+    
+    
     
     @Test
     public void lerOkTest() {
