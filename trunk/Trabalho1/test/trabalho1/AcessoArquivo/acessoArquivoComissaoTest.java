@@ -24,6 +24,24 @@ public class acessoArquivoComissaoTest {
     
     public static final String arquivoComissao = ("Arquivos de testes\\acessoArquivoComissaoOkTest.txt");
     public static final String arquivoComissaoResultado = ("Arquivos de testes\\acessoArquivoComissaoResultadoTest.txt");
+    public static final String arquivoComissaoResultadoXML = ("Arquivos de testes\\acessoArquivoComissaoResultadoTest.xml");
+    
+    
+    @Test
+    public void escreverXMLOkTest() {
+        try{
+            HashMap<String, Comissao> comissoes = new HashMap<String, Comissao>();
+            comissoes.put("1234", new Comissao(05, "0020", "MANOEL", 2, 1, 1, 1, 1000, 500, 1000, 2500, 500));
+            
+            acessoArquivoComissaoXML calculo = new acessoArquivoComissaoXML();
+            calculo.escrever(comissoes, arquivoComissaoResultadoXML);
+            
+            //compararArquivos(arquivoComissao, arquivoComissaoResultadoXML);
+             
+        } catch(acessoArquivoException ex){
+            Assert.fail();
+        }
+    }
     
     @Test
     public void escreverOkTest() {

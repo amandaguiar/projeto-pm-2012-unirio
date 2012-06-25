@@ -4,6 +4,11 @@
  */
 package trabalho1.AcessoArquivo;
 
+import java.beans.XMLEncoder;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 import trabalho1.ObjetosNegocio.Comissao;
 
@@ -14,8 +19,21 @@ import trabalho1.ObjetosNegocio.Comissao;
 public class acessoArquivoComissaoXML extends acessoArquivoXML {
 
     @Override
-    public void escrever(Map<String, Comissao> comissoes, String ARQUIVO_COMISSAO) throws acessoArquivoException {
-        throw new UnsupportedOperationException("Not supported yet.");
+    public void escrever(Map<String, Comissao> comissoes, String ARQUIVO_COMISSAO) throws acessoArquivoException {               
+        XMLEncoder encoder = null;
+        try {
+            try {                               
+                encoder = new XMLEncoder(new FileOutputStream(ARQUIVO_COMISSAO));                        
+                encoder.writeObject(comissoes);    
+            } finally {
+                if (encoder != null) {
+                    encoder.close();
+                }
+            }
+        } catch (IOException e) {
+            throw new acessoArquivoException("Erro ao escrever arquivo!");
+        }
+        
     }
 
     

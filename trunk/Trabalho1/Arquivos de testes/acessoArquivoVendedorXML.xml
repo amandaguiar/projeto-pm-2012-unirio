@@ -1,25 +1,31 @@
-<?xml version="1.0"?> 
-<java version="1.0" class="java.beans.XMLDecoder">
- <object class="trabalho1.ObjetosNegocio.Vendedor"> 
-  <void property="codigo">
-	<string>0020</string>
-  </void> 
-  <void property="nome">
-	<string>MANOEL DA SILVA</string>
-  </void> 
-  <void property="categoria">
-	<int>1</int>
- </void> 
- </object> 
-<object class="trabalho1.ObjetosNegocio.Vendedor"> 
-  <void property="codigo">
-	<string>0021</string>
-  </void> 
-  <void property="nome">
-	<string>JOANA ANGELICA</string>
-  </void> 
-  <void property="categoria">
-	<int>2</int>
- </void> 
- </object> 
+<?xml version="1.0" encoding="UTF-8"?> 
+<java version="1.7.0_01" class="java.beans.XMLDecoder">
+<object class="java.util.ArrayList">
+  <void method="add">
+   <object class="trabalho1.ObjetosNegocio.Vendedor">
+    <void property="categoria">
+     <int>1</int>
+    </void>
+    <void property="codigo">
+     <string>0020</string>
+    </void>
+    <void property="nome">
+     <string>MANOEL DA SILVA</string>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object class="trabalho1.ObjetosNegocio.Vendedor">
+    <void property="categoria">
+     <int>2</int>
+    </void>
+    <void property="codigo">
+     <string>0021</string>
+    </void>
+    <void property="nome">
+     <string>JOANA ANGELICA</string>
+    </void>
+   </object>
+  </void>
+ </object>
 </java>
