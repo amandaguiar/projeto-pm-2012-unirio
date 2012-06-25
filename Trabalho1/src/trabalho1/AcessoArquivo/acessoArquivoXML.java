@@ -4,7 +4,7 @@
  */
 package trabalho1.AcessoArquivo;
 
-import com.thoughtworks.xstream.XStream;
+
 import java.beans.XMLDecoder;
 import java.io.File;
 import java.io.FileInputStream;
