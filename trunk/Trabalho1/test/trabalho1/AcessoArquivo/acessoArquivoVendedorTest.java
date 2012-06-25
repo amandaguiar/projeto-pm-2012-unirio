@@ -4,9 +4,6 @@
  */
 package trabalho1.AcessoArquivo;
 
-import trabalho1.AcessoArquivo.acessoArquivoTXT;
-import trabalho1.AcessoArquivo.acessoArquivoException;
-import trabalho1.AcessoArquivo.acessoArquivoVendedorTXT;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
