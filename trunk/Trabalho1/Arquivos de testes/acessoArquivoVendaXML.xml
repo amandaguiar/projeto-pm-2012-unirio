@@ -33,5 +33,37 @@
     </void>
    </object>
   </void>
+<void method="add">
+   <object class="trabalho1.ObjetosNegocio.Venda">
+    <void property="codVendedor">
+     <string>0021</string>
+    </void>
+    <void property="data">
+     <object class="java.util.GregorianCalendar">
+      <void property="lenient">
+       <boolean>false</boolean>
+      </void>
+      <void property="time">
+       <object class="java.util.Date">
+        <long>1299726000000</long>
+       </object>
+      </void>
+     </object>
+    </void>
+    <void property="qtdeProdutos">
+     <object class="java.util.ArrayList">
+      <void method="add">
+       <int>16</int>
+      </void>
+      <void method="add">
+       <int>32</int>
+      </void>
+      <void method="add">
+       <int>51</int>
+      </void>
+     </object>
+    </void>
+   </object>
+  </void>
  </object>
 </java>
