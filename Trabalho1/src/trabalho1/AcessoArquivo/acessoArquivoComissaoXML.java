@@ -5,11 +5,11 @@
 package trabalho1.AcessoArquivo;
 
 import java.beans.XMLEncoder;
+import java.io.BufferedOutputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import trabalho1.ObjetosNegocio.Comissao;
 
 /**
@@ -23,8 +23,9 @@ public class acessoArquivoComissaoXML extends acessoArquivoXML {
         XMLEncoder encoder = null;
         try {
             try {                               
-                encoder = new XMLEncoder(new FileOutputStream(ARQUIVO_COMISSAO));                        
-                encoder.writeObject(comissoes);    
+                encoder = new XMLEncoder(new BufferedOutputStream(new FileOutputStream(ARQUIVO_COMISSAO)));
+                encoder.writeObject(comissoes);
+                
             } finally {
                 if (encoder != null) {
                     encoder.close();
