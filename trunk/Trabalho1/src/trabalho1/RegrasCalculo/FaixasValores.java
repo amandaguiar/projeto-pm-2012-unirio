@@ -11,18 +11,18 @@ package trabalho1.RegrasCalculo;
 public class FaixasValores {
     private double valorLimite;
     private double percentual;
-    private double SomaParcial;
+    private double somaParcial;
 
-    public FaixasValores(double valorLimite, double percentual, double SomaParcial) {
+    public FaixasValores(double valorLimite, double percentual, double somaParcial) {
         this.valorLimite = valorLimite;
         this.percentual = percentual;
-        this.SomaParcial = SomaParcial;
+        this.somaParcial = somaParcial;
     }
     
     public FaixasValores(double valorLimite, double percentual) {
         this.valorLimite = valorLimite;
         this.percentual = percentual;
-        this.SomaParcial = 0;
+        this.somaParcial = 0;
     }
     public double getPercentual() {
         return percentual;
@@ -41,7 +41,7 @@ public class FaixasValores {
     }
 
     public double getSomaParcial() {
-        return SomaParcial;
+        return somaParcial;
     }
     
 }
