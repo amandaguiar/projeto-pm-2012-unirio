@@ -37,12 +37,9 @@ public class acessoArquivoPrecoTest {
             acessoArquivoXML arquivoPreco = new acessoArquivoPrecoXML();
             List<Preco> resultadoObtido = arquivoPreco.ler(new File(fileXMLOk));
             List<Preco> resultadoEsperado = ResultadoEsperado(2011,(03-1),10,5.5,7.1,2.3);
-            //resultadoEsperado.add(ResultadoEsperado(2011,(03-1),10,5.5,7.1,2.3));
-            //resultadoEsperado.add(ResultadoEsperado(2011,(03-1),12,10.5,8.1,4.3));
-                      
+                                  
             Assert.assertEquals(resultadoEsperado.get(0), resultadoObtido.get(0));
-            Assert.assertEquals(resultadoEsperado.get(1), resultadoObtido.get(1));
-
+           
         } catch(acessoArquivoException ex){
             Assert.fail();
         }
@@ -70,8 +67,9 @@ public class acessoArquivoPrecoTest {
         listaPrecos.add(precoA);
         listaPrecos.add(precoB);
         listaPrecos.add(precoC);
-
-        resultEsperado.add(new Preco(new GregorianCalendar(ano, mes, dia), listaPrecos));
+        GregorianCalendar g = new GregorianCalendar(ano,mes,dia);
+        g.setLenient(false);
+        resultEsperado.add(new Preco(g,listaPrecos));
         return resultEsperado;
     }
 
