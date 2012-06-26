@@ -76,6 +76,16 @@ public class Preco {
     public Double getPrecoProdC(){
         return this.precos.get(POS_CAT_C);
     }
+    
+    public Double getPrecoPorCategoria(String categoria) {
+        if (categoria.equals("A"))
+            return this.precos.get(POS_CAT_A);
+        if (categoria.equals("B"))
+            return this.precos.get(POS_CAT_B);
+        if (categoria.equals("C"))
+            return this.precos.get(POS_CAT_C);
+        return 0.0;
+    }
 
     @Override
     public boolean equals(Object obj) {

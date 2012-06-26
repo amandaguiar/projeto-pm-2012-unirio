@@ -76,6 +76,16 @@ public class Venda {
     public List<Integer> getQtdeProdutos() {
         return qtdeProdutos;
     }
+    
+    public int getQtdeProdutoPorCategoria(String categoria) {
+        if (categoria.equals("A"))
+            return qtdeProdutos.get(0);
+        if (categoria.equals("B"))
+            return qtdeProdutos.get(1);        
+        if (categoria.equals("C"))
+            return qtdeProdutos.get(2);
+        return 0;
+    }
 
     public void setQtdeProdutos(List<Integer> qtdeProdutos) {
         this.qtdeProdutos = qtdeProdutos;
