@@ -53,17 +53,17 @@ public class CalculoComissao implements ICalculoComissao{
 
     public Map<String,Comissao> gerarComissoes(int mes, String arqVendas, String arqPrecos, String arqVendedores, String arqComissao) throws acessoArquivoException{
 
-
-        List<Venda> listaVenda = accArqVenda.ler(new File(arqVendas));
-        List<Preco> listaPreco = accArqPreco.ler(new File(arqPrecos));
-        List<Vendedor> listaVendedor = accArqVendedor.ler(new File(arqVendedores));
+        List<Venda> vendas = accArqVenda.ler(new File(arqVendas));
+        List<Preco> precos = accArqPreco.ler(new File(arqPrecos));
+        List<Vendedor> vendedores = accArqVendedor.ler(new File(arqVendedores));
+        
         Map<String,Comissao> comissoes = new HashMap<String,Comissao>();
 
-        addVendedores(listaVendedor, comissoes, mes);
+        addVendedores(vendedores, comissoes, mes);
 
-        setVendasVendedorNoMes(listaVenda, mes, comissoes);
+        setVendasVendedorNoMes(vendas, mes, comissoes);
 
-        getPrecosNoMes(listaPreco, mes);
+        getPrecosNoMes(precos, mes);
 
         setValorTotalReais(comissoes);
 
@@ -97,15 +97,35 @@ public class CalculoComissao implements ICalculoComissao{
     }
 
     public void setVendasVendedorNoMes(List<Venda> listaVenda, int mes, Map<String, Comissao> comissoes) {
-        for (Venda v : listaVenda) {
-            if (v.getMes() == mes) {
-                comissoes.get(v.getCodVendedor()).setQtdeTotalProdutoA(comissoes.get(v.getCodVendedor()).getQtdeTotalProdutoA() + v.getQtdeProdutoA());
-                comissoes.get(v.getCodVendedor()).setQtdeTotalProdutoB(comissoes.get(v.getCodVendedor()).getQtdeTotalProdutoB() + v.getQtdeProdutoB());
-                comissoes.get(v.getCodVendedor()).setQtdeTotalProdutoC(comissoes.get(v.getCodVendedor()).getQtdeTotalProdutoC() + v.getQtdeProdutoC());
+        for (Venda venda : listaVenda) {
+            if (venda.getMes() == mes) {
+               String codVendedor = venda.getCodVendedor();
+               Comissao comissaoVendedor = comissoes.get(codVendedor);
+               setTotalProdutoAVendido(comissaoVendedor, venda);
+               setTotalProdutoBVendido(comissaoVendedor, venda);
+               setTotalProdutoCVendido(comissaoVendedor, venda);
             }
         }
     }
-
+    
+    private void setTotalProdutoAVendido(Comissao comissaoVendedor, Venda venda) {
+        int quantidadeTotaldoProdutoA = comissaoVendedor.getQtdeTotalProdutoA();
+        int quantidadeProdutoAEmUmaVenda = venda.getQtdeProdutoA();
+        comissaoVendedor.setQtdeTotalProdutoA(quantidadeTotaldoProdutoA + quantidadeProdutoAEmUmaVenda);
+    }
+    
+    private void setTotalProdutoBVendido(Comissao comissaoVendedor, Venda venda) {
+        int quantidadeTotaldoProdutoB = comissaoVendedor.getQtdeTotalProdutoB();
+        int quantidadeProdutoBEmUmaVenda = venda.getQtdeProdutoB();
+        comissaoVendedor.setQtdeTotalProdutoA(quantidadeTotaldoProdutoB + quantidadeProdutoBEmUmaVenda);
+    }
+    
+    private void setTotalProdutoCVendido(Comissao comissaoVendedor, Venda venda) {
+        int quantidadeTotaldoProdutoC = comissaoVendedor.getQtdeTotalProdutoC();
+        int quantidadeProdutoCEmUmaVenda = venda.getQtdeProdutoC();
+        comissaoVendedor.setQtdeTotalProdutoC(quantidadeTotaldoProdutoC + quantidadeProdutoCEmUmaVenda);
+    }
+    
     public void getPrecosNoMes(List<Preco> listaPreco, int mes) {
         //get Preco do Produto no Mes
         for (Preco p : listaPreco) {
