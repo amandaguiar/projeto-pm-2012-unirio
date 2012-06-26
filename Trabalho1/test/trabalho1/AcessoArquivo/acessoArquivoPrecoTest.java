@@ -4,12 +4,7 @@
  */
 package trabalho1.AcessoArquivo;
 
-import trabalho1.AcessoArquivo.acessoArquivoTXT;
-import trabalho1.AcessoArquivo.acessoArquivoException;
-import trabalho1.AcessoArquivo.acessoArquivoPrecoTXT;
 import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.GregorianCalendar;
 import java.util.List;

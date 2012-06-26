@@ -5,9 +5,6 @@
 package trabalho1.RegrasCalculo;
 
 import java.text.DecimalFormat;
-import java.util.GregorianCalendar;
-import java.util.List;
-import trabalho1.ObjetosNegocio.Preco;
 
 /**
  *
@@ -23,26 +20,4 @@ public class CalculoUtils {
             return Double.valueOf(replace);
         
         }
-        
-        public static Preco obterPrecoEmData(List<Preco> precos, GregorianCalendar data) {
-            for (Preco preco : precos) {
-                if (preco.getData().equals(data)) {
-                    return preco;
-                } else {
-                    return obterUltimoPreco(precos, data);
-                }
-            }
-            return null;
-        }
-        
-        private static Preco obterUltimoPreco(List<Preco> precos, GregorianCalendar data) {
-            Preco ultimoPreco = precos.get(0);
-            for (Preco preco : precos) {
-                if (preco.getData().before(data)) {
-                    ultimoPreco = preco;
-                }
-            }
-            return ultimoPreco;
-       }
-    
 }

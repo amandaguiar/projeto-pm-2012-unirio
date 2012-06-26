@@ -9,7 +9,6 @@ import trabalho1.ObjetosNegocio.Comissao;
 import trabalho1.AcessoArquivo.acessoArquivoException;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Set;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -29,6 +28,11 @@ public class gerarComissoesTest {
     private static final String arqPrecos2 = "Arquivos de testes\\PrecosB.txt";
     private static final String arqVendedores2 = "Arquivos de testes\\VendedorB.txt";
     private static final String arqComissao2 = "Arquivos de testes\\ComissaoB.txt";
+
+    private static final String arqVendas_J = "Arquivos de testes\\Vendas_J.txt";
+    private static final String arqPrecos_J = "Arquivos de testes\\Precos_J.txt";
+    private static final String arqVendedores_J = "Arquivos de testes\\Vendedores_J.txt";
+    private static final String arqComissao_J = "Arquivos de testes\\Comissao_J.txt";
 
     @Test
     public void gerarComissoesTest_F(){
@@ -76,12 +80,25 @@ public class gerarComissoesTest {
         return comissoesEsperada;
     }
 
-    public void compararResultados(Map<String, Comissao> resultadoEsperado, Map<String, Comissao> resultadoObtido){
+    @Test
+    public void gerarComissoesTest_J(){
+        try{
+            CalculoComissaoAPP calculo = new CalculoComissaoAPP();
+            Map<String, Comissao> comissoesObtidas = null;
+            comissoesObtidas = calculo.ativarGerarComissoes(11, arqVendas_J, arqPrecos_J, arqVendedores_J, arqComissao_J,"Ponto e Vírgula");
+            Map<String, Comissao> resultadoEsperado = gerarResultadoEsperado_J();
 
-        Set<String> codigosVendedores = resultadoEsperado.keySet();
-        for (String s : codigosVendedores) {
-            if(!resultadoEsperado.get(s).equals( resultadoObtido.get(s)))
-                Assert.fail();
+            Assert.assertEquals(resultadoEsperado, comissoesObtidas);
+        } catch(acessoArquivoException ex){
+            Assert.fail();
         }
+    }
+
+    public Map<String, Comissao> gerarResultadoEsperado_J(){
+        Map<String, Comissao> comissoesEsperada = new HashMap<String, Comissao>();
+        comissoesEsperada.put("044", new Comissao(11, "044", "ALEX TURNER", 2, 55, 105, 132, 751.50, 2292, 5457.60, 8501.10, 2550.33));
+        comissoesEsperada.put("182", new Comissao(11, "182", "DAVE GROHL", 1, 47, 106, 163, 675.50, 1674.20, 6738.70, 9088.40, 1677.68));
+        comissoesEsperada.put("021", new Comissao(11, "021", "BILLIE JOE", 2, 45, 45, 90, 562.50, 759.00, 3717.00, 5038.50, 1511.55));
+        return comissoesEsperada;
     }
 }

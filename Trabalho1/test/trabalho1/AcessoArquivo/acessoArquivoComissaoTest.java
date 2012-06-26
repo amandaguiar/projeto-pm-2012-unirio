@@ -4,8 +4,6 @@
  */
 package trabalho1.AcessoArquivo;
 
-import trabalho1.AcessoArquivo.acessoArquivoComissaoTXT;
-import trabalho1.AcessoArquivo.acessoArquivoException;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;

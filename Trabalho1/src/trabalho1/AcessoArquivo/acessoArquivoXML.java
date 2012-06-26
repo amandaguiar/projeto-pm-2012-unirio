@@ -6,20 +6,14 @@ package trabalho1.AcessoArquivo;
 
 
 import java.beans.XMLDecoder;
-import java.beans.XMLEncoder;
 import java.io.BufferedInputStream;
-import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.util.ArrayList;
-import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.Map;
 import trabalho1.ObjetosNegocio.Comissao;
-import trabalho1.ObjetosNegocio.Venda;
-import trabalho1.ObjetosNegocio.Vendedor;
 
 /**
  *
