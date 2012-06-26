@@ -4,7 +4,6 @@
  */
 package trabalho1.DataUtil;
 
-import trabalho1.DataUtil.DataUtil;
 import trabalho1.AcessoArquivo.acessoArquivoVendaTXT;
 import trabalho1.AcessoArquivo.acessoArquivoTXT;
 import java.util.Arrays;

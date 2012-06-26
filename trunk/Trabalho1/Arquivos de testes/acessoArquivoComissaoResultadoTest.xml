@@ -1,46 +1,46 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<java version="1.7.0_01" class="java.beans.XMLDecoder">
- <object class="java.util.HashMap">
-  <void method="put">
-   <string>1234</string>
-   <object class="trabalho1.ObjetosNegocio.Comissao">
-    <void property="categoria">
-     <int>2</int>
-    </void>
-    <void property="codigo">
-     <string>0020</string>
-    </void>
-    <void property="comissao">
-     <double>500.0</double>
-    </void>
-    <void property="mes">
-     <int>5</int>
-    </void>
-    <void property="nome">
-     <string>MANOEL</string>
-    </void>
-    <void property="qtdeTotalProdutoA">
-     <int>1</int>
-    </void>
-    <void property="qtdeTotalProdutoB">
-     <int>1</int>
-    </void>
-    <void property="qtdeTotalProdutoC">
-     <int>1</int>
-    </void>
-    <void property="valorTotalGeral">
-     <double>2500.0</double>
-    </void>
-    <void property="valorTotalProdutoA">
-     <double>1000.0</double>
-    </void>
-    <void property="valorTotalProdutoB">
-     <double>500.0</double>
-    </void>
-    <void property="valorTotalProdutoC">
-     <double>1000.0</double>
-    </void>
-   </object>
-  </void>
- </object>
-</java>
+<?xml version="1.0" encoding="UTF-8"?> 
+<java version="1.6.0_21" class="java.beans.XMLDecoder"> 
+ <object class="java.util.HashMap"> 
+  <void method="put"> 
+   <string>1234</string> 
+   <object class="trabalho1.ObjetosNegocio.Comissao"> 
+    <void property="categoria"> 
+     <int>2</int> 
+    </void> 
+    <void property="codigo"> 
+     <string>0020</string> 
+    </void> 
+    <void property="comissao"> 
+     <double>500.0</double> 
+    </void> 
+    <void property="mes"> 
+     <int>5</int> 
+    </void> 
+    <void property="nome"> 
+     <string>MANOEL</string> 
+    </void> 
+    <void property="qtdeTotalProdutoA"> 
+     <int>1</int> 
+    </void> 
+    <void property="qtdeTotalProdutoB"> 
+     <int>1</int> 
+    </void> 
+    <void property="qtdeTotalProdutoC"> 
+     <int>1</int> 
+    </void> 
+    <void property="valorTotalGeral"> 
+     <double>2500.0</double> 
+    </void> 
+    <void property="valorTotalProdutoA"> 
+     <double>1000.0</double> 
+    </void> 
+    <void property="valorTotalProdutoB"> 
+     <double>500.0</double> 
+    </void> 
+    <void property="valorTotalProdutoC"> 
+     <double>1000.0</double> 
+    </void> 
+   </object> 
+  </void> 
+ </object> 
+</java> 

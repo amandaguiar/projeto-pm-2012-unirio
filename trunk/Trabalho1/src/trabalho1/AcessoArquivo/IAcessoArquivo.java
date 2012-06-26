@@ -5,7 +5,6 @@
 
 package trabalho1.AcessoArquivo;
 
-import trabalho1.AcessoArquivo.acessoArquivoException;
 import java.io.File;
 import java.util.List;
 import java.util.Map;

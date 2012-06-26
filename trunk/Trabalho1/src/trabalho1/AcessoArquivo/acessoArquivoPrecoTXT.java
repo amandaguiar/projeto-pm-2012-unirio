@@ -5,11 +5,7 @@
 
 package trabalho1.AcessoArquivo;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
 import java.util.List;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.GregorianCalendar;
 import java.util.Map;

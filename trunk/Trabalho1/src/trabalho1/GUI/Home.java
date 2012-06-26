@@ -21,7 +21,6 @@ import javax.swing.ButtonGroup;
 import javax.swing.JOptionPane;
 import javax.swing.JRadioButton;
 import trabalho1.AcessoArquivo.AcessoArquivoAPP;
-import trabalho1.AcessoArquivo.acessoArquivoXML;
 import trabalho1.ObjetosNegocio.Comissao;
 import trabalho1.RegrasCalculo.CalculoComissaoAPP;
 
