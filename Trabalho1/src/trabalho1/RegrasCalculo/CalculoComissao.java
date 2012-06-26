@@ -7,10 +7,7 @@ package trabalho1.RegrasCalculo;
 
 import trabalho1.AcessoArquivo.acessoArquivoException;
 import java.io.File;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 import trabalho1.AcessoArquivo.IAcessoArquivo;
 import trabalho1.ObjetosNegocio.Comissao;
 import trabalho1.ObjetosNegocio.Preco;
@@ -63,9 +60,7 @@ public class CalculoComissao implements ICalculoComissao{
 
         setVendasVendedorNoMes(vendas, mes, comissoes);
 
-        getPrecosNoMes(precos, mes);
-
-        setValorTotalReais(comissoes);
+        setPrecosProdutoVendidos(comissoes, vendas, precos, mes);
 
         Set<String> codigosVendedores = comissoes.keySet();
         for(String s : codigosVendedores){
@@ -78,16 +73,6 @@ public class CalculoComissao implements ICalculoComissao{
         }
 
         return comissoes;
-    }
-
-    public void setValorTotalReais(Map<String, Comissao> comissoes) {
-        Set<String> codigosVendedores = comissoes.keySet();
-        for (String s : codigosVendedores) {
-            comissoes.get(s).setValorTotalProdutoA(CalculoUtils.roundTwoDecimals(precoProdutoANoMes * comissoes.get(s).getQtdeTotalProdutoA()));
-            comissoes.get(s).setValorTotalProdutoB(CalculoUtils.roundTwoDecimals(precoProdutoBNoMes * comissoes.get(s).getQtdeTotalProdutoB()));
-            comissoes.get(s).setValorTotalProdutoC(CalculoUtils.roundTwoDecimals(precoProdutoCNoMes * comissoes.get(s).getQtdeTotalProdutoC()));
-            comissoes.get(s).setValorTotalGeral(CalculoUtils.roundTwoDecimals(comissoes.get(s).getValorTotalProdutoA() + comissoes.get(s).getValorTotalProdutoB() + comissoes.get(s).getValorTotalProdutoC()));
-        }
     }
 
     public void addVendedores(List<Vendedor> listaVendedor, Map<String, Comissao> comissoes, int mes) {
@@ -135,6 +120,59 @@ public class CalculoComissao implements ICalculoComissao{
                 precoProdutoBNoMes = p.getPrecoProdB();
                 precoProdutoCNoMes = p.getPrecoProdC();
             }
+        }
+    }
+
+    public void setPrecosProdutoVendidos(Map<String, Comissao> comissoes, List<Venda> listaVenda, List<Preco> listaPreco, int mes) {
+        Set<String> codigosVendedores = comissoes.keySet();
+        for (String codigoVendedor : codigosVendedores) {
+            double valorTotalProdutoA = getValorTotalVendaProdA(listaVenda, listaPreco, mes);
+            double valorTotalProdutoB = getValorTotalVendaProdB(listaVenda, listaPreco, mes);
+            double valorTotalProdutoC = getValorTotalVendaProdC(listaVenda, listaPreco, mes);
+            double valorTotalProdutoGeral = valorTotalProdutoA + valorTotalProdutoB + valorTotalProdutoC;
+            
+            comissoes.get(codigoVendedor).setValorTotalProdutoA(valorTotalProdutoA);
+            comissoes.get(codigoVendedor).setValorTotalProdutoB(valorTotalProdutoB);
+            comissoes.get(codigoVendedor).setValorTotalProdutoC(valorTotalProdutoC);
+            comissoes.get(codigoVendedor).setValorTotalGeral(valorTotalProdutoGeral);
+        }
+    }
+    
+    private double getVenda(String categoriaProduto, List<Venda> vendas, List<Preco> precos, int mes) {
+        double valorDaVenda = 0.0;
+        for (Venda venda : vendas) {
+            GregorianCalendar dataVenda = venda.getData();
+            if (venda.getMes() == mes) {
+                Preco precoNaData = CalculoUtils.obterPrecoEmData(precos, dataVenda);
+                double valorPrecoNaData = precoNaData.getPrecoPorCategoria(categoriaProduto);
+                int quantidadeProdutoCategoria = venda.getQtdeProdutoPorCategoria(categoriaProduto);
+                if(valorPrecoNaData != 0.0 && quantidadeProdutoCategoria != 0){
+                    valorDaVenda += valorPrecoNaData * quantidadeProdutoCategoria;
+                }
+            }
+        }
+        return valorDaVenda;
+    }
+    
+    private double getValorTotalVendaProdA(List<Venda> vendas, List<Preco> precos, int mes) {
+        return getVenda("A", vendas, precos, mes);
+    }
+
+    private double getValorTotalVendaProdB(List<Venda> vendas, List<Preco> precos, int mes) {
+        return getVenda("B", vendas, precos, mes);
+    }
+
+    private double getValorTotalVendaProdC(List<Venda> vendas, List<Preco> precos, int mes) {
+        return getVenda("C", vendas, precos, mes);
+    }
+    
+    public void setValorTotalReais(Map<String, Comissao> comissoes) {
+        Set<String> codigosVendedores = comissoes.keySet();
+        for (String s : codigosVendedores) {
+            comissoes.get(s).setValorTotalProdutoA(CalculoUtils.roundTwoDecimals(precoProdutoANoMes * comissoes.get(s).getQtdeTotalProdutoA()));
+            comissoes.get(s).setValorTotalProdutoB(CalculoUtils.roundTwoDecimals(precoProdutoBNoMes * comissoes.get(s).getQtdeTotalProdutoB()));
+            comissoes.get(s).setValorTotalProdutoC(CalculoUtils.roundTwoDecimals(precoProdutoCNoMes * comissoes.get(s).getQtdeTotalProdutoC()));
+            comissoes.get(s).setValorTotalGeral(CalculoUtils.roundTwoDecimals(comissoes.get(s).getValorTotalProdutoA() + comissoes.get(s).getValorTotalProdutoB() + comissoes.get(s).getValorTotalProdutoC()));
         }
     }
 
